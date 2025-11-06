@@ -1,1951 +1,1048 @@
-<!-- Chosen Palette: Warm Neutral & Deep Teal (Primary: #0d9488, Accent: #ea580c) --> 
-
-<!DOCTYPE html> 
-
-<html lang="en"> 
-
-<head> 
-
-<meta charset="UTF-8"> 
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-
-<title>Autumn Point Relocation Solutions</title> 
-
-<!-- Load Tailwind CSS --> 
-
-<script src="https://cdn.tailwindcss.com"></script> 
-
-<!-- Configure Tailwind for Inter font and custom colors --> 
-
-<script> 
-
-tailwind.config = { 
-
-theme: { 
-
-extend: { 
-
-colors: { 
-
-'primary-teal': '#0d9488', // Deep Teal 
-
-'secondary-orange': '#ea580c', // Burnt Orange 
-
-'dark-text': '#1f2937', // Gray 800 
-
-'danger-red': '#be123c', // Rose 700 
-
-}, 
-
-fontFamily: { 
-
-sans: ['Inter', 'sans-serif'], 
-
-}, 
-
-} 
-
-} 
-
-} 
-
-</script> 
-
-<style> 
-
-/* Custom styles for smooth scrolling to anchors */ 
-
-html { 
-
-scroll-behavior: smooth; 
-
-} 
-
- 
-
-/* Hero Video Container Styling */ 
-
-.hero-video-container { 
-
-position: absolute; 
-
-top: 0; 
-
-left: 0; 
-
-width: 100%; 
-
-height: 100%; 
-
-overflow: hidden; 
-
-z-index: 0; /* Below content layer */ 
-
-} 
-
- 
-
-.hero-video { 
-
-min-width: 100%; 
-
-min-height: 100%; 
-
-width: auto; 
-
-height: auto; 
-
-position: absolute; 
-
-top: 50%; 
-
-left: 50%; 
-
-transform: translate(-50%, -50%); 
-
-object-fit: cover; /* Ensures video covers the entire container */ 
-
-} 
-
- 
-
-/* Specific style for package features list */ 
-
-.feature-list li { 
-
-position: relative; 
-
-padding-left: 1.5rem; 
-
-margin-bottom: 0.5rem; 
-
-} 
-
-.feature-list li::before { 
-
-content: '✓'; 
-
-position: absolute; 
-
-left: 0; 
-
-color: #0d9488; 
-
-font-weight: bold; 
-
-} 
-
- 
-
-/* Styling for the Yes/No radio buttons (Matchmaker) */ 
-
-.radio-label { 
-
-display: inline-flex; 
-
-align-items: center; 
-
-padding: 8px 16px; 
-
-border-radius: 8px; 
-
-cursor: pointer; 
-
-transition: all 0.2s; 
-
-border: 2px solid #e5e7eb; /* Subtle light gray border */ 
-
-font-weight: 600; 
-
-color: #4b5563; /* Dark gray text */ 
-
-user-select: none; 
-
-} 
-
-.radio-label:hover { 
-
-background-color: #f3f4f6; 
-
-} 
-
- 
-
-.radio-yes:checked + .radio-label { 
-
-background-color: #0d9488; /* primary-teal */ 
-
-color: white; 
-
-border-color: #0d9488; 
-
-box-shadow: 0 4px 6px -1px rgba(13, 148, 136, 0.5); 
-
-} 
-
-.radio-no:checked + .radio-label { 
-
-background-color: #be123c; /* danger-red */ 
-
-color: white; 
-
-border-color: #be123c; 
-
-box-shadow: 0 4px 6px -1px rgba(190, 18, 60, 0.5); 
-
-} 
-
-/* Custom modal styles */ 
-
-.modal { 
-
-background-color: rgba(0, 0, 0, 0.6); 
-
-} 
-
-.modal-content { 
-
-animation: slide-down 0.3s ease-out; 
-
-} 
-
-@keyframes slide-down { 
-
-from { 
-
-opacity: 0; 
-
-transform: translateY(-20px); 
-
-} 
-
-to { 
-
-opacity: 1; 
-
-transform: translateY(0); 
-
-} 
-
-} 
-
-</style> 
-
-</head> 
-
-<body class="font-sans text-dark-text bg-gray-50"> 
-
- 
-
-<!-- Modal for Gemini Results --> 
-
-<div id="result-modal" class="modal fixed inset-0 z-50 hidden flex items-center justify-center p-4"> 
-
-<div class="modal-content bg-white rounded-xl shadow-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto"> 
-
-<div class="p-6"> 
-
-<div class="flex justify-between items-start border-b pb-3 mb-4"> 
-
-<h3 id="modal-title" class="text-2xl font-bold text-primary-teal"></h3> 
-
-<button onclick="closeModal()" class="text-gray-400 hover:text-gray-600 focus:outline-none"> 
-
-<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg> 
-
-</button> 
-
-</div> 
-
-<div id="modal-body" class="text-gray-700 space-y-4"> 
-
-<!-- Content injected here --> 
-
-</div> 
-
-<div id="modal-sources" class="mt-4 pt-4 border-t border-gray-100 text-xs text-gray-500 hidden"> 
-
-<p class="font-semibold mb-1">Sources:</p> 
-
-<ul id="sources-list" class="list-disc list-inside space-y-1"> 
-
-<!-- Sources injected here --> 
-
-</ul> 
-
-</div> 
-
-<div class="mt-6 flex justify-end"> 
-
-<button onclick="closeModal()" class="px-6 py-2 bg-secondary-orange text-white font-medium rounded-lg hover:bg-opacity-90 transition shadow-md"> 
-
-Close 
-
-</button> 
-
-</div> 
-
-</div> 
-
-</div> 
-
-</div> 
-
- 
-
- 
-
-<!-- Navigation Bar (Sticky and uses Anchor Links) --> 
-
-<header class="sticky top-0 z-40 bg-white shadow-md"> 
-
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"> 
-
-<div class="flex justify-between items-center py-4 md:justify-start md:space-x-10"> 
-
-<!-- Logo/Branding --> 
-
-<div class="flex justify-start lg:w-0 lg:flex-1"> 
-
-<a href="#page-home" class="flex items-center transition duration-300"> 
-
-<span class="text-xl font-bold text-primary-teal">Autumn Point</span> 
-
-</a> 
-
-</div> 
-
- 
-
-<!-- Desktop Navigation --> 
-
-<nav class="hidden md:flex space-x-10"> 
-
-<!-- Standard Anchor Links --> 
-
-<a href="#page-destinations" class="text-base font-medium text-gray-700 hover:text-secondary-orange transition duration-300">Destinations</a> 
-
-<a href="#page-matchmaker" class="text-base font-medium text-gray-700 hover:text-secondary-orange transition duration-300">Matchmaker</a> 
-
-<a href="#page-residency" class="text-base font-medium text-gray-700 hover:text-secondary-orange transition duration-300">Residency Info</a> 
-
-<a href="#page-services" class="text-base font-medium text-gray-700 hover:text-secondary-orange transition duration-300">Packages</a> 
-
-<a href="#page-about" class="text-base font-medium text-gray-700 hover:text-secondary-orange transition duration-300">About Us</a> 
-
-</nav> 
-
- 
-
-<!-- CTA Button --> 
-
-<div class="hidden md:flex items-center justify-end md:flex-1 lg:w-0"> 
-
-<a href="#page-contact" class="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-lg shadow-lg text-base font-medium text-white bg-primary-teal hover:bg-secondary-orange transition duration-300 transform hover:scale-105"> 
-
-Get Started 
-
-</a> 
-
-</div> 
-
- 
-
-<!-- Mobile Menu Button --> 
-
-<div class="-mr-2 -my-2 md:hidden"> 
-
-<button type="button" id="menu-button" onclick="toggleMenu()" class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-teal" aria-expanded="false"> 
-
-<span class="sr-only">Open menu</span> 
-
-<svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"> 
-
-<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /> 
-
-</svg> 
-
-</button> 
-
-</div> 
-
-</div> 
-
-</div> 
-
- 
-
-<!-- Mobile Menu Panel (Hidden by default) --> 
-
-<div id="mobile-menu" class="hidden absolute top-full left-0 w-full md:hidden bg-white shadow-lg border-t border-gray-100 p-2 transform transition duration-200"> 
-
-<div class="flex flex-col space-y-2"> 
-
-<!-- Anchor Links for mobile menu --> 
-
-<a href="#page-destinations" onclick="toggleMenu()" class="block px-3 py-2 rounded-lg text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-secondary-orange">Destinations</a> 
-
-<a href="#page-matchmaker" onclick="toggleMenu()" class="block px-3 py-2 rounded-lg text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-secondary-orange">Matchmaker</a> 
-
-<a href="#page-residency" onclick="toggleMenu()" class="block px-3 py-2 rounded-lg text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-secondary-orange">Residency Info</a> 
-
-<a href="#page-services" onclick="toggleMenu()" class="block px-3 py-2 rounded-lg text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-secondary-orange">Packages</a> 
-
-<a href="#page-about" onclick="toggleMenu()" class="block px-3 py-2 rounded-lg text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-secondary-orange">About Us</a> 
-
-<a href="#page-contact" onclick="toggleMenu()" class="block w-full text-center px-4 py-2 rounded-lg text-base font-medium text-white bg-primary-teal hover:bg-secondary-orange transition duration-300 mt-2">Get Started</a> 
-
-</div> 
-
-</div> 
-
-</header> 
-
- 
-
-<main id="main-content"> 
-
-<!-- 1. HOME SECTION (Anchor: #page-home) --> 
-
-<section id="page-home" class="relative overflow-hidden pt-20 pb-20 sm:pt-24 sm:pb-32 lg:pt-32 lg:pb-40 flex items-center h-screen min-h-[500px]"> 
-
-<!-- Video Background --> 
-
-<div class="hero-video-container"> 
-
-<!-- Added ID for JavaScript targeting --> 
-
-<video id="hero-video-bg" autoplay loop muted playsinline class="hero-video" preload="auto"> 
-
-<source src="eal.mp4" type="video/mp4"> 
-
-<!-- Fallback content if video cannot be played --> 
-
-</video> 
-
-</div> 
-
- 
-
-<!-- Dark Overlay for Readability --> 
-
-<div class="absolute inset-0 z-10 bg-black opacity-60"></div> 
-
- 
-
-<!-- Content --> 
-
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 text-white"> 
-
-<div class="lg:grid lg:grid-cols-12 lg:gap-12 items-center"> 
-
-<div class="lg:col-span-8 xl:col-span-7"> 
-
-<h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight"> 
-
-Your <span class="text-secondary-orange">Smooth Transition</span> to Pura Vida 
-
-</h1> 
-
-<p class="mt-6 text-xl text-gray-100 max-w-lg"> 
-
-We specialize in making your move to Costa Rica, Panama, or Belize seamless, stress-free, and legally sound. Start your Central American adventure today. 
-
-</p> 
-
-<div class="mt-10 flex space-x-4"> 
-
-<a href="#page-contact" class="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-lg shadow-xl text-white bg-primary-teal hover:bg-secondary-orange transition duration-300 transform hover:scale-105"> 
-
-Book a Free Consultation 
-
-</a> 
-
-</div> 
-
-</div> 
-
-</div> 
-
-</div> 
-
-</section> 
-
- 
-
-<!-- 2. DESTINATIONS SECTION (Anchor: #page-destinations) --> 
-
-<section id="page-destinations" class="py-16 sm:py-24 bg-gray-50"> 
-
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"> 
-
-<div class="text-center"> 
-
-<h2 class="text-base text-secondary-orange font-semibold tracking-wide uppercase">Your New Home Awaits</h2> 
-
-<p class="mt-2 text-3xl font-extrabold text-dark-text sm:text-4xl"> 
-
-Explore Costa Rica, Panama, & Belize 
-
-</p> 
-
-<p class="mt-4 max-w-3xl text-lg text-gray-500 lg:mx-auto"> 
-
-Click on any destination to get an instant, current brief covering essential residency requirements, cost of living estimates, and popular expat cities, powered by the Gemini AI. 
-
-</p> 
-
-</div> 
-
- 
-
-<div class="mt-16 space-y-12 lg:space-y-0 lg:grid lg:grid-cols-3 lg:gap-8"> 
-
-<!-- Country Card 1: Costa Rica --> 
-
-<div class="rounded-xl shadow-2xl overflow-hidden bg-white group transition duration-300 hover:scale-[1.02]"> 
-
-<img class="w-full h-48 object-cover transition duration-500 group-hover:opacity-80" 
-
-src="https://placehold.co/600x400/0d9488/ffffff?text=Costa+Rica+Pura+Vida" 
-
-alt="Lush green landscape of Costa Rica"> 
-
-<div class="p-6"> 
-
-<h3 class="text-2xl font-bold text-primary-teal">Costa Rica</h3> 
-
-<p class="mt-3 text-gray-600"> 
-
-Known for its political stability, robust ecological tourism, and high quality of life. Ideal for nature lovers and families seeking "Pura Vida." 
-
-</p> 
-
-<button onclick="generateRelocationBrief('Costa Rica')" 
-
-class="mt-4 text-secondary-orange font-semibold inline-flex items-center hover:underline focus:outline-none"> 
-
-Get an Instant Brief ✨ &rarr; 
-
-</button> 
-
-</div> 
-
-</div> 
-
- 
-
-<!-- Country Card 2: Panama --> 
-
-<div class="rounded-xl shadow-2xl overflow-hidden bg-white group transition duration-300 hover:scale-[1.02]"> 
-
-<img class="w-full h-48 object-cover transition duration-500 group-hover:opacity-80" 
-
-src="https://placehold.co/600x400/ea580c/ffffff?text=Panama+City+Skyline" 
-
-alt="Modern skyline of Panama City"> 
-
-<div class="p-6"> 
-
-<h3 class="text-2xl font-bold text-secondary-orange">Panama</h3> 
-
-<p class="mt-3 text-gray-600"> 
-
-A global hub offering modern infrastructure, excellent tax incentives, and the famous 'Friendly Nations' visa for expats. 
-
-</p> 
-
-<button onclick="generateRelocationBrief('Panama')" 
-
-class="mt-4 text-secondary-orange font-semibold inline-flex items-center hover:underline focus:outline-none"> 
-
-Get an Instant Brief ✨ &rarr; 
-
-</button> 
-
-</div> 
-
-</div> 
-
- 
-
-<!-- Country Card 3: Belize --> 
-
-<div class="rounded-xl shadow-2xl overflow-hidden bg-white group transition duration-300 hover:scale-[1.02]"> 
-
-<img class="w-full h-48 object-cover transition duration-500 group-hover:opacity-80" 
-
-src="https://placehold.co/600x400/be123c/ffffff?text=Belize+Coral+Reef" 
-
-alt="Beautiful barrier reef in Belize"> 
-
-<div class="p-6"> 
-
-<h3 class="text-2xl font-bold text-danger-red">Belize</h3> 
-
-<p class="mt-3 text-gray-600"> 
-
-The only English-speaking country in Central America, offering Caribbean lifestyle, low-cost living, and simple residency requirements. 
-
-</p> 
-
-<button onclick="generateRelocationBrief('Belize')" 
-
-class="mt-4 text-secondary-orange font-semibold inline-flex items-center hover:underline focus:outline-none"> 
-
-Get an Instant Brief ✨ &rarr; 
-
-</button> 
-
-</div> 
-
-</div> 
-
-</div> 
-
-</div> 
-
-</section> 
-
- 
-
-<!-- 2.5. MATCHMAKER SECTION (Anchor: #page-matchmaker) --> 
-
-<section id="page-matchmaker" class="py-16 sm:py-24 bg-primary-teal/5"> 
-
-<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8"> 
-
-<div class="text-center"> 
-
-<h2 class="text-base text-secondary-orange font-semibold tracking-wide uppercase">Personalized Recommendation</h2> 
-
-<p class="mt-2 text-3xl font-extrabold text-dark-text sm:text-4xl"> 
-
-Find Your Perfect Home Match 
-
-</p> 
-
-<p class="mt-4 text-xl text-gray-600"> 
-
-Answer these 12 questions to find the Central American city that aligns with your lifestyle, budget, and priorities. 
-
-</p> 
-
-</div> 
-
- 
-
-<div class="mt-12 bg-white p-8 rounded-xl shadow-2xl border border-gray-100"> 
-
-<form id="matchmaker-form" onsubmit="event.preventDefault(); generateRecommendation();"> 
-
-<!-- Question 1: Budget Priority --> 
-
-<div class="mb-6 pb-4 border-b"> 
-
-<p class="text-lg font-semibold text-dark-text mb-3">1. Is a maximum monthly budget of $3,000 USD (excluding rent) a hard limit?</p> 
-
-<div class="flex space-x-4"> 
-
-<input type="radio" id="q1-yes" name="q1_budget" value="Yes" class="hidden radio-yes" required> 
-
-<label for="q1-yes" class="radio-label">Yes</label> 
-
-<input type="radio" id="q1-no" name="q1_budget" value="No" class="hidden radio-no"> 
-
-<label for="q1-no" class="radio-label">No (Budget is flexible)</label> 
-
-</div> 
-
-</div> 
-
- 
-
-<!-- Question 2: Residency --> 
-
-<div class="mb-6 pb-4 border-b"> 
-
-<p class="text-lg font-semibold text-dark-text mb-3">2. Do you require immediate and reliable visa/residency application assistance?</p> 
-
-<div class="flex space-x-4"> 
-
-<input type="radio" id="q2-yes" name="q2_residency" value="Yes" class="hidden radio-yes" required> 
-
-<label for="q2-yes" class="radio-label">Yes</label> 
-
-<input type="radio" id="q2-no" name="q2_residency" value="No" class="hidden radio-no"> 
-
-<label for="q2-no" class="radio-label">No</label> 
-
-</div> 
-
-</div> 
-
- 
-
-<!-- Question 3: Language/Community --> 
-
-<div class="mb-6 pb-4 border-b"> 
-
-<p class="text-lg font-semibold text-dark-text mb-3">3. Is an established English-speaking expat community and services essential for daily life?</p> 
-
-<div class="flex space-x-4"> 
-
-<input type="radio" id="q3-yes" name="q3_language" value="Yes" class="hidden radio-yes" required> 
-
-<label for="q3-yes" class="radio-label">Yes</label> 
-
-<input type="radio" id="q3-no" name="q3_language" value="No" class="hidden radio-no"> 
-
-<label for="q3-no" class="radio-label">No (Willing to integrate)</label> 
-
-</div> 
-
-</div> 
-
- 
-
-<!-- Question 4: Safety --> 
-
-<div class="mb-6 pb-4 border-b"> 
-
-<p class="text-lg font-semibold text-dark-text mb-3">4. Is a location with exceptionally low crime rates and high personal safety your **top priority**?</p> 
-
-<div class="flex space-x-4"> 
-
-<input type="radio" id="q4-yes" name="q4_safety" value="Yes" class="hidden radio-yes" required> 
-
-<label for="q4-yes" class="radio-label">Yes</label> 
-
-<input type="radio" id="q4-no" name="q4_safety" value="No" class="hidden radio-no"> 
-
-<label for="q4-no" class="radio-label">No (Accepts standard risks)</label> 
-
-</div> 
-
-</div> 
-
- 
-
-<!-- Question 5: Travel --> 
-
-<div class="mb-6 pb-4 border-b"> 
-
-<p class="text-lg font-semibold text-dark-text mb-3">5. Do you need to be within 60 minutes of a major international airport for frequent travel?</p> 
-
-<div class="flex space-x-4"> 
-
-<input type="radio" id="q5-yes" name="q5_travel" value="Yes" class="hidden radio-yes" required> 
-
-<label for="q5-yes" class="radio-label">Yes</label> 
-
-<input type="radio" id="q5-no" name="q5_travel" value="No" class="hidden radio-no"> 
-
-<label for="q5-no" class="radio-label">No</label> 
-
-</div> 
-
-</div> 
-
- 
-
-<!-- Question 6: Climate (NEW/Updated) --> 
-
-<div class="mb-6 pb-4 border-b"> 
-
-<p class="text-lg font-semibold text-dark-text mb-3">6. Do you strongly prefer a cooler, mountain/highland climate over a hot, coastal one?</p> 
-
-<div class="flex space-x-4"> 
-
-<input type="radio" id="q6-yes" name="q6_climate" value="Yes" class="hidden radio-yes" required> 
-
-<label for="q6-yes" class="radio-label">Yes (Mountain/Cooler)</label> 
-
-<input type="radio" id="q6-no" name="q6_climate" value="No" class="hidden radio-no"> 
-
-<label for="q6-no" class="radio-label">No (Coastal/Warmer)</label> 
-
-</div> 
-
-</div> 
-
- 
-
-<!-- Question 7: Digital (NEW/Updated) --> 
-
-<div class="mb-6 pb-4 border-b"> 
-
-<p class="text-lg font-semibold text-dark-text mb-3">7. Is guaranteed, reliable fiber optic internet service essential for remote work (e.g., video calls)?</p> 
-
-<div class="flex space-x-4"> 
-
-<input type="radio" id="q7-yes" name="q7_digital" value="Yes" class="hidden radio-yes" required> 
-
-<label for="q7-yes" class="radio-label">Yes</label> 
-
-<input type="radio" id="q7-no" name="q7_digital" value="No" class="hidden radio-no"> 
-
-<label for="q7-no" class="radio-label">No (Standard speeds are fine)</label> 
-
-</div> 
-
-</div> 
-
- 
-
-<!-- Question 8: Healthcare (NEW/Updated) --> 
-
-<div class="mb-6 pb-4 border-b"> 
-
-<p class="text-lg font-semibold text-dark-text mb-3">8. Is proximity (under 30 minutes) to a high-quality private hospital a must-have?</p> 
-
-<div class="flex space-x-4"> 
-
-<input type="radio" id="q8-yes" name="q8_healthcare" value="Yes" class="hidden radio-yes" required> 
-
-<label for="q8-yes" class="radio-label">Yes</label> 
-
-<input type="radio" id="q8-no" name="q8_healthcare" value="No" class="hidden radio-no"> 
-
-<label for="q8-no" class="radio-label">No (Rural clinic access is enough)</label> 
-
-</div> 
-
-</div> 
-
-<!-- Question 9: Pace/Nightlife (NEW/Updated) --> 
-
-<div class="mb-6 pb-4 border-b"> 
-
-<p class="text-lg font-semibold text-dark-text mb-3">9. Do you desire an active nightlife and a large, metropolitan city center?</p> 
-
-<div class="flex space-x-4"> 
-
-<input type="radio" id="q9-yes" name="q9_pace" value="Yes" class="hidden radio-yes" required> 
-
-<label for="q9-yes" class="radio-label">Yes (Urban, active)</label> 
-
-<input type="radio" id="q9-no" name="q9_pace" value="No" class="hidden radio-no"> 
-
-<label for="q9-no" class="radio-label">No (Quiet, relaxed town)</label> 
-
-</div> 
-
-</div> 
-
- 
-
-<!-- Question 10: Housing Style (NEW) --> 
-
-<div class="mb-6 pb-4 border-b"> 
-
-<p class="text-lg font-semibold text-dark-text mb-3">10. Is your primary housing preference a modern, high-rise condo or apartment?</p> 
-
-<div class="flex space-x-4"> 
-
-<input type="radio" id="q10-yes" name="q10_housing" value="Yes" class="hidden radio-yes" required> 
-
-<label for="q10-yes" class="radio-label">Yes (High-Rise/Urban)</label> 
-
-<input type="radio" id="q10-no" name="q10_housing" value="No" class="hidden radio-no"> 
-
-<label for="q10-no" class="radio-label">No (Stand-Alone Home/Land)</label> 
-
-</div> 
-
-</div> 
-
- 
-
-<!-- Question 11: Walkability/Transport (NEW) --> 
-
-<div class="mb-6 pb-4 border-b"> 
-
-<p class="text-lg font-semibold text-dark-text mb-3">11. Is a high degree of walkability and reliance on public transport/minimal driving essential?</p> 
-
-<div class="flex space-x-4"> 
-
-<input type="radio" id="q11-yes" name="q11_walk" value="Yes" class="hidden radio-yes" required> 
-
-<label for="q11-yes" class="radio-label">Yes</label> 
-
-<input type="radio" id="q11-no" name="q11_walk" value="No" class="hidden radio-no"> 
-
-<label for="q11-no" class="radio-label">No (Comfortable driving everywhere)</label> 
-
-</div> 
-
-</div> 
-
- 
-
-<!-- Question 12: Activity Focus (NEW) --> 
-
-<div class="mb-6"> 
-
-<p class="text-lg font-semibold text-dark-text mb-3">12. Is year-round access to major surfing/beach breaks your highest priority outdoor activity?</p> 
-
-<div class="flex space-x-4"> 
-
-<input type="radio" id="q12-yes" name="q12_activity" value="Yes" class="hidden radio-yes" required> 
-
-<label for="q12-yes" class="radio-label">Yes</label> 
-
-<input type="radio" id="q12-no" name="q12_activity" value="No" class="hidden radio-no"> 
-
-<label for="q12-no" class="radio-label">No (Priority is hiking or land-based)</label> 
-
-</div> 
-
-</div> 
-
- 
-
-<!-- Submit Button --> 
-
-<div class="mt-8 text-center"> 
-
-<button id="submit-button" type="submit" class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-lg shadow-xl text-white bg-secondary-orange hover:bg-primary-teal transition duration-300 transform hover:scale-105"> 
-
-<span id="button-text">Find My Perfect Location!</span> 
-
-<svg id="spinner" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"> 
-
-<circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle> 
-
-<path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path> 
-
-</svg> 
-
-</button> 
-
-</div> 
-
-</form> 
-
-</div> 
-
-</div> 
-
-</section> 
-
- 
-
-<!-- 3. RESIDENCY & VISA SECTION (Anchor: #page-residency) --> 
-
-<section id="page-residency" class="py-16 sm:py-24 bg-white"> 
-
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"> 
-
-<div class="text-center"> 
-
-<h2 class="text-base text-primary-teal font-semibold tracking-wide uppercase">Legal Requirements</h2> 
-
-<p class="mt-2 text-3xl font-extrabold text-dark-text sm:text-4xl"> 
-
-Official Residency & Visa Overview 
-
-</p> 
-
-<p class="mt-4 max-w-3xl text-lg text-gray-500 lg:mx-auto"> 
-
-Click on a country below to fetch a summarized, up-to-date breakdown of **all major** visa categories and official requirements directly from government sources, powered by Gemini. 
-
-</p> 
-
-</div> 
-
- 
-
-<div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8"> 
-
-<!-- Residency Card 1: Costa Rica --> 
-
-<div class="p-6 bg-gray-50 rounded-xl shadow-lg border border-primary-teal/20 flex flex-col items-center text-center"> 
-
-<h3 class="text-2xl font-bold text-primary-teal mb-4">Costa Rica</h3> 
-
-<p class="text-gray-600 mb-6">Explore the comprehensive list of long-term residency options and requirements.</p> 
-
-<button onclick="generateResidencyDetails('Costa Rica')" 
-
-class="w-full px-6 py-3 border border-transparent text-base font-medium rounded-lg shadow-md text-white bg-primary-teal hover:bg-secondary-orange transition duration-300 transform hover:scale-105"> 
-
-Get Official CR Visa Info 
-
-</button> 
-
-</div> 
-
- 
-
-<!-- Residency Card 2: Panama --> 
-
-<div class="p-6 bg-gray-50 rounded-xl shadow-lg border border-secondary-orange/20 flex flex-col items-center text-center"> 
-
-<h3 class="text-2xl font-bold text-secondary-orange mb-4">Panama</h3> 
-
-<p class="text-gray-600 mb-6">Review the comprehensive list of visa programs, including the Friendly Nations and various work permits.</p> 
-
-<button onclick="generateResidencyDetails('Panama')" 
-
-class="w-full px-6 py-3 border border-transparent text-base font-medium rounded-lg shadow-md text-white bg-secondary-orange hover:bg-primary-teal transition duration-300 transform hover:scale-105"> 
-
-Get Official Panama Visa Info 
-
-</button> 
-
-</div> 
-
- 
-
-<!-- Residency Card 3: Belize --> 
-
-<div class="p-6 bg-gray-50 rounded-xl shadow-lg border border-danger-red/20 flex flex-col items-center text-center"> 
-
-<h3 class="text-2xl font-bold text-danger-red mb-4">Belize</h3> 
-
-<p class="text-gray-600 mb-6">Find details on all long-term residency pathways, including QRP and standard programs.</p> 
-
-<button onclick="generateResidencyDetails('Belize')" 
-
-class="w-full px-6 py-3 border border-transparent text-base font-medium rounded-lg shadow-md text-white bg-danger-red hover:bg-primary-teal transition duration-300 transform hover:scale-105"> 
-
-Get Official Belize Visa Info 
-
-</button> 
-
-</div> 
-
-</div> 
-
-</div> 
-
-</section> 
-
- 
-
-<!-- 4. SERVICES SECTION (Anchor: #page-services) --> 
-
-<section id="page-services" class="py-16 sm:py-24 bg-gray-50"> 
-
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"> 
-
-<div class="text-center"> 
-
-<h2 class="text-base text-primary-teal font-semibold tracking-wide uppercase">Our Solutions</h2> 
-
-<p class="mt-2 text-3xl font-extrabold text-dark-text sm:text-4xl"> 
-
-Relocation Packages Built for Seamless Moves 
-
-</p> 
-
-<p class="mt-4 max-w-2xl text-lg text-gray-500 lg:mx-auto"> 
-
-We offer five tiers of service, focusing solely on logistics, home setup, and settling-in support. For **residency and visa requirements**, we will provide a trusted referral to a legal representative in your destination country. 
-
-</p> 
-
-</div> 
-
- 
-
-<div class="mt-16 space-y-12 lg:space-y-0 lg:grid lg:grid-cols-3 lg:gap-8"> 
-
-<!-- Package Card 1: Essential Move Package (Lowest Tier) --> 
-
-<div class="p-8 bg-white rounded-xl shadow-xl transition duration-300 hover:shadow-2xl hover:scale-[1.02] border-t-4 border-gray-400"> 
-
-<h3 class="text-2xl font-bold text-gray-800">Essential Move Package</h3> 
-
-<p class="mt-4 text-gray-500">Ideal for singles relocating locally. Get basic planning and reliable vendor access.</p> 
-
-<p class="mt-6 text-4xl font-extrabold text-dark-text"> 
-
-$249 <span class="text-base font-medium text-gray-500"> – $349 (+ shipping)</span> 
-
-</p> 
-
-<ul class="mt-6 feature-list text-gray-700"> 
-
-<li>1-hour virtual consultation & relocation plan</li> 
-
-<li>Moving checklist and timeline</li> 
-
-<li>Local vendor referrals & preferred movers list</li> 
-
-<li>Basic address updates & mail forwarding support</li> 
-
-<li>Third-party shipping coordination (booking/management)</li> 
-
-</ul> 
-
-<a href="#page-contact" class="mt-8 block w-full text-center px-4 py-3 border border-transparent text-base font-medium rounded-lg shadow-md text-dark-text bg-gray-200 hover:bg-gray-300 transition duration-300"> 
-
-Select Essential 
-
-</a> 
-
-</div> 
-
- 
-
-<!-- Package Card 2: Premium Relocation Concierge (MOST POPULAR) --> 
-
-<div class="p-8 bg-white rounded-xl shadow-2xl transition duration-300 hover:scale-[1.03] border-t-4 border-primary-teal relative"> 
-
-<span class="absolute top-0 right-0 -mt-3 mr-4 bg-secondary-orange text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg transform rotate-3"> 
-
-MOST POPULAR 
-
-</span> 
-
-<h3 class="text-2xl font-bold text-primary-teal">Premium Relocation Concierge</h3> 
-
-<p class="mt-4 text-gray-500">The ideal package for long-distance and international movers, including Central America.</p> 
-
-<p class="mt-6 text-4xl font-extrabold text-primary-teal"> 
-
-$1,499 <span class="text-base font-medium text-gray-500"> – $2,499 (+ shipping)</span> 
-
-</p> 
-
-<ul class="mt-6 feature-list text-gray-700"> 
-
-<li>Includes Family Transition Package features</li> 
-
-<li>**End-to-end move coordination** (pickup to delivery)</li> 
-
-<li>Virtual property search & local agent connection</li> 
-
-<li>Settling-in support (DMV, insurance, local registrations)</li> 
-
-<li>Travel itinerary planning (flights/car transport)</li> 
-
-<li>**24/7 access** to specialist for 30 days</li> 
-
-<li>International mover coordination (customs/docs)</li> 
-
-</ul> 
-
-<a href="#page-contact" class="mt-8 block w-full text-center px-4 py-3 border border-transparent text-base font-medium rounded-lg shadow-md text-white bg-primary-teal hover:bg-secondary-orange transition duration-300 transform hover:scale-105"> 
-
-Select Premium 
-
-</a> 
-
-</div> 
-
- 
-
-<!-- Package Card 3: Elite Relocation Experience (Highest Tier) --> 
-
-<div class="p-8 bg-white rounded-xl shadow-xl transition duration-300 hover:shadow-2xl hover:scale-[1.02] border-t-4 border-gray-400"> 
-
-<h3 class="text-2xl font-bold text-gray-800">Elite Relocation Experience</h3> 
-
-<p class="mt-4 text-gray-500">Full-service, stress-free move: we handle everything from packing to home décor setup.</p> 
-
-<p class="mt-6 text-4xl font-extrabold text-dark-text"> 
-
-$3,000 <span class="text-base font-medium text-gray-500"> – $5,000+ (+ shipping)</span> 
-
-</p> 
-
-<ul class="mt-6 feature-list text-gray-700"> 
-
-<li>Includes Premium Concierge features</li> 
-
-<li>Full packing/unpacking management</li> 
-
-<li>Home setup assistance (furniture, utilities, décor)</li> 
-
-<li>School & community integration assistance</li> 
-
-<li>Quarterly check-ins for 6 months</li> 
-
-<li>Dedicated family relocation manager</li> 
-
-<li>Comprehensive shipping concierge (full oversight)</li> 
-
-</ul> 
-
-<a href="#page-contact" class="mt-8 block w-full text-center px-4 py-3 border border-transparent text-base font-medium rounded-lg shadow-md text-dark-text bg-gray-200 hover:bg-gray-300 transition duration-300"> 
-
-Select Elite 
-
-</a> 
-
-</div> 
-
-</div> 
-
-</div> 
-
-</section> 
-
- 
-
-<!-- 5. ABOUT US SECTION (Anchor: #page-about) --> 
-
-<section id="page-about" class="py-16 sm:py-24 bg-gray-50"> 
-
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"> 
-
-<div class="lg:text-center"> 
-
-<h2 class="text-base text-secondary-orange font-semibold tracking-wide uppercase">Why Autumn Point?</h2> 
-
-<p class="mt-2 text-3xl font-extrabold text-dark-text sm:text-4xl"> 
-
-Trusted by Hundreds of Expats 
-
-</p> 
-
-</div> 
-
-<div class="mt-10"> 
-
-<div class="lg:grid lg:grid-cols-3 lg:gap-8"> 
-
-<div> 
-
-<div class="flex items-center justify-center h-12 w-12 rounded-full bg-primary-teal text-white"> 
-
-<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"> 
-
-<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.275a1.125 1.125 0 011.238 3.018l-3.858-1.579m-5.875 0L6.75 4.5l-3.858 1.579M17 18.75h-2.25M15 11.25H9m0 7.5h6" /> 
-
-</svg> 
-
-</div> 
-
-<h3 class="mt-6 text-lg font-medium text-dark-text">Deep Local Expertise</h3> 
-
-<p class="mt-2 text-base text-gray-500"> 
-
-Our team lives in the regions we serve. We navigate local bureaucracy, language nuances, and market shifts so you don't have to. 
-
-</p> 
-
-</div> 
-
-<div> 
-
-<div class="flex items-center justify-center h-12 w-12 rounded-full bg-secondary-orange text-white"> 
-
-<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"> 
-
-<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c1.657 0 3 .895 3 2s-1.343 2-3 2v2m0 0a3 3 0 00-3 3v2m0 0h.01M12 3v1m0 16v1m9-10h-1M4 12H3" /> 
-
-</svg> 
-
-</div> 
-
-<h3 class="mt-6 text-lg font-medium text-dark-text">Transparent Pricing</h3> 
-
-<p class="mt-2 text-base text-gray-500"> 
-
-Our fixed-price packages ensure there are no hidden fees or unexpected costs. You know exactly what you're paying for from day one. 
-
-</p> 
-
-</div> 
-
-<div> 
-
-<div class="flex items-center justify-center h-12 w-12 rounded-full bg-primary-teal text-white"> 
-
-<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"> 
-
-<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.864 23.864 0 0112 15c-1.357 0-2.71-.161-4.025-.478M4.218 5.762a1.868 1.868 0 00-1.258 2.053l1.869 9.344a1.868 1.868 0 001.258 1.527L12 21.75l5.908-2.614a1.868 1.868 0 001.258-1.527l1.868-9.344a1.868 1.868 0 00-1.258-2.053l-6.75-2.91a1.868 1.868 0 00-1.634 0l-6.75 2.91z" /> 
-
-</svg> 
-
-</div> 
-
-<h3 class="mt-6 text-lg font-medium text-dark-text">Stress-Free Residency</h3> 
-
-<p class="mt-2 text-base text-gray-500"> 
-
-Residency and visa processes are complex. We specialize in eliminating confusion, maximizing speed, and ensuring compliance. 
-
-</p> 
-
-</div> 
-
-</div> 
-
-</div> 
-
-</div> 
-
-</section> 
-
- 
-
-<!-- 6. CONTACT SECTION (Anchor: #page-contact) --> 
-
-<section id="page-contact" class="bg-primary-teal py-16 sm:py-24"> 
-
-<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8"> 
-
-<div class="text-center"> 
-
-<h2 class="text-3xl font-extrabold text-white sm:text-4xl"> 
-
-Ready to Begin Your Move? 
-
-</h2> 
-
-<p class="mt-4 text-xl text-primary-teal-200 text-gray-100"> 
-
-Schedule a free introductory consultation with one of our relocation specialists. 
-
-</p> 
-
-</div> 
-
-<div class="mt-12 bg-white p-8 rounded-xl shadow-2xl"> 
-
-<form class="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8"> 
-
-<div> 
-
-<label for="first-name" class="block text-sm font-medium text-gray-700">First name</label> 
-
-<div class="mt-1"> 
-
-<input type="text" name="first-name" id="first-name" autocomplete="given-name" class="py-3 px-4 block w-full shadow-sm focus:ring-secondary-orange focus:border-secondary-orange border-gray-300 rounded-lg"> 
-
-</div> 
-
-</div> 
-
-<div> 
-
-<label for="last-name" class="block text-sm font-medium text-gray-700">Last name</label> 
-
-<div class="mt-1"> 
-
-<input type="text" name="last-name" id="last-name" autocomplete="family-name" class="py-3 px-4 block w-full shadow-sm focus:ring-secondary-orange focus:border-secondary-orange border-gray-300 rounded-lg"> 
-
-</div> 
-
-</div> 
-
-<div class="sm:col-span-2"> 
-
-<label for="email" class="block text-sm font-medium text-gray-700">Email</label> 
-
-<div class="mt-1"> 
-
-<input id="email" name="email" type="email" autocomplete="email" class="py-3 px-4 block w-full shadow-sm focus:ring-secondary-orange focus:border-secondary-orange border-gray-300 rounded-lg"> 
-
-</div> 
-
-</div> 
-
-<div class="sm:col-span-2"> 
-
-<label for="how-can-we-help" class="block text-sm font-medium text-gray-700">How can we help?</label> 
-
-<div class="mt-1"> 
-
-<textarea id="how-can-we-help" name="how-can-we-help" rows="4" class="py-3 px-4 block w-full shadow-sm focus:ring-secondary-orange focus:border-secondary-orange border-gray-300 rounded-lg"></textarea> 
-
-</div> 
-
-</div> 
-
-<div class="sm:col-span-2"> 
-
-<button type="submit" class="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-lg shadow-xl text-base font-medium text-white bg-secondary-orange hover:bg-primary-teal transition duration-300 transform hover:scale-105"> 
-
-Send Inquiry 
-
-</button> 
-
-</div> 
-
-</form> 
-
-</div> 
-
-</div> 
-
-</section> 
-
-</main> 
-
- 
-
-<!-- Footer --> 
-
-<footer class="bg-dark-text"> 
-
-<div class="max-w-7xl mx-auto py-12 px-4 overflow-hidden sm:px-6 lg:px-8"> 
-
-<nav class="-mx-5 -my-2 flex flex-wrap justify-center" aria-label="Footer"> 
-
-<a href="#page-destinations" class="px-5 py-2 text-base text-gray-400 hover:text-white">Destinations</a> 
-
-<a href="#page-matchmaker" class="px-5 py-2 text-base text-gray-400 hover:text-white">Matchmaker</a> 
-
-<a href="#page-residency" class="px-5 py-2 text-base text-gray-400 hover:text-white">Residency Info</a> 
-
-<a href="#page-services" class="px-5 py-2 text-base text-gray-400 hover:text-white">Packages</a> 
-
-<a href="#page-about" class="px-5 py-2 text-base text-gray-400 hover:text-white">About Us</a> 
-
-</nav> 
-
-<p class="mt-8 text-center text-base text-gray-400"> 
-
-&copy; 2025 Autumn Point Relocation Solutions. All rights reserved. 
-
-</p> 
-
-</div> 
-
-</footer> 
-
- 
-
-<!-- JavaScript for Functionality and Gemini API Call --> 
-
-<script> 
-
-const apiKey = ""; 
-
-const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`; 
-
- 
-
-// --- Video Fix for Autoplay (New addition) --- 
-
-window.onload = function() { 
-
-const videoElement = document.getElementById('hero-video-bg'); 
-
-if (videoElement) { 
-
-// Attempt to play the video explicitly after the window loads 
-
-videoElement.play().catch(error => { 
-
-// This error is common if the browser is blocking autoplay 
-
-console.warn("Video autoplay blocked by browser, relying on HTML attributes.", error); 
-
-}); 
-
-} 
-
-}; 
-
- 
-
- 
-
-// --- Utility Functions --- 
-
- 
-
-function toggleMenu() { 
-
-const menu = document.getElementById('mobile-menu'); 
-
-const button = document.getElementById('menu-button'); 
-
-menu.classList.toggle('hidden'); 
-
-const isExpanded = button.getAttribute('aria-expanded') === 'true' || false; 
-
-button.setAttribute('aria-expanded', !isExpanded); 
-
-} 
-
- 
-
-function showModal(title, content) { 
-
-document.getElementById('modal-title').textContent = title; 
-
-document.getElementById('modal-body').innerHTML = content.text.replace(/\n/g, '<br>'); // Simple newline conversion 
-
-const modal = document.getElementById('result-modal'); 
-
-const sourcesContainer = document.getElementById('modal-sources'); 
-
-const sourcesList = document.getElementById('sources-list'); 
-
-// Clear previous sources 
-
-sourcesList.innerHTML = ''; 
-
-if (content.sources && content.sources.length > 0) { 
-
-sourcesContainer.classList.remove('hidden'); 
-
-content.sources.forEach(source => { 
-
-if (source.uri && source.title) { 
-
-const li = document.createElement('li'); 
-
-li.innerHTML = `<a href="${source.uri}" target="_blank" class="text-primary-teal hover:underline">${source.title}</a>`; 
-
-sourcesList.appendChild(li); 
-
-} 
-
-}); 
-
-} else { 
-
-sourcesContainer.classList.add('hidden'); 
-
-} 
-
- 
-
-modal.classList.remove('hidden'); 
-
-document.body.classList.add('overflow-hidden'); 
-
-} 
-
- 
-
-function closeModal() { 
-
-document.getElementById('result-modal').classList.add('hidden'); 
-
-document.body.classList.remove('overflow-hidden'); 
-
-} 
-
- 
-
-// Base64 to ArrayBuffer helper for potential future use (TTS/Audio) 
-
-function base64ToArrayBuffer(base64) { 
-
-const binary_string = window.atob(base64); 
-
-const len = binary_string.length; 
-
-const bytes = new Uint8Array(len); 
-
-for (let i = 0; i < len; i++) { 
-
-bytes[i] = binary_string.charCodeAt(i); 
-
-} 
-
-return bytes.buffer; 
-
-} 
-
- 
-
-// --- Gemini API Call Handlers --- 
-
- 
-
-/** 
-
-* Generic function to call the Gemini API with exponential backoff. 
-
-* @param {object} payload - The API request payload. 
-
-* @param {number} retries - Current retry count. 
-
-*/ 
-
-async function fetchWithBackoff(payload, retries = 0) { 
-
-const maxRetries = 5; 
-
-const delay = Math.pow(2, retries) * 1000 + (Math.random() * 1000); // Exponential backoff + jitter 
-
- 
-
-try { 
-
-const response = await fetch(apiUrl, { 
-
-method: 'POST', 
-
-headers: { 'Content-Type': 'application/json' }, 
-
-body: JSON.stringify(payload) 
-
-}); 
-
- 
-
-if (response.status === 429 && retries < maxRetries) { 
-
-await new Promise(resolve => setTimeout(resolve, delay)); 
-
-return fetchWithBackoff(payload, retries + 1); 
-
-} 
-
-if (!response.ok) { 
-
-throw new Error(`HTTP error! status: ${response.status}`); 
-
-} 
-
- 
-
-return response.json(); 
-
- 
-
-} catch (error) { 
-
-if (retries < maxRetries) { 
-
-await new Promise(resolve => setTimeout(resolve, delay)); 
-
-return fetchWithBackoff(payload, retries + 1); 
-
-} 
-
-throw new Error('API request failed after multiple retries.'); 
-
-} 
-
-} 
-
- 
-
-/** 
-
-* Extracts text and citations from the Gemini response. 
-
-* @param {object} result - The parsed JSON response from the API. 
-
-* @returns {{text: string, sources: Array<{uri: string, title: string}>}} 
-
-*/ 
-
-function processGeminiResponse(result) { 
-
-const candidate = result.candidates?.[0]; 
-
- 
-
-if (!candidate || !candidate.content?.parts?.[0]?.text) { 
-
-return { text: "Error: Could not retrieve a valid response.", sources: [] }; 
-
-} 
-
- 
-
-const text = candidate.content.parts[0].text; 
-
-let sources = []; 
-
-const groundingMetadata = candidate.groundingMetadata; 
-
- 
-
-if (groundingMetadata && groundingMetadata.groundingAttributions) { 
-
-sources = groundingMetadata.groundingAttributions 
-
-.map(attribution => ({ 
-
-uri: attribution.web?.uri, 
-
-title: attribution.web?.title, 
-
-})) 
-
-.filter(source => source.uri && source.title); 
-
-} 
-
- 
-
-return { text, sources }; 
-
-} 
-
- 
-
-/** 
-
-* Generates a relocation brief for a selected country (from Destinations section). 
-
-* @param {string} country - The country selected (Costa Rica, Panama, or Belize). 
-
-*/ 
-
-async function generateRelocationBrief(country) { 
-
-// Temporary loading indicator for individual country buttons (since they lack IDs, use a general modal) 
-
-showModal(`Loading Brief for ${country}`, { text: "Analyzing the latest expat data... Please wait.", sources: [] }); 
-
- 
-
-const systemPrompt = `You are a world-class expat relocation consultant specializing in Central America. Provide a concise, highly informative, and engaging relocation brief for the requested country. Your response MUST cover: 1. Main residency/visa options. 2. Estimated cost of living (for a couple, excluding luxury rent). 3. 2-3 popular expat cities/areas and their key features (e.g., climate, infrastructure, community). Format the response using clean Markdown headers and lists.`; 
-
-const userQuery = `Provide the relocation brief for ${country}.`; 
-
- 
-
-const payload = { 
-
-contents: [{ parts: [{ text: userQuery }] }], 
-
-tools: [{ "google_search": {} }], 
-
-systemInstruction: { parts: [{ text: systemPrompt }] }, 
-
-}; 
-
- 
-
-try { 
-
-const result = await fetchWithBackoff(payload); 
-
-const processedContent = processGeminiResponse(result); 
-
-showModal(`Relocation Brief: ${country}`, processedContent); 
-
- 
-
-} catch (error) { 
-
-console.error("Gemini API Error:", error); 
-
-showModal(`Relocation Brief for ${country}`, { text: "An error occurred while fetching the brief. Please try again later.", sources: [] }); 
-
-} 
-
-} 
-
- 
-
-/** 
-
-* NEW: Generates official residency and visa details for a selected country. 
-
-* @param {string} country - The country selected (Costa Rica, Panama, or Belize). 
-
-*/ 
-
-async function generateResidencyDetails(country) { 
-
-showModal(`Loading Official Visa Info for ${country}`, { text: "Contacting official government channels to retrieve the latest comprehensive list of visa and residency requirements... Please wait.", sources: [] }); 
-
- 
-
-// System prompt highly focused on official and legal details, explicitly requesting a comprehensive list 
-
-const systemPrompt = `You are a highly accurate legal immigration advisor for Central America. Provide a **comprehensive and structured list** of all major long-term residency and visa options for expatriates in the requested country. Focus exclusively on information verifiable through official government/immigration websites. For each category, include: 1. The official visa/permit name. 2. The primary requirement (e.g., minimum income, investment amount, job offer). 3. The general type (e.g., Retiree, Investor, Work Permit). Format the response clearly using Markdown headers and a detailed bulleted list for each visa type.`; 
-
-const userQuery = `Provide a comprehensive breakdown of all major long-term residency and visa requirements for ${country} from its official government sources.`; 
-
- 
-
-const payload = { 
-
-contents: [{ parts: [{ text: userQuery }] }], 
-
-tools: [{ "google_search": {} }], 
-
-systemInstruction: { parts: [{ text: systemPrompt }] }, 
-
-}; 
-
- 
-
-try { 
-
-const result = await fetchWithBackoff(payload); 
-
-const processedContent = processGeminiResponse(result); 
-
-showModal(`Comprehensive Residency & Visa: ${country}`, processedContent); 
-
- 
-
-} catch (error) { 
-
-console.error("Gemini API Error:", error); 
-
-showModal(`Residency & Visa for ${country}`, { text: "An error occurred while fetching the official details. Please try again later.", sources: [] }); 
-
-} 
-
-} 
-
- 
-
-/** 
-
-* Generates a city recommendation based on the Matchmaker form. 
-
-*/ 
-
-async function generateRecommendation() { 
-
-const form = document.getElementById('matchmaker-form'); 
-
-const formData = new FormData(form); 
-
-const spinner = document.getElementById('spinner'); 
-
-const buttonSpan = document.getElementById('button-text'); 
-
-const submitButton = document.getElementById('submit-button'); 
-
- 
-
-const answers = []; 
-
-let allAnswered = true; 
-
- 
-
-// Define the full list of 12 questions/keys based on form structure 
-
-const questionKeys = [ 
-
-'q1_budget', 'q2_residency', 'q3_language', 'q4_safety', 'q5_travel',  
-
-'q6_climate', 'q7_digital', 'q8_healthcare', 'q9_pace', 'q10_housing', 
-
-'q11_walk', 'q12_activity' 
-
-]; 
-
- 
-
-questionKeys.forEach((key, index) => { 
-
-const value = formData.get(key); 
-
-const questionText = document.querySelector(`[name="${key}"]`).closest('.mb-6, .mb-6.pb-4.border-b').querySelector('p').textContent.replace(/^\d+\. /, '').trim(); 
-
- 
-
-if (value === null) { 
-
-allAnswered = false; 
-
-} 
-
-answers.push(`Q${index + 1} (${questionText}): ${value}`); 
-
-}); 
-
- 
-
-if (!allAnswered) { 
-
-showModal("Missing Answers", { text: "Please answer all 12 questions to receive your personalized city recommendation.", sources: [] }); 
-
-return; 
-
-} 
-
- 
-
-// UI Feedback 
-
-submitButton.disabled = true; 
-
-spinner.classList.remove('hidden'); 
-
-buttonSpan.textContent = 'Searching the perfect match...'; 
-
-showModal("Searching", { text: "Analyzing 12 key factors to find your ideal Central American city...", sources: [] }); 
-
- 
-
- 
-
-const systemPrompt = `You are the Autumn Point Relocation AI. Your goal is to analyze the 12 detailed client responses and recommend the absolute single best-fit city/location in Costa Rica, Panama, OR Belize. Your analysis MUST lead to one final recommendation. The response MUST be structured as follows: 
-
-1. **Top City/Location Recommendation** (Use a Bold Header with the City Name and Country). 
-
-2. **Analysis Summary** (Briefly mention the 2-3 most critical criteria the city satisfied). 
-
-3. **Key Features** (A bulleted list of 3-4 specific features of the recommended location—e.g., average temp, major expat community, key infrastructure). 
-
-4. **Why It's a Perfect Match** (A concise paragraph explaining how this city/location meets the client's most restrictive YES answers, especially regarding climate, internet, healthcare, or housing style). 
-
- 
-
-Crucially, you must use the Google Search tool to ensure the city/location details are current and accurate.`; 
-
- 
-
-const userQuery = `Analyze these 12 client preferences and provide a single city recommendation and justification: 
-
-${answers.join('\n')} 
-
-`; 
-
- 
-
-const payload = { 
-
-contents: [{ parts: [{ text: userQuery }] }], 
-
-tools: [{ "google_search": {} }], 
-
-systemInstruction: { parts: [{ text: systemPrompt }] }, 
-
-}; 
-
- 
-
-try { 
-
-const result = await fetchWithBackoff(payload); 
-
-const processedContent = processGeminiResponse(result); 
-
-showModal("Your Perfect Location Match", processedContent); 
-
-} catch (error) { 
-
-console.error("Gemini API Error:", error); 
-
-showModal("Recommendation Failed", { text: "The AI failed to generate a recommendation. Please check your internet connection and try again.", sources: [] }); 
-
- 
-
-} finally { 
-
-// Reset UI 
-
-submitButton.disabled = false; 
-
-spinner.classList.add('hidden'); 
-
-buttonSpan.textContent = 'Find My Perfect Location!'; 
-
-} 
-
-} 
-
-</script> 
-
-</body> 
-
-</html> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autumn Point Relocation Solutions</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Configure Tailwind for Inter font and custom colors -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-teal': '#0d9488', // Deep Teal
+                        'secondary-orange': '#ea580c', // Burnt Orange
+                        'dark-text': '#1f2937', // Gray 800
+                        'danger-red': '#be123c', // Rose 700
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom styles for smooth scrolling to anchors */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Hero Video Container Styling */
+        .hero-video-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0; /* Below content layer */
+        }
+
+        .hero-video {
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            object-fit: cover; /* Ensures video covers the entire container */
+        }
+
+        /* Specific style for package features list */
+        .feature-list li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+        .feature-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #0d9488;
+            font-weight: bold;
+        }
+
+        /* Styling for the Yes/No radio buttons (Matchmaker) */
+        .radio-label {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 2px solid #e5e7eb; /* Subtle light gray border */
+            font-weight: 600;
+            color: #4b5563; /* Dark gray text */
+            user-select: none;
+        }
+        .radio-label:hover {
+            background-color: #f3f4f6;
+        }
+
+        .radio-yes:checked + .radio-label {
+            background-color: #0d9488; /* primary-teal */
+            color: white;
+            border-color: #0d9488;
+            box-shadow: 0 4px 6px -1px rgba(13, 148, 136, 0.5);
+        }
+        .radio-no:checked + .radio-label {
+            background-color: #be123c; /* danger-red */
+            color: white;
+            border-color: #be123c;
+            box-shadow: 0 4px 6px -1px rgba(190, 18, 60, 0.5);
+        }
+        /* Custom modal styles */
+        .modal {
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+        .modal-content {
+            animation: slide-down 0.3s ease-out;
+        }
+        @keyframes slide-down {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        /* Loading Spinner */
+        .spinner {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top-color: #fff;
+            border-radius: 50%;
+            width: 1.5rem;
+            height: 1.5rem;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="font-sans text-dark-text bg-gray-50">
+
+    <!-- Modal for Gemini Results -->
+    <div id="result-modal" class="modal fixed inset-0 z-50 hidden flex items-center justify-center p-4">
+        <div class="modal-content bg-white rounded-xl shadow-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto">
+            <div class="p-6">
+                <div class="flex justify-between items-start border-b pb-3 mb-4">
+                    <h3 id="modal-title" class="text-2xl font-bold text-primary-teal"></h3>
+                    <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600 focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    </button>
+                </div>
+                <div id="modal-body" class="text-gray-700 space-y-4 prose max-w-none">
+                    <!-- Content injected here -->
+                </div>
+                <div id="modal-sources" class="mt-4 pt-4 border-t border-gray-100 text-xs text-gray-500 hidden">
+                    <p class="font-semibold mb-1">Sources (for grounding):</p>
+                    <ul id="sources-list" class="list-disc list-inside space-y-1">
+                        <!-- Sources injected here -->
+                    </ul>
+                </div>
+                <div class="mt-6 flex justify-end">
+                    <button onclick="closeModal()" class="px-6 py-2 bg-secondary-orange text-white font-medium rounded-lg hover:bg-opacity-90 transition shadow-md">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Navigation Bar (Sticky and uses Anchor Links) -->
+    <header class="sticky top-0 z-40 bg-white shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4 md:justify-start md:space-x-10">
+                <!-- Logo/Branding -->
+                <div class="flex justify-start lg:w-0 lg:flex-1">
+                    <a href="#page-home" class="flex items-center transition duration-300">
+                        <span class="text-xl font-bold text-primary-teal">Autumn Point</span>
+                    </a>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex space-x-10">
+                    <!-- Standard Anchor Links -->
+                    <a href="#page-destinations" class="text-base font-medium text-gray-700 hover:text-secondary-orange transition duration-300">Destinations</a>
+                    <a href="#page-packages" class="text-base font-medium text-gray-700 hover:text-secondary-orange transition duration-300">Packages</a>
+                    <a href="#page-matchmaker" class="text-base font-medium text-gray-700 hover:text-secondary-orange transition duration-300">Matchmaker</a>
+                    <a href="#page-residency" class="text-base font-medium text-gray-700 hover:text-secondary-orange transition duration-300">Residency Info</a>
+                    <a href="#page-about" class="text-base font-medium text-gray-700 hover:text-secondary-orange transition duration-300">About Us</a>
+                </nav>
+
+                <!-- CTA Button -->
+                <div class="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
+                    <a href="#page-contact" class="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-lg shadow-lg text-base font-medium text-white bg-primary-teal hover:bg-secondary-orange transition duration-300 transform hover:scale-105">
+                        Get Started
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="-mr-2 -my-2 md:hidden">
+                    <button type="button" id="menu-button" onclick="toggleMenu()" class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-teal" aria-expanded="false">
+                        <span class="sr-only">Open menu</span>
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Panel (Hidden by default) -->
+        <div id="mobile-menu" class="hidden absolute top-full left-0 w-full md:hidden bg-white shadow-lg border-t border-gray-100 p-2 transform transition duration-200">
+            <div class="flex flex-col space-y-2">
+                <!-- Anchor Links for mobile menu -->
+                <a href="#page-destinations" onclick="toggleMenu()" class="block px-3 py-2 rounded-lg text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-secondary-orange">Destinations</a>
+                <a href="#page-packages" onclick="toggleMenu()" class="block px-3 py-2 rounded-lg text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-secondary-orange">Packages</a>
+                <a href="#page-matchmaker" onclick="toggleMenu()" class="block px-3 py-2 rounded-lg text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-secondary-orange">Matchmaker</a>
+                <a href="#page-residency" onclick="toggleMenu()" class="block px-3 py-2 rounded-lg text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-secondary-orange">Residency Info</a>
+                <a href="#page-about" onclick="toggleMenu()" class="block px-3 py-2 rounded-lg text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-secondary-orange">About Us</a>
+                <a href="#page-contact" onclick="toggleMenu()" class="block w-full text-center px-4 py-2 rounded-lg text-base font-medium text-white bg-primary-teal hover:bg-secondary-orange transition duration-300 mt-2">Get Started</a>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <!-- 1. HOME SECTION (Anchor: #page-home) -->
+        <section id="page-home" class="relative overflow-hidden pt-20 pb-20 sm:pt-24 sm:pb-32 lg:pt-32 lg:pb-40 flex items-center h-screen min-h-[500px]">
+            <!-- Video Background -->
+            <div class="hero-video-container">
+                <!-- Added ID for JavaScript targeting -->
+                <video id="hero-video-bg" autoplay loop muted playsinline class="hero-video" preload="auto" onerror="this.classList.add('hidden'); document.getElementById('hero-fallback').classList.remove('hidden');">
+                    <!-- Note: The video file 'eal.mp4' must be accessible to play -->
+                    <source src="eal.mp4" type="video/mp4">
+                    <!-- Fallback content if video cannot be played -->
+                </video>
+                <!-- Image Fallback if video fails to load/play -->
+                <div id="hero-fallback" class="hero-video hidden bg-cover bg-center" style="background-image: url('https://placehold.co/1920x1080/0d9488/ffffff?text=Autumn+Point+Relocation');"></div>
+            </div>
+
+            <!-- Dark Overlay for Readability -->
+            <div class="absolute inset-0 z-10 bg-black opacity-60"></div>
+
+            <!-- Content -->
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 text-white">
+                <div class="lg:grid lg:grid-cols-12 lg:gap-12 items-center">
+                    <div class="lg:col-span-8 xl:col-span-7">
+                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
+                            Your <span class="text-secondary-orange">Smooth Transition</span> to Pura Vida
+                        </h1>
+                        <p class="mt-6 text-xl text-gray-100 max-w-lg">
+                            We specialize in making your move to Costa Rica, Panama, or Belize seamless, stress-free, and legally sound. Start your Central American adventure today.
+                        </p>
+                        <div class="mt-10 flex space-x-4">
+                            <a href="#page-contact" class="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-lg shadow-xl text-white bg-primary-teal hover:bg-secondary-orange transition duration-300 transform hover:scale-105">
+                                Book a Free Consultation
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. DESTINATIONS SECTION (Anchor: #page-destinations) -->
+        <section id="page-destinations" class="py-16 sm:py-24 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center">
+                    <h2 class="text-base text-secondary-orange font-semibold tracking-wide uppercase">Your New Home Awaits</h2>
+                    <p class="mt-2 text-3xl font-extrabold text-dark-text sm:text-4xl">
+                        Explore Costa Rica, Panama, & Belize
+                    </p>
+                    <p class="mt-4 max-w-3xl text-lg text-gray-500 lg:mx-auto">
+                        Click on any destination to get an instant, current brief covering essential residency requirements, cost of living estimates, and popular expat cities, powered by the Gemini AI.
+                    </p>
+                </div>
+
+                <div class="mt-16 space-y-12 lg:space-y-0 lg:grid lg:grid-cols-3 lg:gap-8">
+                    <!-- Country Card 1: Costa Rica -->
+                    <div class="rounded-xl shadow-2xl overflow-hidden bg-white group transition duration-300 hover:scale-[1.02]">
+                        <img class="w-full h-48 object-cover transition duration-500 group-hover:opacity-80"
+                             src="https://placehold.co/600x400/0d9488/ffffff?text=Costa+Rica+Pura+Vida"
+                             alt="Lush green landscape of Costa Rica" onerror="this.onerror=null; this.src='https://placehold.co/600x400/0d9488/ffffff?text=Costa+Rica'">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold text-primary-teal">Costa Rica</h3>
+                            <p class="mt-3 text-gray-600">
+                                Known for its political stability, robust ecological tourism, and high quality of life. Ideal for nature lovers and families seeking "Pura Vida."
+                            </p>
+                            <button onclick="generateRelocationBrief('Costa Rica')"
+                                class="mt-4 text-secondary-orange font-semibold inline-flex items-center hover:underline focus:outline-none">
+                                Get an Instant Brief ✨ &rarr;
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Country Card 2: Panama -->
+                    <div class="rounded-xl shadow-2xl overflow-hidden bg-white group transition duration-300 hover:scale-[1.02]">
+                        <img class="w-full h-48 object-cover transition duration-500 group-hover:opacity-80"
+                             src="https://placehold.co/600x400/ea580c/ffffff?text=Panama+City+Skyline"
+                             alt="Modern skyline of Panama City" onerror="this.onerror=null; this.src='https://placehold.co/600x400/ea580c/ffffff?text=Panama'">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold text-secondary-orange">Panama</h3>
+                            <p class="mt-3 text-gray-600">
+                                A global hub offering modern infrastructure, excellent tax incentives, and the famous 'Friendly Nations' visa for expats.
+                            </p>
+                            <button onclick="generateRelocationBrief('Panama')"
+                                class="mt-4 text-secondary-orange font-semibold inline-flex items-center hover:underline focus:outline-none">
+                                Get an Instant Brief ✨ &rarr;
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Country Card 3: Belize -->
+                    <div class="rounded-xl shadow-2xl overflow-hidden bg-white group transition duration-300 hover:scale-[1.02]">
+                        <img class="w-full h-48 object-cover transition duration-500 group-hover:opacity-80"
+                             src="https://placehold.co/600x400/be123c/ffffff?text=Belize+Coral+Reef"
+                             alt="Beautiful barrier reef in Belize" onerror="this.onerror=null; this.src='https://placehold.co/600x400/be123c/ffffff?text=Belize'">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold text-danger-red">Belize</h3>
+                            <p class="mt-3 text-gray-600">
+                                The only English-speaking country in Central America, offering Caribbean lifestyle, low-cost living, and simple residency requirements.
+                            </p>
+                            <button onclick="generateRelocationBrief('Belize')"
+                                class="mt-4 text-secondary-orange font-semibold inline-flex items-center hover:underline focus:outline-none">
+                                Get an Instant Brief ✨ &rarr;
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 3. PACKAGES SECTION (Anchor: #page-packages) -->
+        <section id="page-packages" class="py-16 sm:py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-base text-primary-teal font-semibold tracking-wide uppercase">Tailored Support</h2>
+                <p class="mt-2 text-3xl font-extrabold text-dark-text sm:text-4xl">
+                    Comprehensive Relocation Packages
+                </p>
+                <p class="mt-4 max-w-3xl text-lg text-gray-500 lg:mx-auto">
+                    Choose the level of support that fits your move, from local assistance to end-to-end international concierge service.
+                </p>
+            </div>
+            
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12">
+                <!-- Row 1: Essential, Standard, Family -->
+                <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+                    
+                    <!-- Package 1: Essential Move Package -->
+                    <div class="p-6 bg-gray-50 rounded-xl shadow-lg border-t-4 border-primary-teal transition duration-300 hover:shadow-xl">
+                        <h3 class="text-2xl font-bold text-primary-teal">1. Essential Move Package</h3>
+                        <p class="mt-2 text-sm text-secondary-orange font-semibold">Ideal for: Singles or small households relocating locally</p>
+                        <p class="text-3xl font-extrabold mt-4 text-dark-text">
+                            $249 – $349 
+                            <span class="text-base text-gray-500 font-medium block">(+ shipping costs)</span>
+                        </p>
+                        <p class="mt-4 font-semibold border-b pb-2 text-gray-800">Includes:</p>
+                        <ul class="feature-list mt-3 space-y-2 text-sm text-gray-700">
+                            <li>1-hour virtual consultation & personalized relocation plan</li>
+                            <li>Moving checklist + timeline</li>
+                            <li>Local vendor referrals & preferred movers for packing or transport</li>
+                            <li>Basic address updates & mail forwarding support</li>
+                            <li>Third-party shipping coordination: We book and manage your move with budget-friendly movers (SDC International or Latin American Cargo)</li>
+                        </ul>
+                    </div>
+
+                    <!-- Package 2: Standard Relocation Package -->
+                    <div class="p-6 bg-gray-50 rounded-xl shadow-lg border-t-4 border-secondary-orange transition duration-300 hover:shadow-xl">
+                        <h3 class="text-2xl font-bold text-secondary-orange">2. Standard Relocation Package</h3>
+                        <p class="mt-2 text-sm text-primary-teal font-semibold">Ideal for: Individuals or couples moving within the same state or region</p>
+                        <p class="text-3xl font-extrabold mt-4 text-dark-text">
+                            $399 – $599 
+                            <span class="text-base text-gray-500 font-medium block">(+ shipping fees)</span>
+                        </p>
+                        <p class="mt-4 font-semibold border-b pb-2 text-gray-800">Includes:</p>
+                        <ul class="feature-list mt-3 space-y-2 text-sm text-gray-700">
+                            <li>Everything in Essential Move Package</li>
+                            <li>Budget breakdown & cost-saving strategy</li>
+                            <li>Utility setup coordination (electric, water, internet, etc.)</li>
+                            <li>Neighborhood orientation (schools, hospitals, transportation)</li>
+                            <li>Third-party mover coordination: Booking, scheduling, and shipment tracking for your move</li>
+                        </ul>
+                    </div>
+
+                    <!-- Package 3: Family Transition Package (Highlighted) -->
+                    <div class="p-6 bg-white rounded-xl shadow-2xl border-t-4 border-primary-teal ring-2 ring-primary-teal transform scale-[1.03] transition duration-300 hover:shadow-xl lg:col-span-1">
+                        <h3 class="text-2xl font-bold text-primary-teal">3. Family Transition Package</h3>
+                        <p class="mt-2 text-sm text-secondary-orange font-semibold">Ideal for: Families with children or dependents moving locally or cross-state</p>
+                        <p class="text-3xl font-extrabold mt-4 text-dark-text">
+                            $749 – $1,099 
+                            <span class="text-base text-gray-500 font-medium block">(+ shipping fees)</span>
+                        </p>
+                        <p class="mt-4 font-semibold border-b pb-2 text-gray-800">Includes:</p>
+                        <ul class="feature-list mt-3 space-y-2 text-sm text-gray-700">
+                            <li>Everything in Standard Relocation Package</li>
+                            <li>Family-focused relocation plan (schools, childcare, pet transport)</li>
+                            <li>Moving day oversight (virtual or in-person)</li>
+                            <li>Housing assistance (rental or purchase support)</li>
+                            <li>One-month follow-up support after move</li>
+                            <li>Third-party shipping concierge: Full oversight of your shipment to ensure items arrive safely and on time</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Row 2: Premium & Elite (Longer descriptions for higher tiers) -->
+                <div class="grid grid-cols-1 gap-8 mt-12 md:grid-cols-2 lg:max-w-5xl lg:mx-auto">
+                    
+                    <!-- Package 4: Premium Relocation Concierge -->
+                    <div class="p-6 bg-gray-50 rounded-xl shadow-lg border-t-4 border-secondary-orange transition duration-300 hover:shadow-xl">
+                        <h3 class="text-2xl font-bold text-secondary-orange">4. Premium Relocation Concierge</h3>
+                        <p class="mt-2 text-sm text-primary-teal font-semibold">Ideal for: Families or professionals relocating long-distance, including Central America</p>
+                        <p class="text-3xl font-extrabold mt-4 text-dark-text">
+                            $1,499 – $2,499 
+                            <span class="text-base text-gray-500 font-medium block">(+ shipping fees)</span>
+                        </p>
+                        <p class="mt-4 font-semibold border-b pb-2 text-gray-800">Includes:</p>
+                        <ul class="feature-list mt-3 space-y-2 text-sm text-gray-700">
+                            <li>Everything in Family Transition Package</li>
+                            <li>End-to-end move coordination (from pickup to delivery)</li>
+                            <li>Virtual property search & local agent connection</li>
+                            <li>Travel itinerary planning (flights, car transport)</li>
+                            <li>Settling-in support (DMV, local registrations, insurance)</li>
+                            <li>24/7 access to your assigned relocation specialist for 30 days</li>
+                            <li>International mover coordination: Book and manage shipping via trusted companies like SDC International or Latin American Cargo, including customs and documentation</li>
+                        </ul>
+                    </div>
+
+                    <!-- Package 5: Elite Relocation Experience (Highest Tier) -->
+                    <div class="p-6 bg-gray-50 rounded-xl shadow-lg border-t-4 border-primary-teal transition duration-300 hover:shadow-xl">
+                        <h3 class="text-2xl font-bold text-primary-teal">5. Elite Relocation Experience</h3>
+                        <p class="mt-2 text-sm text-secondary-orange font-semibold">Ideal for: Families or individuals seeking full-service, stress-free relocation</p>
+                        <p class="text-3xl font-extrabold mt-4 text-dark-text">
+                            $3,000 – $5,000+ 
+                            <span class="text-base text-gray-500 font-medium block">(+ shipping fees)</span>
+                        </p>
+                        <p class="mt-4 font-semibold border-b pb-2 text-gray-800">Includes:</p>
+                        <ul class="feature-list mt-3 space-y-2 text-sm text-gray-700">
+                            <li>Everything in Premium Relocation Concierge</li>
+                            <li>Full packing/unpacking management</li>
+                            <li>Home setup assistance (furniture, utilities, décor setup)</li>
+                            <li>School & community integration assistance</li>
+                            <li>Quarterly check-ins for 6 months</li>
+                            <li>Priority scheduling + dedicated family relocation manager</li>
+                            <li>Comprehensive shipping concierge: End-to-end management of movers, customs, delivery, and arrival setup for a seamless international relocation</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Add-ons and Discounts -->
+                <div class="mt-20 grid grid-cols-1 lg:grid-cols-2 gap-12 border-t pt-12 border-gray-200">
+                    
+                    <!-- Optional Add-ons -->
+                    <div>
+                        <h4 class="text-2xl font-bold text-secondary-orange mb-4">✨ Optional Add-Ons</h4>
+                        <div class="space-y-3">
+                            <p class="flex justify-between items-center text-lg text-gray-700 border-b pb-1">
+                                <span>Pet relocation coordination</span> <span class="font-bold text-dark-text">+$150</span>
+                            </p>
+                            <p class="flex justify-between items-center text-lg text-gray-700 border-b pb-1">
+                                <span>Vehicle transport booking</span> <span class="font-bold text-dark-text">+$200</span>
+                            </p>
+                            <p class="flex justify-between items-center text-lg text-gray-700 border-b pb-1">
+                                <span>Deep cleaning setup</span> <span class="font-bold text-dark-text">+$125</span>
+                            </p>
+                            <p class="flex justify-between items-center text-lg text-gray-700 border-b pb-1">
+                                <span>Virtual “new home setup” coaching call</span> <span class="font-bold text-dark-text">+$75</span>
+                            </p>
+                            <p class="flex justify-between items-center text-lg text-gray-700">
+                                <span>Weekend or after-hours support</span> <span class="font-bold text-dark-text">+$100</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Discounts & Key Notes -->
+                    <div>
+                        <h4 class="text-2xl font-bold text-primary-teal mb-4">💼 Discounts & Key Notes</h4>
+                        
+                        <div class="bg-primary-teal/10 p-4 rounded-lg space-y-3">
+                            <p class="font-semibold text-lg text-primary-teal">Discounts Available:</p>
+                            <ul class="list-disc ml-5 text-gray-700 space-y-1">
+                                <li>**Returning clients:** 10% off any package</li>
+                                <li>**Military, teachers, or first responders:** 15% off any package</li>
+                                <li>**Referrals:** $50 service credit per successful referral</li>
+                            </ul>
+                        </div>
+
+                        <div class="mt-4 p-4 rounded-lg bg-gray-100 border border-gray-200 space-y-2 text-sm text-gray-600">
+                            <p class="font-bold text-dark-text">✅ Key Notes for Clients:</p>
+                            <ul class="list-disc ml-5 space-y-1">
+                                <li>Shipping costs are separate and based on volume, weight, and destination.</li>
+                                <li>You get **peace of mind**: Autumn Point manages all communication with movers and ensures your belongings arrive safely.</li>
+                                <li>We handle logistics, timelines, and local setup, so you only worry about settling into your new home.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 4. MATCHMAKER SECTION (Anchor: #page-matchmaker) - Moved from 2.5 to 4 -->
+        <section id="page-matchmaker" class="py-16 sm:py-24 bg-primary-teal/5">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center">
+                    <h2 class="text-base text-secondary-orange font-semibold tracking-wide uppercase">Personalized Recommendation</h2>
+                    <p class="mt-2 text-3xl font-extrabold text-dark-text sm:text-4xl">
+                        Find Your Perfect Home Match
+                    </p>
+                    <p class="mt-4 text-xl text-gray-600">
+                        Answer these 12 questions to find the Central American city that aligns with your lifestyle, budget, and priorities.
+                    </p>
+                </div>
+
+                <div class="mt-12 bg-white p-8 rounded-xl shadow-2xl border border-gray-100">
+                    <form id="matchmaker-form" onsubmit="event.preventDefault(); generateRecommendation();">
+                        
+                        <!-- Question 1: Budget Priority -->
+                        <div class="mb-6 pb-4 border-b">
+                            <p class="text-lg font-semibold text-dark-text mb-3">1. Is a maximum monthly budget of $3,000 USD (excluding rent) a hard limit?</p>
+                            <div class="flex space-x-4">
+                                <input type="radio" id="q1-yes" name="q1_budget" value="Yes" class="hidden radio-yes" required>
+                                <label for="q1-yes" class="radio-label">Yes</label>
+                                <input type="radio" id="q1-no" name="q1_budget" value="No" class="hidden radio-no">
+                                <label for="q1-no" class="radio-label">No (Budget is flexible)</label>
+                            </div>
+                        </div>
+
+                        <!-- Question 2: Residency -->
+                        <div class="mb-6 pb-4 border-b">
+                            <p class="text-lg font-semibold text-dark-text mb-3">2. Do you require immediate and reliable visa/residency application assistance?</p>
+                            <div class="flex space-x-4">
+                                <input type="radio" id="q2-yes" name="q2_residency" value="Yes" class="hidden radio-yes" required>
+                                <label for="q2-yes" class="radio-label">Yes</label>
+                                <input type="radio" id="q2-no" name="q2_residency" value="No" class="hidden radio-no">
+                                <label for="q2-no" class="radio-label">No</label>
+                            </div>
+                        </div>
+
+                        <!-- Question 3: Language/Community -->
+                        <div class="mb-6 pb-4 border-b">
+                            <p class="text-lg font-semibold text-dark-text mb-3">3. Is an established English-speaking expat community and services essential for daily life?</p>
+                            <div class="flex space-x-4">
+                                <input type="radio" id="q3-yes" name="q3_language" value="Yes" class="hidden radio-yes" required>
+                                <label for="q3-yes" class="radio-label">Yes</label>
+                                <input type="radio" id="q3-no" name="q3_language" value="No" class="hidden radio-no">
+                                <label for="q3-no" class="radio-label">No (Willing to integrate)</label>
+                            </div>
+                        </div>
+
+                        <!-- Question 4: Safety -->
+                        <div class="mb-6 pb-4 border-b">
+                            <p class="text-lg font-semibold text-dark-text mb-3">4. Is a location with exceptionally low crime rates and high personal safety your **top priority**?</p>
+                            <div class="flex space-x-4">
+                                <input type="radio" id="q4-yes" name="q4_safety" value="Yes" class="hidden radio-yes" required>
+                                <label for="q4-yes" class="radio-label">Yes</label>
+                                <input type="radio" id="q4-no" name="q4_safety" value="No" class="hidden radio-no">
+                                <label for="q4-no" class="radio-label">No (Accepts standard risks)</label>
+                            </div>
+                        </div>
+
+                        <!-- Question 5: Travel -->
+                        <div class="mb-6 pb-4 border-b">
+                            <p class="text-lg font-semibold text-dark-text mb-3">5. Do you need to be within 60 minutes of a major international airport for frequent travel?</p>
+                            <div class="flex space-x-4">
+                                <input type="radio" id="q5-yes" name="q5_travel" value="Yes" class="hidden radio-yes" required>
+                                <label for="q5-yes" class="radio-label">Yes</label>
+                                <input type="radio" id="q5-no" name="q5_travel" value="No" class="hidden radio-no">
+                                <label for="q5-no" class="radio-label">No</label>
+                            </div>
+                        </div>
+
+                        <!-- Question 6: Climate (NEW/Updated) -->
+                        <div class="mb-6 pb-4 border-b">
+                            <p class="text-lg font-semibold text-dark-text mb-3">6. Do you strongly prefer a cooler, mountain/highland climate over a hot, coastal one?</p>
+                            <div class="flex space-x-4">
+                                <input type="radio" id="q6-yes" name="q6_climate" value="Yes" class="hidden radio-yes" required>
+                                <label for="q6-yes" class="radio-label">Yes (Mountain/Cooler)</label>
+                                <input type="radio" id="q6-no" name="q6_climate" value="No" class="hidden radio-no">
+                                <label for="q6-no" class="radio-label">No (Coastal/Warmer)</label>
+                            </div>
+                        </div>
+
+                        <!-- Question 7: Digital (NEW/Updated) -->
+                        <div class="mb-6 pb-4 border-b">
+                            <p class="text-lg font-semibold text-dark-text mb-3">7. Is guaranteed, reliable fiber optic internet service essential for remote work (e.g., video calls)?</p>
+                            <div class="flex space-x-4">
+                                <input type="radio" id="q7-yes" name="q7_digital" value="Yes" class="hidden radio-yes" required>
+                                <label for="q7-yes" class="radio-label">Yes</label>
+                                <input type="radio" id="q7-no" name="q7_digital" value="No" class="hidden radio-no">
+                                <label for="q7-no" class="radio-label">No (Standard speeds are fine)</label>
+                            </div>
+                        </div>
+
+                        <!-- Question 8: Healthcare (NEW/Updated) -->
+                        <div class="mb-6 pb-4 border-b">
+                            <p class="text-lg font-semibold text-dark-text mb-3">8. Is proximity (under 30 minutes) to a high-quality private hospital a must-have?</p>
+                            <div class="flex space-x-4">
+                                <input type="radio" id="q8-yes" name="q8_healthcare" value="Yes" class="hidden radio-yes" required>
+                                <label for="q8-yes" class="radio-label">Yes</label>
+                                <input type="radio" id="q8-no" name="q8_healthcare" value="No" class="hidden radio-no">
+                                <label for="q8-no" class="radio-label">No (Rural clinic access is enough)</label>
+                            </div>
+                        </div>
+                        
+                        <!-- Question 9: Pace/Nightlife (NEW/Updated) -->
+                        <div class="mb-6 pb-4 border-b">
+                            <p class="text-lg font-semibold text-dark-text mb-3">9. Do you desire an active nightlife and a large, metropolitan city center?</p>
+                            <div class="flex space-x-4">
+                                <input type="radio" id="q9-yes" name="q9_pace" value="Yes" class="hidden radio-yes" required>
+                                <label for="q9-yes" class="radio-label">Yes (Urban, active)</label>
+                                <input type="radio" id="q9-no" name="q9_pace" value="No" class="hidden radio-no">
+                                <label for="q9-no" class="radio-label">No (Quiet, relaxed town)</label>
+                            </div>
+                        </div>
+
+                        <!-- Question 10: Housing Style (NEW) -->
+                        <div class="mb-6 pb-4 border-b">
+                            <p class="text-lg font-semibold text-dark-text mb-3">10. Is your primary housing preference a modern, high-rise condo or apartment?</p>
+                            <div class="flex space-x-4">
+                                <input type="radio" id="q10-yes" name="q10_housing" value="Yes" class="hidden radio-yes" required>
+                                <label for="q10-yes" class="radio-label">Yes (High-Rise/Urban)</label>
+                                <input type="radio" id="q10-no" name="q10_housing" value="No" class="hidden radio-no">
+                                <label for="q10-no" class="radio-label">No (Stand-Alone Home/Land)</label>
+                            </div>
+                        </div>
+
+                        <!-- Question 11: Walkability/Transport (NEW) -->
+                        <div class="mb-6 pb-4 border-b">
+                            <p class="text-lg font-semibold text-dark-text mb-3">11. Is a high degree of walkability and reliance on public transport/minimal driving essential?</p>
+                            <div class="flex space-x-4">
+                                <input type="radio" id="q11-yes" name="q11_walk" value="Yes" class="hidden radio-yes" required>
+                                <label for="q11-yes" class="radio-label">Yes</label>
+                                <input type="radio" id="q11-no" name="q11_walk" value="No" class="hidden radio-no">
+                                <label for="q11-no" class="radio-label">No (Comfortable driving everywhere)</label>
+                            </div>
+                        </div>
+
+                        <!-- Question 12: Activity Focus (NEW) -->
+                        <div class="mb-6">
+                            <p class="text-lg font-semibold text-dark-text mb-3">12. Is year-round access to major surfing/beach breaks your highest priority outdoor activity?</p>
+                            <div class="flex space-x-4">
+                                <input type="radio" id="q12-yes" name="q12_activity" value="Yes" class="hidden radio-yes" required>
+                                <label for="q12-yes" class="radio-label">Yes</label>
+                                <input type="radio" id="q12-no" name="q12_activity" value="No" class="hidden radio-no">
+                                <label for="q12-no" class="radio-label">No (Priority is hiking or land-based)</label>
+                            </div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="mt-8 text-center">
+                            <button id="submit-button" type="submit" class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-lg shadow-xl text-white bg-secondary-orange hover:bg-primary-teal transition duration-300 transform hover:scale-105">
+                                <span id="button-text">Find My Perfect Location!</span>
+                                <svg id="spinner" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. RESIDENCY & VISA SECTION (Anchor: #page-residency) - Moved from 3 to 5 -->
+        <section id="page-residency" class="py-16 sm:py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center">
+                    <h2 class="text-base text-primary-teal font-semibold tracking-wide uppercase">Legal Requirements</h2>
+                    <p class="mt-2 text-3xl font-extrabold text-dark-text sm:text-4xl">
+                        Official Residency & Visa Overview
+                    </p>
+                    <p class="mt-4 max-w-3xl text-lg text-gray-500 lg:mx-auto">
+                        Click on a country below to fetch a summarized, up-to-date breakdown of **all major** visa categories and official requirements directly from government sources, powered by Gemini.
+                    </p>
+                </div>
+
+                <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Residency Card 1: Costa Rica -->
+                    <div class="p-6 bg-gray-50 rounded-xl shadow-lg border border-primary-teal/20 flex flex-col items-center text-center">
+                        <h3 class="text-2xl font-bold text-primary-teal mb-4">Costa Rica</h3>
+                        <p class="text-gray-600 mb-6">Explore the comprehensive list of long-term residency options and requirements.</p>
+                        <button onclick="generateResidencyDetails('Costa Rica')"
+                            class="w-full px-6 py-3 border border-transparent text-base font-medium rounded-lg shadow-md text-white bg-primary-teal hover:bg-secondary-orange transition duration-300 transform hover:scale-105">
+                            Get Official CR Visa Info
+                        </button>
+                    </div>
+
+                    <!-- Residency Card 2: Panama -->
+                    <div class="p-6 bg-gray-50 rounded-xl shadow-lg border border-secondary-orange/20 flex flex-col items-center text-center">
+                        <h3 class="text-2xl font-bold text-secondary-orange mb-4">Panama</h3>
+                        <p class="text-gray-600 mb-6">Review the comprehensive list of visa programs, including the Friendly Nations and various work permits.</p>
+                        <button onclick="generateResidencyDetails('Panama')"
+                            class="w-full px-6 py-3 border border-transparent text-base font-medium rounded-lg shadow-md text-white bg-secondary-orange hover:bg-primary-teal transition duration-300 transform hover:scale-105">
+                            Get Official Panama Visa Info
+                        </button>
+                    </div>
+
+                    <!-- Residency Card 3: Belize -->
+                    <div class="p-6 bg-gray-50 rounded-xl shadow-lg border border-danger-red/20 flex flex-col items-center text-center">
+                        <h3 class="text-2xl font-bold text-danger-red mb-4">Belize</h3>
+                        <p class="text-gray-600 mb-6">Learn about the simple QRP (Qualified Retired Person) program and standard residency paths.</p>
+                        <button onclick="generateResidencyDetails('Belize')"
+                            class="w-full px-6 py-3 border border-transparent text-base font-medium rounded-lg shadow-md text-white bg-danger-red hover:bg-primary-teal transition duration-300 transform hover:scale-105">
+                            Get Official Belize Visa Info
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. ABOUT US SECTION (Anchor: #page-about) - Moved from 4 to 6 -->
+        <section id="page-about" class="py-16 sm:py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="lg:grid lg:grid-cols-2 lg:gap-12 items-center">
+                    <div class="lg:col-span-1">
+                        <h2 class="text-base text-primary-teal font-semibold tracking-wide uppercase">Who We Are</h2>
+                        <p class="mt-2 text-3xl font-extrabold text-dark-text sm:text-4xl">
+                            Specialists in Central American Immigration
+                        </p>
+                        <p class="mt-4 text-lg text-gray-600">
+                            Autumn Point Relocation Solutions was founded by expats who experienced the confusion of moving abroad firsthand. We combine local legal expertise with a deep understanding of expat needs to ensure your transition is smooth, compliant, and enjoyable.
+                        </p>
+                        <p class="mt-4 text-lg text-gray-600">
+                            Our team consists of licensed local immigration attorneys, certified public accountants, and experienced real estate consultants in each of our core markets (Costa Rica, Panama, and Belize). We don't just help you move—we help you build a new life with confidence.
+                        </p>
+                        <a href="#page-contact" class="mt-8 inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-secondary-orange hover:bg-primary-teal transition duration-300 shadow-md">
+                            Meet the Team
+                        </a>
+                    </div>
+                    <div class="lg:col-span-1 mt-10 lg:mt-0">
+                        <img class="w-full rounded-xl shadow-2xl" src="https://placehold.co/800x600/0d9488/ffffff?text=Our+Team+in+Central+America" alt="Team working in Central America">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. CONTACT SECTION (Anchor: #page-contact) - Moved from 5 to 7 -->
+        <section id="page-contact" class="py-16 sm:py-24 bg-primary-teal">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-white text-center">
+                <h2 class="text-base font-semibold tracking-wide uppercase text-secondary-orange">Take the First Step</h2>
+                <p class="mt-2 text-3xl font-extrabold sm:text-4xl">
+                    Book Your Free 30-Minute Consultation
+                </p>
+                <p class="mt-4 text-xl opacity-90">
+                    Tell us about your plans, and we'll outline the best residency path for you. No commitment required.
+                </p>
+
+                <form class="mt-10 p-6 bg-white/10 rounded-xl shadow-xl space-y-6">
+                    <div>
+                        <input type="text" id="contact-name" placeholder="Full Name" required class="w-full px-5 py-3 border border-white/20 rounded-lg bg-white/5 text-white placeholder-gray-300 focus:ring-secondary-orange focus:border-secondary-orange transition">
+                    </div>
+                    <div>
+                        <input type="email" id="contact-email" placeholder="Email Address" required class="w-full px-5 py-3 border border-white/20 rounded-lg bg-white/5 text-white placeholder-gray-300 focus:ring-secondary-orange focus:border-secondary-orange transition">
+                    </div>
+                    <div>
+                        <select id="contact-country" required class="w-full px-5 py-3 border border-white/20 rounded-lg bg-white/5 text-white focus:ring-secondary-orange focus:border-secondary-orange transition appearance-none cursor-pointer">
+                            <option value="" disabled selected class="text-gray-900 bg-white">Which country are you interested in?</option>
+                            <option value="Costa Rica" class="text-gray-900 bg-white">Costa Rica</option>
+                            <option value="Panama" class="text-gray-900 bg-white">Panama</option>
+                            <option value="Belize" class="text-gray-900 bg-white">Belize</option>
+                            <option value="Undecided" class="text-gray-900 bg-white">Undecided / Matchmaker Result</option>
+                        </select>
+                    </div>
+                    <div class="pt-2">
+                        <button type="submit" class="w-full inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-lg shadow-2xl text-primary-teal bg-secondary-orange hover:bg-primary-teal hover:text-white transition duration-300 transform hover:scale-[1.02]">
+                            Book Consultation Now
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark-text text-gray-400 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <!-- Branding -->
+                <div>
+                    <h4 class="text-xl font-bold text-primary-teal mb-4">Autumn Point</h4>
+                    <p class="text-sm">Relocation solutions built on local expertise and expat experience.</p>
+                </div>
+                <!-- Navigation -->
+                <div>
+                    <h5 class="text-lg font-semibold text-white mb-4">Quick Links</h5>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#page-destinations" class="hover:text-secondary-orange transition">Destinations</a></li>
+                        <li><a href="#page-packages" class="hover:text-secondary-orange transition">Packages</a></li>
+                        <li><a href="#page-about" class="hover:text-secondary-orange transition">About Us</a></li>
+                    </ul>
+                </div>
+                <!-- Countries -->
+                <div>
+                    <h5 class="text-lg font-semibold text-white mb-4">Countries</h5>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#page-destinations" class="hover:text-secondary-orange transition">Costa Rica</a></li>
+                        <li><a href="#page-destinations" class="hover:text-secondary-orange transition">Panama</a></li>
+                        <li><a href="#page-destinations" class="hover:text-secondary-orange transition">Belize</a></li>
+                    </ul>
+                </div>
+                <!-- Contact Info -->
+                <div>
+                    <h5 class="text-lg font-semibold text-white mb-4">Contact</h5>
+                    <p class="text-sm">Email: contact@autumnpoint.com</p>
+                    <p class="text-sm mt-1">Phone: +1 (555) 555-0199</p>
+                </div>
+            </div>
+            <div class="mt-12 border-t border-gray-700 pt-8 text-center text-sm">
+                &copy; 2025 Autumn Point Relocation Solutions. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT BLOCK -->
+    <script>
+        // --- UI UTILITY FUNCTIONS ---
+
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        const resultModal = document.getElementById('result-modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalBody = document.getElementById('modal-body');
+        const modalSources = document.getElementById('modal-sources');
+        const sourcesList = document.getElementById('sources-list');
+
+        function showModal(title, bodyHtml, sources = []) {
+            modalTitle.textContent = title;
+            modalBody.innerHTML = bodyHtml;
+            
+            // Handle Sources
+            sourcesList.innerHTML = '';
+            if (sources.length > 0) {
+                modalSources.classList.remove('hidden');
+                sources.forEach(source => {
+                    if (source.uri && source.title) {
+                        const li = document.createElement('li');
+                        li.innerHTML = `<a href="${source.uri}" target="_blank" class="text-primary-teal hover:underline">${source.title}</a>`;
+                        sourcesList.appendChild(li);
+                    }
+                });
+            } else {
+                modalSources.classList.add('hidden');
+            }
+
+            resultModal.classList.remove('hidden');
+            // Scroll to the top of the modal content when opening
+            document.querySelector('.modal-content').scrollTop = 0;
+        }
+
+        function closeModal() {
+            resultModal.classList.add('hidden');
+        }
+
+        // --- GEMINI API INTEGRATION ---
+        
+        const MODEL = 'gemini-2.5-flash-preview-09-2025';
+        const apiKey = ""; 
+        const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent?key=${apiKey}`;
+        
+        const MAX_RETRIES = 3;
+        const INITIAL_BACKOFF_MS = 1000;
+
+        /**
+         * Generic fetch wrapper with exponential backoff and error handling.
+         * @returns {Promise<Object>} The parsed JSON response.
+         */
+        async function fetchWithBackoff(url, options, retryCount = 0) {
+            try {
+                const response = await fetch(url, options);
+                if (response.status === 429 && retryCount < MAX_RETRIES) {
+                    const delay = INITIAL_BACKOFF_MS * Math.pow(2, retryCount) + Math.random() * 1000;
+                    console.warn(`Rate limit exceeded. Retrying in ${delay.toFixed(0)}ms...`);
+                    await new Promise(resolve => setTimeout(resolve, delay));
+                    return fetchWithBackoff(url, options, retryCount + 1);
+                }
+                if (!response.ok) {
+                    const errorBody = await response.text();
+                    throw new Error(`API call failed: ${response.status} ${response.statusText} - ${errorBody}`);
+                }
+                return response.json();
+            } catch (error) {
+                if (retryCount >= MAX_RETRIES) {
+                    throw new Error(`Failed after ${MAX_RETRIES} retries: ${error.message}`);
+                }
+                const delay = INITIAL_BACKOFF_MS * Math.pow(2, retryCount) + Math.random() * 1000;
+                console.warn(`Request failed. Retrying in ${delay.toFixed(0)}ms...`, error);
+                await new Promise(resolve => setTimeout(resolve, delay));
+                return fetchWithBackoff(url, options, retryCount + 1);
+            }
+        }
+
+        /**
+         * Converts Markdown text to HTML for safe injection.
+         * Note: This is a basic conversion, complex Markdown features might need a library.
+         */
+        function markdownToHtml(markdown) {
+            if (!markdown) return '';
+            
+            // Basic markdown transformations
+            let html = markdown
+                .replace(/^### (.*$)/gim, '<h3>$1</h3>')
+                .replace(/^## (.*$)/gim, '<h2>$1</h2>')
+                .replace(/^# (.*$)/gim, '<h1>$1</h1>')
+                .replace(/^\* (.*$)/gim, '<li>$1</li>')
+                .replace(/^\- (.*$)/gim, '<li>$1</li>')
+                .replace(/^(<li>.*<\/li>)/gim, '<ul>$1</ul>') // Simple list wrapping (needs refinement for real-world use)
+                .replace(/\*\*(.*)\*\*/gim, '<strong>$1</strong>')
+                .replace(/\*(.*)\*/gim, '<em>$1</em>');
+
+            // Replace loose li/ul with proper block structure
+            html = html.replace(/<\/ul>\n<ul>/gim, '');
+            html = html.replace(/(<li>.*<\/li>(\n|.)*?)/gim, '<ul class="list-disc ml-5 space-y-1 my-2">$1</ul>');
+            html = html.replace(/<\/ul><ul>/gim, '');
+            
+            // Add paragraphs
+            html = html.split('\n\n').map(p => {
+                if (p.startsWith('<') || p.trim() === '') return p;
+                return `<p class="mb-2">${p}</p>`;
+            }).join('');
+
+            return html;
+        }
+
+        /**
+         * FEATURE 1: Generates a brief on residency/cost of living using Google Search grounding.
+         */
+        async function generateRelocationBrief(country) {
+            const button = event.currentTarget;
+            const originalText = button.textContent;
+            
+            showModal(`Searching for ${country} Data...`, '<div class="flex items-center space-x-3"><div class="spinner border-primary-teal border-t-secondary-orange"></div><p>Querying Gemini for up-to-date residency and cost information...</p></div>');
+            
+            try {
+                // 1. Prepare Request Payload
+                const systemPrompt = "You are an expert relocation consultant specializing in Central America. Provide a professional, concise, and structured brief on the required documentation, key costs, and popular expat areas for the user-specified country. Include specific references to major visa types (e.g., Pensionado/Rentista). The response must be formatted in clean Markdown, without any introductory or concluding sentences. Ensure all information is current and accurate.";
+                const userQuery = `Provide a full, detailed, and current summary of residency and cost of living requirements for ${country}.`;
+
+                const payload = {
+                    contents: [{ parts: [{ text: userQuery }] }],
+                    tools: [{ "google_search": {} }], // Enable grounding
+                    systemInstruction: {
+                        parts: [{ text: systemPrompt }]
+                    },
+                };
+
+                // 2. Make API Call
+                const result = await fetchWithBackoff(API_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                
+                // 3. Process Response
+                const candidate = result.candidates?.[0];
+                let text = "Could not generate content. Please try again.";
+                let sources = [];
+                
+                if (candidate && candidate.content?.parts?.[0]?.text) {
+                    text = candidate.content.parts[0].text;
+                    const groundingMetadata = candidate.groundingMetadata;
+                    if (groundingMetadata && groundingMetadata.groundingAttributions) {
+                        sources = groundingMetadata.groundingAttributions
+                            .map(attribution => ({
+                                uri: attribution.web?.uri,
+                                title: attribution.web?.title,
+                            }))
+                            .filter(source => source.uri && source.title);
+                    }
+                }
+                
+                const htmlContent = markdownToHtml(text);
+                showModal(`Official Brief: ${country}`, htmlContent, sources);
+
+            } catch (error) {
+                console.error("Gemini API Error (Brief):", error);
+                showModal(`Error Fetching Data for ${country}`, `<p class="text-danger-red">An error occurred while connecting to the AI. Please check the console for details: ${error.message}</p>`);
+            }
+        }
+
+        /**
+         * FEATURE 2: Analyzes user preferences to recommend a country/city.
+         */
+        async function generateRecommendation() {
+            const form = document.getElementById('matchmaker-form');
+            const submitButton = document.getElementById('submit-button');
+            const buttonText = document.getElementById('button-text');
+            const spinner = document.getElementById('spinner');
+
+            // UI Loading State
+            buttonText.textContent = 'Analyzing Preferences...';
+            spinner.classList.remove('hidden');
+            submitButton.disabled = true;
+
+            try {
+                const formData = new FormData(form);
+                let preferences = [];
+                
+                // Collect all radio button responses
+                formData.forEach((value, key) => {
+                    preferences.push(`Question ${key.split('_')[0].substring(1)}: ${value}`);
+                });
+
+                // 1. Prepare Request Payload
+                const systemPrompt = "You are a specialized relocation AI Matchmaker. Based on the user's 12 preferences (provided as a list of answers), you MUST analyze the pros and cons of Costa Rica, Panama, and Belize against those preferences, and then confidently recommend ONE specific country and ONE corresponding city/town as the ideal fit. The response MUST start with the recommended location and be persuasive. Format the output in detailed Markdown. Do not use external search/grounding.";
+                const userQuery = `Analyze these 12 preferences and recommend the best country/city: ${preferences.join('; ')}`;
+
+                const payload = {
+                    contents: [{ parts: [{ text: userQuery }] }],
+                    systemInstruction: {
+                        parts: [{ text: systemPrompt }]
+                    },
+                };
+
+                // 2. Make API Call
+                const result = await fetchWithBackoff(API_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                
+                // 3. Process Response
+                const text = result.candidates?.[0]?.content?.parts?.[0]?.text || "Could not generate a recommendation. Please try again.";
+                const htmlContent = markdownToHtml(text);
+                
+                showModal('🎯 Your Perfect Match', htmlContent);
+
+            } catch (error) {
+                console.error("Gemini API Error (Matchmaker):", error);
+                showModal('Matchmaker Error', `<p class="text-danger-red">An error occurred while running the matchmaker AI: ${error.message}</p>`);
+            } finally {
+                // Reset UI State
+                buttonText.textContent = 'Find My Perfect Location!';
+                spinner.classList.add('hidden');
+                submitButton.disabled = false;
+            }
+        }
+
+        // --- Initial Setup / Cleanup ---
+        window.onload = function() {
+            // Check for and attempt to play the hero video
+            const video = document.getElementById('hero-video-bg');
+            if (video) {
+                video.load();
+                video.play().catch(error => {
+                    console.warn("Video autoplay failed (often due to browser restrictions). Using image fallback.", error);
+                    // Fallback handled by onerror attribute in HTML, but here is a safety check:
+                    video.classList.add('hidden');
+                    document.getElementById('hero-fallback').classList.remove('hidden');
+                });
+            }
+        };
+
+    </script>
+</body>
+</html>
