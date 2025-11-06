@@ -41,15 +41,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-name: Gemini Workflow
-
-on: [push]
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v4
-    - name: Run Gemini CLI
-      env:
-        GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
