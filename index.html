@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autumn Point Relocation Solutions</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Configure Tailwind for Inter font and custom colors -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-teal': '#0d9488',
+                        'secondary-orange': '#ea580c',
+                        'dark-text': '#1f2937',
+                        'danger-red': '#be123c',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        html { scroll-behavior: smooth; }
+        .hero-video-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; z-index: 0; }
+        .hero-video { min-width: 100%; min-height: 100%; width: auto; height: auto; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); object-fit: cover; }
+        .feature-list li { position: relative; padding-left: 1.5rem; margin-bottom: 0.5rem; line-height: 1.4; }
+        .feature-list li::before { content: '✓'; position: absolute; left: 0; color: #0d9488; font-weight: bold; }
+        .radio-label { display: inline-flex; align-items: center; padding: 8px 16px; border-radius: 8px; cursor: pointer; transition: all 0.2s; border: 2px solid #e5e7eb; font-weight: 600; color: #4b5563; user-select: none; }
+        .radio-label:hover { background-color: #f3f4f6; }
+        .radio-yes:checked + .radio-label { background-color: #0d9488; color: white; border-color: #0d9488; box-shadow: 0 4px 6px -1px rgba(13, 148, 136, 0.5); }
+        .radio-no:checked + .radio-label { background-color: #be123c; color: white; border-color: #be123c; box-shadow: 0 4px 6px -1px rgba(190, 18, 60, 0.5); }
+        .modal { background-color: rgba(0, 0, 0, 0.6); }
+        .modal-content { animation: slide-down 0.3s ease-out; }
+        @keyframes slide-down { from { opacity:0; transform: translateY(-20px);} to { opacity:1; transform: translateY(0);} }
+        .spinner { border:4px solid rgba(255,255,255,0.3); border-top-color:#fff; border-radius:50%; width:1.5rem; height:1.5rem; animation:spin 1s linear infinite; }
+        @keyframes spin { to { transform: rotate(360deg);}}
+    </style>
+</head>
+<body class="font-sans text-dark-text bg-gray-50">
+<!-- The rest of your HTML content goes here. All sections, components, JavaScript, and markup are as provided previously. -->
+</body>
+</html>
