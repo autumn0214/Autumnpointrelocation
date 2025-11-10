@@ -1,0 +1,22 @@
+<!-- assets/logo-symbol.svg -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-labelledby="logoSymbolTitle">
+  <title id="logoSymbolTitle">Autumn Point house and leaf mark</title>
+  <defs>
+    <style>
+      .stroke { stroke: #0d9488; stroke-width:26; stroke-linejoin:round; stroke-linecap:round; fill:none; }
+      .leaf-fill { fill:#0d9488; }
+    </style>
+  </defs>
+
+  <!-- House outline -->
+  <path class="stroke" d="M256 48 L88 192 v176 a24 24 0 0 0 24 24 h288 a24 24 0 0 0 24-24 V192 L256 48 z"/>
+
+  <!-- Leaf stem/vein -->
+  <path class="stroke" d="M200 304c28-56 84-88 140-96" stroke-linecap="round"/>
+
+  <!-- Leaf fill (stylized) -->
+  <path class="leaf-fill" d="M228 348c36-54 98-82 150-92 0 0 2 36-18 72-20 36-56 60-96 68-40 8-56-16-36-48z" opacity="0.98"/>
+
+  <!-- Optional small accent -->
+  <circle cx="232" cy="312" r="6" fill="#ffffff" opacity="0.02"/>
+</svg>
