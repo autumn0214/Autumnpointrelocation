@@ -3,72 +3,124 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Costa Rica — Destination Guide</title>
+  <title>Costa Rica — Destination Guide | Autumn Point Relocation</title>
+  <script src="https://cdn.tailwindcss.com"></script>
   <style>
     :root{
-      --accent:#0d9488;       /* primary teal */
-      --accent-weak: rgba(13,148,136,0.08);
-      --dark:#1f2937;
-      --muted:#6b7280;
-      --bg:#ffffff;
-      --card-radius:12px;
-      --soft-shadow: 0 8px 20px rgba(15,23,42,0.06);
+      --primary-teal:#0d9488;
+      --secondary-orange:#ea580c;
+      --danger-red:#be123c;
+      --dark-text:#1f2937;
     }
-    html,body{margin:0;height:100%;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial;background:var(--bg);color:var(--dark);}
-    .wrap{max-width:1100px;margin:28px auto;padding:18px;}
-    .shimmer{font-size:1.6rem;font-weight:800;background:linear-gradient(90deg,var(--accent),#00b7a1,#ea580c);-webkit-background-clip:text;color:transparent;position:relative;overflow:hidden}
-    .shimmer::after{content:'';position:absolute;left:-40%;top:0;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.35),transparent);transform:skewX(-20deg);animation:glide 3s linear infinite}
-    @keyframes glide{0%{left:-60%}100%{left:120%}}
-    .intro{color:var(--muted);margin-top:10px;padding:12px;border-radius:10px;background:linear-gradient(180deg,var(--accent-weak),rgba(234,88,12,0.01));box-shadow:var(--soft-shadow)}
-    .grid{display:grid;grid-template-columns:1fr 360px;gap:24px;margin-top:20px}
-    .content h3{margin:0 0 10px;font-size:1.25rem;color:var(--dark)}
-    .card{background:#fff;border-radius:12px;padding:18px;box-shadow:var(--soft-shadow);border-top:4px solid var(--accent)}
-    .cta{display:inline-block;margin-top:12px;color:var(--accent);font-weight:700;text-decoration:none}
-    /* responsive */
-    @media (max-width:980px){ .grid{grid-template-columns:1fr} .card{order:2} }
   </style>
 </head>
-<body>
-  <main class="wrap" aria-labelledby="title">
-    <div style="display:flex;align-items:center;gap:12px">
-      <div class="shimmer" id="title">Pura Vida — Costa Rica</div>
-      <a href="index.html" style="margin-left:auto;color:var(--muted);text-decoration:none;font-weight:600">← Back</a>
+<body class="font-sans text-dark-text bg-white">
+  <!-- Header with other country links (top-right) -->
+  <header class="sticky top-0 z-40 bg-white border-b">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center">
+      <a href="index.html" class="text-xl font-bold" style="color:var(--primary-teal)">Autumn Point</a>
+
+      <nav class="ml-auto flex items-center gap-4">
+        <a href="panama.html" class="text-base font-medium text-gray-700 hover:text-secondary-orange">Panama</a>
+        <a href="belize.html" class="text-base font-medium text-gray-700 hover:text-secondary-orange">Belize</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="text-center mb-8">
+      <h2 class="text-base text-secondary-orange font-semibold tracking-wide uppercase">Destination Guide</h2>
+      <p class="mt-2 text-4xl font-extrabold" style="color:var(--primary-teal)">Pura Vida: Costa Rica</p>
     </div>
 
-    <p class="intro">Costa Rica is known for its biodiversity, stable democracy, and popular retiree/residency programs. Below are the practical details many expats ask about.</p>
+    <section class="bg-white rounded-xl p-8 shadow-sm">
+      <p class="text-gray-700 mb-6">
+        Costa Rica is celebrated for biodiversity, democratic stability, and strong healthcare in urban centers. Below is a consolidated, fact-focused guide with visa pathways (sourced from the official Dirección General de Migración y Extranjería), popular expat regions and a practical cost card.
+      </p>
 
-    <div class="grid">
-      <section class="content" aria-labelledby="residency">
-        <h3 id="residency">Residency & Visa Pathways</h3>
-        <p class="muted">Most-used routes for foreigners:</p>
-        <ul>
-          <li><strong>Pensionado (Retiree):</strong> Requires a lifetime fixed income of at least <strong>$1,000 USD/mo</strong>.</li>
-          <li><strong>Rentista (Passive Income):</strong> Deposit <strong>$60,000 USD</strong> into a Costa Rican bank or show $2,500 USD/month for two years.</li>
-          <li>Permanent residency typically after ~3 years on these programs.</li>
-        </ul>
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div class="lg:col-span-2 space-y-6">
+          <h3 class="text-2xl font-bold">Residency & Visa Pathways</h3>
+          <p class="text-sm text-gray-600">Official source: Dirección General de Migración y Extranjería (DGME) — <a href="https://migracion.go.cr/SitePages/Inicio.aspx" class="text-primary-teal underline">migracion.go.cr</a></p>
 
-        <h3 class="mt" style="margin-top:16px">Popular Expat Cities & Regions</h3>
-        <p><strong>San José / Central Valley:</strong> Best healthcare & schools.</p>
-        <p><strong>Guanacaste / Tamarindo:</strong> Beaches & large North American expat community.</p>
-        <p><strong>Southern Pacific (Dominical, Osa):</strong> Rainforest, remote living and ecotourism.</p>
+          <ul class="list-disc ml-6 space-y-2 text-gray-800">
+            <li>
+              <strong>Pensionado (Retiree)</strong> — Requirement (official guidance): proof of lifetime pension or retirement income of at least <strong>$1,000 USD/month</strong>. See DGME residency categories: <a href="https://migracion.go.cr/SitePages/Inicio.aspx" class="text-primary-teal underline">migracion.go.cr</a>.
+            </li>
+            <li>
+              <strong>Rentista (Passive/Fixed Income)</strong> — Requirement (officially documented examples): reliable foreign income (commonly cited: <strong>$2,500 USD/month</strong> for 2 years) or deposit programs (e.g., bank deposit options). See DGME for current exact documentary and proof requirements.
+            </li>
+            <li>
+              <strong>Inversionista (Investor)</strong> — Official routes for investors with qualifying investment amounts (policy and thresholds governed by DGME / commerce regs). Consult DGME and official investor guidance for current minimums and accepted investment types.
+            </li>
+            <li>
+              <strong>Work / Employment</strong> — Work permits and employer-sponsored residency for specialized employees; companies petition through DGME and the Social Security system (CCSS).
+            </li>
+            <li>
+              <strong>Student</strong> — Residency for international students enrolled in recognized Costa Rican institutions; documentation required per DGME instructions.
+            </li>
+            <li>
+              <strong>Family / Marriage</strong> — Visa/residency paths for spouses, minor children and immediate family of Costa Rican citizens or residents; see DGME family categories.
+            </li>
+            <li>
+              <strong>Permanent residency</strong> — Available after holding qualifying temporary residency for the required period (typical routes include family ties or multi-year temporary residency).
+            </li>
+          </ul>
 
-        <h3 style="margin-top:16px">Practical notes</h3>
-        <ul>
-          <li>Public healthcare (CCSS) available to residents; strong private hospitals in San José.</li>
-          <li>Property ownership allowed for foreigners; check coastal servitude regulations.</li>
-          <li>Spanish is the primary language; English common in tourist/expat hubs.</li>
-        </ul>
-      </section>
+          <h3 class="text-2xl font-bold pt-6">Popular Expat Cities & Regions</h3>
+          <div class="space-y-3 text-gray-800">
+            <p><strong>San José / Central Valley</strong> — Best healthcare, international schools and services.</p>
+            <p><strong>Guanacaste / Tamarindo</strong> — Pacific beaches, surfing culture and large North American expat communities.</p>
+            <p><strong>Southern Pacific (Dominical, Osa)</strong> — Rainforest and eco-living with higher biodiversity and more remote infrastructure in parts.</p>
+          </div>
 
-      <aside class="card" aria-labelledby="cost">
-        <h3 id="cost" style="color:var(--accent)">Cost of Living Estimate (Couple)</h3>
-        <p style="font-size:1.6rem;font-weight:800;color:var(--dark)">$2,500 – $4,500 USD / month</p>
-        <ul style="margin-top:10px;color:#374151;font-size:0.95rem">
-          <li><strong>High end:</strong> Modern condo in Escazú or beachfront living.</li>
-          <li><strong>Low end:</strong> Local-style home outside expat centers.</li>
-        </ul>
-        <a href="#page-contact" class="cta">Start your Costa Rica Move →</a>
-      </aside>
+          <h3 class="text-2xl font-bold pt-6">Healthcare & Practical Notes</h3>
+          <ul class="list-disc ml-6 space-y-2 text-gray-800">
+            <li><strong>Public system (CCSS):</strong> Residents enroll in Caja/CCSS for primary and some specialist care; private hospitals concentrated in San José.</li>
+            <li><strong>Insurance:</strong> Typical private expat plan premiums range roughly <strong>$60–$200/month</strong> (depend on age & coverage).</li>
+            <li><strong>Language:</strong> Spanish is primary; English commonly used in tourist / expat hubs.</li>
+            <li><strong>Internet:</strong> Residential speeds commonly <strong>20–60 Mbps</strong> (urban areas faster).</li>
+          </ul>
+
+          <h3 class="text-2xl font-bold pt-6">Sources & official links</h3>
+          <ul class="list-disc ml-6 text-gray-700">
+            <li><a href="https://migracion.go.cr/SitePages/Inicio.aspx" class="text-primary-teal underline">Dirección General de Migración y Extranjería (DGME)</a> — official residency categories & procedures.</li>
+            <li><a href="https://www.ccss.sa.cr/" class="text-primary-teal underline">Caja Costarricense de Seguro Social (CCSS)</a> — public healthcare enrollment info.</li>
+          </ul>
+        </div>
+
+        <aside class="bg-primary-teal/10 p-6 rounded-xl shadow-lg">
+          <h3 class="text-xl font-bold" style="color:var(--primary-teal)">Cost of Living Estimate (Couple)</h3>
+          <p class="text-3xl font-extrabold mt-4">$2,500 – $4,500 USD / month</p>
+
+          <ul class="mt-4 text-sm text-gray-700 space-y-2">
+            <li><strong>High end:</strong> Modern condo in Escazú, private schooling & frequent dining out.</li>
+            <li><strong>Low end:</strong> Local-style home outside main expat centers, shopping local markets.</li>
+          </ul>
+
+          <h4 class="mt-6 font-semibold" style="color:var(--primary-teal)">Quick facts</h4>
+          <ul class="mt-2 text-gray-700 text-sm space-y-1">
+            <li>Private health insurance: <strong>$60–$200 / month</strong></li>
+            <li>Typical groceries / food per person: <strong>$250–$350 / month</strong></li>
+            <li>Internet: <strong>20–60 Mbps</strong> typical</li>
+          </ul>
+
+          <a href="get-started.html" class="inline-block mt-6 text-secondary-orange font-semibold">Get started — Book consultation →</a>
+
+          <!-- bottom-left Back to Home per user: placed inside aside but user requested bottom-left of page.
+               We'll also add the requested Back to Home at page bottom (separate). -->
+        </aside>
+      </div>
+    </section>
+
+    <!-- Page bottom: Back to Home (left) and quick links -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 flex items-center justify-between">
+      <a href="index.html" class="text-sm text-gray-700 underline">&larr; Back to Home</a>
+
+      <div class="space-x-4">
+        <a href="panama.html" class="text-sm text-gray-700 hover:text-secondary-orange">Panama guide</a>
+        <a href="belize.html" class="text-sm text-gray-700 hover:text-secondary-orange">Belize guide</a>
+      </div>
     </div>
   </main>
 </body>
