@@ -1,85 +1,77 @@
-// Serverless endpoint that reads the OpenAI key from an env var OR from a secret file.
-// It looks for, in order:
-// 1) process.env.OPENAI_API_KEY
-// 2) process.env.OPEN_AI_KEY
-// 3) a filepath in process.env.OPEN_AI_KEY_FILE
-// 4) a file at ./OPEN_AI_KEY (useful for mounting a secret file in deployments)
-// 5) a Docker/Swarm style secret at /run/secrets/OPEN_AI_KEY
-//
-// Usage:
-// - Preferred: set OPENAI_API_KEY in your host/environment (Vercel/Netlify/Cloud Run).
-// - If you keep a secret file named OPEN_AI_KEY in a secrets repo, mount or copy that file
-//   into the runtime (for example into the function container) and set OPEN_AI_KEY_FILE to its path
-//   or leave it at ./OPEN_AI_KEY so this function will pick it up.
-//
-// NOTE: Do NOT commit secret files to a public repo. Use environment variables or provider secrets.
-const fs = require('fs');
+// api/recommend.js
+// Robust serverless endpoint for /api/recommend
+// Place at <repo root>/api/recommend.js for Vercel.
+// NOTE: remove verbose debug responses in production.
 
-const fetch = (...args) => import('node-fetch').then(({default: f}) => f(...args));
+const fs = require('fs');
 
 function tryReadFileSync(path) {
   try {
     const s = fs.readFileSync(path, 'utf8').trim();
     if (s) return s;
-  } catch (e) {
-    // ignore
-  }
+  } catch (e) { /* ignore */ }
   return null;
 }
 
 async function getApiKey() {
-  // 1. explicit env var
-  if (process.env.OPENAI_API_KEY && process.env.OPENAI_API_KEY.trim()) {
-    return process.env.OPENAI_API_KEY.trim();
-  }
-  // 2. alternate env var name (your secret file name value could be injected as an env var)
-  if (process.env.OPEN_AI_KEY && process.env.OPEN_AI_KEY.trim()) {
-    return process.env.OPEN_AI_KEY.trim();
-  }
-  // 3. file path provided via env
+  if (process.env.OPENAI_API_KEY && process.env.OPENAI_API_KEY.trim()) return process.env.OPENAI_API_KEY.trim();
+  if (process.env.OPEN_AI_KEY && process.env.OPEN_AI_KEY.trim()) return process.env.OPEN_AI_KEY.trim();
   if (process.env.OPEN_AI_KEY_FILE) {
     const fromFile = tryReadFileSync(process.env.OPEN_AI_KEY_FILE);
     if (fromFile) return fromFile;
   }
-  // 4. default local file name (useful if you mount the secret file at runtime)
   const fromLocal = tryReadFileSync('./OPEN_AI_KEY');
   if (fromLocal) return fromLocal;
-  // 5. docker secret location
   const fromRunSecrets = tryReadFileSync('/run/secrets/OPEN_AI_KEY');
   if (fromRunSecrets) return fromRunSecrets;
-
   return null;
 }
 
-module.exports = async (req, res) => {
-  if (req.method !== 'POST') return res.status(405).send('Method not allowed');
+async function getFetch() {
+  if (typeof globalThis.fetch === 'function') return globalThis.fetch;
+  // fallback to node-fetch if fetch isn't present
+  try {
+    const { default: nodeFetch } = await import('node-fetch');
+    return nodeFetch;
+  } catch (err) {
+    throw new Error('No fetch available and node-fetch failed to import: ' + String(err));
+  }
+}
 
-  // read JSON body (works for many serverless platforms; fallback to manual parsing)
-  let body = req.body;
-  if (!body || Object.keys(body).length === 0) {
-    body = await new Promise((resolve) => {
-      let d = '';
-      req.on('data', c => d += c);
-      req.on('end', () => {
-        try { resolve(JSON.parse(d || '{}')); } catch(e) { resolve({}); }
-      });
-      req.on('error', () => resolve({}));
+async function readJsonBody(req) {
+  if (req.body && Object.keys(req.body).length) return req.body;
+  return await new Promise((resolve) => {
+    let d = '';
+    req.on('data', c => d += c);
+    req.on('end', () => {
+      try { resolve(JSON.parse(d || '{}')); }
+      catch (e) { resolve({}); }
     });
+    req.on('error', () => resolve({}));
+  });
+}
+
+module.exports = async (req, res) => {
+  if (req.method !== 'POST') {
+    res.setHeader('Allow', 'POST');
+    return res.status(405).json({ error: 'Method not allowed. Use POST.' });
   }
 
+  let body = await readJsonBody(req);
   const answers = body.answers || {};
 
+  // get API key
   const OPENAI_KEY = await getApiKey();
 
-  // fallback deterministic heuristic if no key provided (safe for local testing)
+  // If no key, return the deterministic fallback so you can test without a key.
   if (!OPENAI_KEY) {
+    console.warn('No OpenAI key found; returning fallback recommendation for debugging.');
     const dests = Array.isArray(answers.destinations) ? answers.destinations : (answers.destinations ? [answers.destinations] : []);
     const relocation = answers.relocationType || '';
     let pick = 'Costa Rica';
     if (dests.includes('panama')) pick = 'Panama';
     else if (dests.includes('belize')) pick = 'Belize';
     else if (relocation && relocation.includes('work')) pick = 'Panama';
-
     const fallback = {
       country: pick,
       score: 75,
@@ -99,7 +91,7 @@ module.exports = async (req, res) => {
   // Build the prompt
   const system = `You are a concise relocation advisor expert for Costa Rica, Panama, and Belize.
 Given a user's structured answers, pick the single best country (Costa Rica, Panama, or Belize),
-explain why in 2-4 short bullet reasons, and list 3 cities with a brief reason for each.
+explain why in 2-4 short bullet reasons, and list 3 cities with a brief reason for each. Put a disclaimer that this is only a suggestion and that speaking with a representative is important.
 Return a strict JSON object ONLY (no extra commentary).`;
 
   const user = `User answers (JSON): ${JSON.stringify(answers)}.
@@ -111,7 +103,8 @@ Return JSON with keys:
 Keep outputs short and concise.`;
 
   try {
-    const resp = await fetch('https://api.openai.com/v1/chat/completions', {
+    const fetchFn = await getFetch();
+    const resp = await fetchFn('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${OPENAI_KEY}`,
@@ -130,25 +123,25 @@ Keep outputs short and concise.`;
 
     if (!resp.ok) {
       const txt = await resp.text();
-      console.error('OpenAI error:', txt);
-      return res.status(502).send('OpenAI API error');
+      console.error('OpenAI API error:', resp.status, txt);
+      return res.status(502).json({ error: 'OpenAI API error', status: resp.status, body: txt });
     }
 
     const j = await resp.json();
     const assistant = j.choices?.[0]?.message?.content || '';
 
-    // Try parse JSON substring
     try {
       const start = assistant.indexOf('{');
       const jsonText = start >= 0 ? assistant.slice(start) : assistant;
       const parsed = JSON.parse(jsonText);
       return res.status(200).json(parsed);
     } catch (err) {
-      // If parsing fails, return raw assistant content so the frontend can display it
+      // parsing failed -> return assistant text so frontend can show it
+      console.warn('Failed to parse assistant JSON; returning text. Assistant output:', assistant);
       return res.status(200).json({ text: assistant });
     }
   } catch (err) {
-    console.error('Server error:', err);
-    return res.status(500).send('Server error');
+    console.error('Server error in recommend function:', err && err.stack ? err.stack : String(err));
+    return res.status(500).json({ error: 'Server error', message: String(err) });
   }
 };
