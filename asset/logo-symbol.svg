@@ -1,20 +1,28 @@
 <!-- assets/logo-symbol.svg -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-labelledby="apSymbolTitle">
-  <title id="apSymbolTitle">Autumn Point symbol</title>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120" role="img" aria-labelledby="apSymbolTitle">
+  <title id="apSymbolTitle">Autumn Point symbol — house arrow with leaf</title>
   <defs>
     <style>
-      /* primary teal color */
-      .ap-stroke { stroke: #0d9488; stroke-width:2.8; stroke-linejoin:round; stroke-linecap:round; fill:none; }
-      .ap-fill { fill:#0d9488; }
+      .stroke { stroke: #0d9488; stroke-width:4; stroke-linejoin:round; stroke-linecap:round; fill:none; }
+      .leaf-fill { fill:#0d9488; }
     </style>
   </defs>
 
-  <!-- house outline -->
-  <path class="ap-stroke" d="M32 6 L8 30v20a4 4 0 0 0 4 4h40a4 4 0 0 0 4-4V30L32 6z"/>
+  <!-- Outer arrow/house outline -->
+  <path class="stroke" d="M60 12 L18 48 v36 a6 6 0 0 0 6 6 h72 a6 6 0 0 0 6-6 V48 L60 12 z" />
 
-  <!-- leaf vein -->
-  <path class="ap-stroke" d="M22 36c6-10 18-15 26-16"/>
+  <!-- Door cut (subtle, optional) -->
+  <rect x="54" y="70" width="12" height="18" rx="2" fill="none" stroke="#0d9488" stroke-width="2" opacity="0.12"/>
 
-  <!-- leaf fill -->
-  <path class="ap-fill" d="M26 44c6-8 16-12 22-14 0 0-2 8-12 16-10 8-14 3-14 3z"/>
+  <!-- Full leaf (scaled to fit inside the house/arrow) -->
+  <path class="leaf-fill" d="M44 64
+      C50 52, 72 46, 84 54
+      C86 56, 86 60, 84 64
+      C80 72, 68 84, 54 90
+      C50 92, 46 90, 46 86
+      C46 82, 46 76, 44 64 z"/>
+
+  <!-- Leaf central vein (lighter cutout effect) -->
+  <path d="M54 66 C62 60, 70 60, 74 64" fill="none" stroke="#ffffff" stroke-width="2.0" stroke-linecap="round" opacity="0.85"/>
+
 </svg>
