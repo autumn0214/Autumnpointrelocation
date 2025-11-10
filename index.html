@@ -68,36 +68,6 @@
             color: #0d9488;
             font-weight: bold;
         }
-
-        /* Styling for the Yes/No radio buttons (Matchmaker) */
-        .radio-label {
-            display: inline-flex;
-            align-items: center;
-            padding: 8px 16px;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.2s;
-            border: 2px solid #e5e7eb; /* Subtle light gray border */
-            font-weight: 600;
-            color: #4b5563; /* Dark gray text */
-            user-select: none;
-        }
-        .radio-label:hover {
-            background-color: #f3f4f6;
-        }
-
-        .radio-yes:checked + .radio-label {
-            background-color: #0d9488; /* primary-teal */
-            color: white;
-            border-color: #0d9488;
-            box-shadow: 0 4px 6px -1px rgba(13, 148, 136, 0.5);
-        }
-        .radio-no:checked + .radio-label {
-            background-color: #be123c; /* danger-red */
-            color: white;
-            border-color: #be123c;
-            box-shadow: 0 4px 6px -1px rgba(190, 18, 60, 0.5);
-        }
         /* Custom modal styles */
         .modal {
             background-color: rgba(0, 0, 0, 0.6);
@@ -189,7 +159,6 @@
           <a href="belize.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50" role="menuitem">Belize</a>
           <div class="mt-2 border-t border-gray-100"></div>
           <a href="#page-packages" class="block px-4 py-2 text-gray-700 hover:bg-gray-50" role="menuitem">Packages</a>
-<a href="matchmaker.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50" role="menuitem" tabindex="0">Matchmaker</a>          <a href="#page-residency" class="block px-4 py-2 text-gray-700 hover:bg-gray-50" role="menuitem">Residency Info</a>
           <a href="#page-about" class="block px-4 py-2 text-gray-700 hover:bg-gray-50" role="menuitem">About Us</a>
           <div class="mt-2 border-t border-gray-100"></div>
           <a href="#page-login" class="block px-4 py-2 text-gray-700 hover:bg-gray-50" role="menuitem">Client Login</a>
@@ -621,16 +590,6 @@
             </div>
         </section>
 
-        <section id="page-matchmaker-preview" class="py-12">
-  <div class="max-w-6xl mx-auto px-6">
-    <div class="rounded-lg bg-white p-8 shadow-md text-center">
-      <h2 class="text-2xl font-bold mb-3">Matchmaker Questionnaire</h2>
-      <p class="text-gray-700 mb-6">Help us match you to the best destinations and services. It only takes a few minutes.</p>
-      <a href="matchmaker.html" class="inline-block px-6 py-3 bg-primary-teal text-white rounded-md font-semibold hover:bg-secondary-orange">Get Matched</a>
-    </div>
-  </div>
-</section>
-
         <section id="page-residency" class="py-16 sm:py-24 bg-white">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                 <h2 class="text-base text-primary-teal font-semibold tracking-wide uppercase">Legal Frameworks</h2>
@@ -831,8 +790,6 @@
                         <a href="#page-packages" class="text-base text-gray-300 hover:text-primary-teal">Packages</a>
                     </div>
                     <div class="px-5 py-2">
-<a href="matchmaker.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50" role="menuitem" tabindex="0">Matchmaker</a>                    </div>
-                    <div class="px-5 py-2">
                         <a href="#page-login" class="text-base text-gray-300 hover:text-primary-teal">Client Login</a>
                     </div>
                     <div class="px-5 py-2">
@@ -842,144 +799,12 @@
                 <p class="mt-8 text-center text-base text-gray-400">
                     &copy; 2025 Autumn Point Relocation Solutions. All rights reserved.
                 </p>
-                <p class="mt-2 text-center text-xs text-gray-500">
-                    *The AI Matchmaker provides data-backed recommendations but is not a substitute for professional legal or financial advice.
-                </p>
             </div>
         </footer>
 
     </main>
     
     <script> 
-
-        // AI constants are kept for the remaining Matchmaker functionality
-        const GEMINI_API_KEY = "AIzaSyBcVrMeGBdU0TFPsi1u0TVjEa3ayGTB-3Y"; 
-        const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`;
-        const converter = new showdown.Converter();
-
-        function markdownToHtml(markdownText) {
-            return converter.makeHtml(markdownText);
-        }
-        
-        function showModal(title, bodyHtml) {
-            document.getElementById('modal-title').innerHTML = title;
-            document.getElementById('modal-body').innerHTML = bodyHtml;
-            // Clear and hide sources section, as current prompt doesn't use grounding
-            document.getElementById('modal-sources').classList.add('hidden');
-            document.getElementById('sources-list').innerHTML = '';
-            
-            document.getElementById('result-modal').classList.remove('hidden');
-        }
-
-        function closeModal() {
-            document.getElementById('result-modal').classList.add('hidden');
-            // Clear content when closed
-            document.getElementById('modal-body').innerHTML = ''; 
-        }
-
-        function toggleMenu() {
-            const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
-        }
-        
-        async function fetchWithBackoff(url, options, maxRetries = 5) {
-            for (let attempt = 0; attempt < maxRetries; attempt++) {
-                try {
-                    const response = await fetch(url, options);
-                    
-                    if (!response.ok) {
-                        // Handle server-side errors, e.g., 400, 500
-                        const errorData = await response.json();
-                        throw new Error(`API Error ${response.status}: ${errorData.error.message || response.statusText}`);
-                    }
-                    
-                    const data = await response.json();
-                    return data;
-
-                } catch (error) {
-                    if (attempt === maxRetries - 1) {
-                        throw error;
-                    }
-
-                    const delay = Math.pow(2, attempt) * 1000 + Math.random() * 1000;
-                    console.warn(`Attempt ${attempt + 1} failed. Retrying in ${delay / 1000}s...`, error.message);
-                    await new Promise(resolve => setTimeout(resolve, delay));
-                }
-            }
-        }
-
-        // generateRelocationBrief function has been removed as requested.
-
-        async function generateRecommendation() {
-            const form = document.getElementById('matchmaker-form');
-            const submitButton = document.getElementById('submit-button');
-            const buttonText = document.getElementById('button-text');
-            const spinner = document.getElementById('spinner');
-
-            const radioGroups = [
-                'q1_budget', 'q2_city', 'q3_language', 'q4_weather', 'q5_safety', 
-                'q6_health', 'q7_taxes', 'q8_travel', 'q9_visa', 'q10_community', 
-                'q11_nature', 'q12_ocean'
-            ];
-            
-            let allAnswered = true;
-            for (const group of radioGroups) {
-                if (!form.elements[group].value) {
-                    allAnswered = false;
-                    break;
-                }
-            }
-
-            if (!allAnswered) {
-                 showModal('Incomplete Form', '<p class="text-danger-red">Please answer all 12 questions before submitting the Matchmaker quiz.</p>');
-                 return;
-            }
-
-            buttonText.textContent = 'Analyzing Preferences...';
-            spinner.classList.remove('hidden');
-            submitButton.disabled = true;
-
-            try {
-                const formData = new FormData(form);
-                let preferences = [];
-                
-                formData.forEach((value, key) => {
-                    preferences.push(`Question ${key.split('_')[0].substring(1)}: ${value}`);
-                });
-
-                const systemPrompt = "You are a specialized relocation AI Matchmaker. Based on the user's 12 preferences (provided as a list of answers), you MUST analyze the pros and cons of Costa Rica, Panama, and Belize against those preferences, and then confidently recommend ONE specific country and ONE corresponding city/town as the ideal fit. The response MUST start with the recommended location and be persuasive. Format the output in detailed Markdown. Do not use external search/grounding.";
-                const userQuery = `Analyze these 12 preferences and recommend the best country/city: ${preferences.join('; ')}`;
-
-                const payload = {
-                    contents: [{ parts: [{ text: userQuery }] }],
-                    systemInstruction: {
-                        parts: [{ text: systemPrompt }]
-                    },
-                    config: {
-                        temperature: 0.5 
-                    }
-                };
-
-                const result = await fetchWithBackoff(API_URL, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-                
-                const text = result.candidates?.[0]?.content?.parts?.[0]?.text || "Could not generate a recommendation. Please try again.";
-                const htmlContent = markdownToHtml(text);
-                
-                showModal('🎯 Your Perfect Match', htmlContent);
-
-            } catch (error) {
-                console.error("Gemini API Error (Matchmaker):", error);
-                showModal('Matchmaker Error', `<p class="text-danger-red">An error occurred while running the matchmaker AI: ${error.message}. Please check the browser console for details and ensure your API key is correct.</p>`);
-            } finally {
-                buttonText.textContent = 'Find My Perfect Location!';
-                spinner.classList.add('hidden');
-                submitButton.disabled = false;
-            }
-        }
 
         window.onload = function() {
             const video = document.getElementById('hero-video-bg');
