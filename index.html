@@ -128,60 +128,95 @@
     </div>
 
 
-<!-- Replace your existing header with this block -->
-<header class="sticky top-0 z-50 bg-white border-b-2 shadow-sm">
+<header class="relative bg-white border-b-2 shadow-sm">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between py-6 lg:py-8">
-      <!-- Logo: inline SVG (monochrome, matches primary teal) + wordmark -->
+      <!-- Logo (left) -->
       <a href="index.html" class="flex items-center gap-4 group" aria-label="Autumn Point Relocation — Home">
-        <!-- Symbol (SVG) — small, crisp, recolorable -->
         <span class="flex-shrink-0">
-          <!-- Inline SVG: house + leaf motif, fill/stroke set to primary color -->
+          <!-- Inline SVG logo (primary teal) -->
           <svg width="44" height="44" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="apLogoTitle">
             <title id="apLogoTitle">Autumn Point logo</title>
-            <!-- outline house -->
             <path d="M32 8L10 30v18a4 4 0 0 0 4 4h36a4 4 0 0 0 4-4V30L32 8z" stroke="#0d9488" stroke-width="3.5" stroke-linejoin="round" fill="none"/>
-            <!-- leaf -->
             <path d="M26 36c3-6 9-10 15-11" stroke="#0d9488" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
             <path d="M30 44c4-6 10-9 14-11 0 0-1 8-9 14-8 6-12 2-12 2z" fill="#0d9488" opacity="0.95"/>
           </svg>
         </span>
 
-        <!-- Wordmark: visible from sm and up -->
+        <!-- Wordmark (hidden on very small screens) -->
         <div class="hidden sm:flex flex-col leading-tight">
           <span class="text-xl font-extrabold" style="color:#0d9488">AutumnPoint</span>
           <span class="text-xs font-semibold" style="color:#6b7280; letter-spacing:0.08em">Relocation Solutions</span>
         </div>
       </a>
-    </div>
-      
+ 
   <!-- Right-side controls: desktop hamburger and mobile button -->
   <div class="flex items-center">
-    <!-- Desktop: hamburger that opens the right-anchored dropdown (hidden on small screens) -->
-    <div class="hidden md:flex items-center lg:ml-4">
-      <div class="relative group">
-        <button id="main-menu-button" aria-expanded="false" aria-label="Open menu" class="inline-flex items-center p-2 rounded-md text-gray-700 hover:text-secondary-orange focus:outline-none" tabindex="0">
-          <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        <button id="siteMenuButton" aria-controls="siteMenu" aria-expanded="false"
+                class="p-2 rounded-md text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#0d9488]">
+          <span class="sr-only">Open main menu</span>
+          <!-- hamburger icon (shown when closed) -->
+          <svg id="menuOpenIcon" class="block w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#374151" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16"/>
           </svg>
-          <span class="sr-only">Open menu</span>
+          <!-- close icon (shown when open) -->
+          <svg id="menuCloseIcon" class="hidden w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#374151" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
         </button>
-
-        <div class="absolute right-0 mt-2 w-64 rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5 opacity-0 invisible pointer-events-none transform translate-y-1 transition ease-out duration-150 group-hover:opacity-100 group-hover:visible group-hover:pointer-events-auto group-hover:translate-y-0 group-focus-within:opacity-100 group-focus-within:visible group-focus-within:pointer-events-auto group-focus-within:translate-y-0" role="menu" aria-labelledby="main-menu-button">
-          <div class="px-3 py-2 border-b border-gray-100 text-sm font-semibold text-gray-600">Destinations</div>
-          <a href="costarica.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50" role="menuitem">Costa Rica</a>
-          <a href="panama.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50" role="menuitem">Panama</a>
-          <a href="belize.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50" role="menuitem">Belize</a>
-          <div class="mt-2 border-t border-gray-100"></div>
-            <a href="compare.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50" role="menuitem">Compare Countries</a>
-<a href="packages.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50" role="menuitem">Packages</a>
-    <a href="#page-about" class="block px-4 py-2 text-gray-700 hover:bg-gray-50" role="menuitem">About Us</a>
-          <div class="mt-2 border-t border-gray-100"></div>
-          <a href="#page-login" class="block px-4 py-2 text-gray-700 hover:bg-gray-50" role="menuitem">Client Login</a>
-          <a href="#page-contact" class="block px-4 py-2 text-white bg-primary-teal hover:bg-secondary-orange rounded-b-lg text-center mx-3 my-3 py-2 font-semibold" role="menuitem">Get Started</a>
-        </div>
       </div>
     </div>
+  </div>  
+    <div id="siteMenu" class="fixed inset-y-0 right-0 w-full max-w-sm md:max-w-md transform translate-x-full transition-transform duration-300 ease-in-out bg-white shadow-2xl z-50" aria-hidden="true" style="will-change:transform;">
+    <div class="h-full flex flex-col">
+      <div class="px-6 py-5 border-b flex items-center justify-between">
+        <div class="flex items-center gap-4">
+          <!-- small logo in panel -->
+          <svg width="36" height="36" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+            <path d="M32 8L10 30v18a4 4 0 0 0 4 4h36a4 4 0 0 0 4-4V30L32 8z" stroke="#0d9488" stroke-width="3" stroke-linejoin="round" fill="none"/>
+            <path d="M26 36c3-6 9-10 15-11" stroke="#0d9488" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <path d="M30 44c4-6 10-9 14-11 0 0-1 8-9 14-8 6-12 2-12 2z" fill="#0d9488" opacity="0.95"/>
+          </svg>
+          <div>
+            <div class="font-bold text-lg" style="color:#0d9488">AutumnPoint</div>
+            <div class="text-xs text-gray-600">Relocation Solutions</div>
+          </div>
+        </div>
+
+        <button id="panelCloseBtn" class="p-2 rounded-md text-gray-600 hover:bg-gray-100 focus:outline-none" aria-label="Close menu">
+          <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#374151" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>        
+        
+        <nav class="px-6 py-6 flex-1 overflow-y-auto">
+        <ul class="space-y-4">
+          <li><a href="costarica.html" class="block text-lg font-semibold text-gray-800 hover:text-[#ea580c]">Costa Rica</a></li>
+          <li><a href="panama.html" class="block text-lg font-semibold text-gray-800 hover:text-[#ea580c]">Panama</a></li>
+          <li><a href="belize.html" class="block text-lg font-semibold text-gray-800 hover:text-[#ea580c]">Belize</a></li>
+        </ul>
+
+        <div class="mt-8">
+          <a href="get-started.html" class="block w-full text-center bg-[#0d9488] text-white px-4 py-3 rounded-lg font-semibold hover:bg-[#0b7f72]">Get started — Book consultation</a>
+        </div>
+
+        <div class="mt-6 text-sm text-gray-600">
+          <p>Quick links</p>
+          <ul class="mt-2 space-y-2">
+            <li><a href="packages.html" class="text-gray-700 hover:text-[#ea580c]">Packages</a></li>
+            <li><a href="compare.html" class="text-gray-700 hover:text-[#ea580c]">Country comparison</a></li>
+            <li><a href="#page-login" class="text-gray-700 hover:text-[#ea580c]">Customer login</a></li>          </ul>
+        </div>
+      </nav>
+
+      <div class="px-6 py-4 border-t text-sm text-gray-600">
+        © <span id="year"></span> Autumn Point Relocation
+      </div>
+    </div>
+  </div>
+
+      
 
     <!-- Mobile menu button (visible on small screens) -->
     <div class="-mr-2 -my-2 md:hidden">
@@ -195,57 +230,65 @@
   </div>
 </div>
             
-    </header>
+    <script>
+    (function () {
+      const openBtn = document.getElementById('siteMenuButton');
+      const panel = document.getElementById('siteMenu');
+      const overlay = document.getElementById('siteOverlay');
+      const openIcon = document.getElementById('menuOpenIcon');
+      const closeIcon = document.getElementById('menuCloseIcon');
+      const panelClose = document.getElementById('panelCloseBtn');
+      const yearEl = document.getElementById('year');
+
+      // set year
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+      function openPanel() {
+        panel.classList.remove('translate-x-full');
+        panel.style.transform = 'translateX(0)';
+        panel.setAttribute('aria-hidden', 'false');
+        overlay.classList.remove('opacity-0', 'pointer-events-none');
+        overlay.classList.add('opacity-100');
+        openBtn.setAttribute('aria-expanded', 'true');
+        openIcon.classList.add('hidden');
+        closeIcon.classList.remove('hidden');
+      }
+
+      function closePanel() {
+        panel.classList.add('translate-x-full');
+        panel.style.transform = '';
+        panel.setAttribute('aria-hidden', 'true');
+        overlay.classList.add('opacity-0');
+        overlay.classList.remove('opacity-100');
+        overlay.classList.add('pointer-events-none');
+        openBtn.setAttribute('aria-expanded', 'false');
+        openIcon.classList.remove('hidden');
+        closeIcon.classList.add('hidden');
+      }
+
+      openBtn.addEventListener('click', function (e) {
+        const expanded = openBtn.getAttribute('aria-expanded') === 'true';
+        if (expanded) {
+          closePanel();
+        } else {
+          openPanel();
+        }
+      });
+
+      // close controls
+      panelClose.addEventListener('click', closePanel);
+      overlay.addEventListener('click', closePanel);
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closePanel();
+      });
+
+      // ensure panel hidden on load
+      closePanel();
+    })();
+  </script>
+</header>
 
     
-    <script>
-  (function () {
-    const btn = document.getElementById('mobileMenuButton');
-    const panel = document.getElementById('mobileMenu');
-    const openIcon = document.getElementById('hamburgerOpen');
-    const closeIcon = document.getElementById('hamburgerClose');
-
-    if (!btn || !panel) return;
-
-    btn.addEventListener('click', () => {
-      const expanded = btn.getAttribute('aria-expanded') === 'true';
-      btn.setAttribute('aria-expanded', String(!expanded));
-      panel.classList.toggle('hidden');
-      openIcon.classList.toggle('hidden');
-      closeIcon.classList.toggle('hidden');
-
-      // keep focus management simple
-      if (!expanded) {
-        panel.setAttribute('aria-hidden', 'false');
-      } else {
-        panel.setAttribute('aria-hidden', 'true');
-      }
-    });
-
-    // close mobile menu when clicking outside
-    document.addEventListener('click', (e) => {
-      const target = e.target;
-      if (!panel.classList.contains('hidden') && !panel.contains(target) && !btn.contains(target)) {
-        panel.classList.add('hidden');
-        openIcon.classList.remove('hidden');
-        closeIcon.classList.add('hidden');
-        btn.setAttribute('aria-expanded', 'false');
-        panel.setAttribute('aria-hidden', 'true');
-      }
-    });
-
-    // close on ESC
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && !panel.classList.contains('hidden')) {
-        panel.classList.add('hidden');
-        openIcon.classList.remove('hidden');
-        closeIcon.classList.add('hidden');
-        btn.setAttribute('aria-expanded', 'false');
-        panel.setAttribute('aria-hidden', 'true');
-        btn.focus();
-      }
-    });
-  })();
 </script>
     <main id="main-content">
 <section id="page-home" class="relative overflow-hidden pt-16 pb-16 sm:pt-20 sm:pb-24 lg:pt-24 lg:pb-28 flex items-center h-[60vh] md:h-[55vh] lg:h-[50vh] min-h-[360px]">          <div class="hero-video-container">
