@@ -1,28 +1,38 @@
 <!-- assets/logo-symbol.svg
-     Extracted symbol (arrow + leaf) traced and cleaned from the full AutumnPointLogo.svg.
-     Color: primary teal (#0d9488). Use this file in headers as the compact symbol-only logo.
+     Arrow + leaf symbol (leaf outlined, not filled). Color: primary teal (#0d9488).
+     Replace your existing ./assets/logo-symbol.svg with this file.
 -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 140" role="img" aria-labelledby="apSymbolTitle">
-  <title id="apSymbolTitle">Autumn Point symbol — arrow and leaf</title>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="apSymbolTitle">
+  <title id="apSymbolTitle">Autumn Point symbol — arrow and leaf (outline leaf)</title>
   <defs>
     <style>
-      .teal-fill { fill: #0d9488; }
-      .teal-stroke { stroke: #0d9488; stroke-width:4; stroke-linecap:round; stroke-linejoin:round; fill:none; }
-      .vein { stroke:#ffffff; stroke-width:1.6; stroke-linecap:round; fill:none; opacity:0.95; }
+      .teal-stroke { stroke: #0d9488; stroke-width:18; stroke-linejoin:round; stroke-linecap:round; fill:none; }
+      .leaf-stroke { stroke: #0d9488; stroke-width:12; stroke-linejoin:round; stroke-linecap:round; fill:none; }
+      .vein { stroke:#0d9488; stroke-width:8; stroke-linecap:round; stroke-linejoin:round; fill:none; opacity:0.95; }
     </style>
   </defs>
 
-  <!-- Arrow head (open outline) -->
-  <path class="teal-stroke" d="M28 104 L80 44 L132 104 L104 104 L104 128 L56 128 L56 104 Z"/>
+  <!-- Arrow outline (stroke only) -->
+  <path class="teal-stroke" d="M 256 40
+       L 96 200
+       L 96 384
+       L 192 384
+       L 192 464
+       L 320 464
+       L 320 384
+       L 416 384
+       L 256 224
+       Z" />
 
-  <!-- Leaf shape (filled) - extracted/cleaned trace matching original leaf proportions -->
-  <path class="teal-fill" d="M64 74
-    C70 58 92 52 108 62
-    C111 65 112 69 110 72
-    C104 82 92 96 76 104
-    C72 106 68 105 68 100
-    C68 96 68 88 64 74 Z"/>
+  <!-- Leaf outline (unfilled) - exact path from original artwork, now stroke-only -->
+  <path class="leaf-stroke" d="M 188 264
+      C 208 208 272 184 336 200
+      C 356 208 378 226 376 250
+      C 372 286 340 332 300 364
+      C 284 378 260 396 232 402
+      C 220 406 206 396 206 384
+      C 206 372 206 340 188 264 Z" />
 
-  <!-- Leaf central vein (subtle highlight) -->
-  <path class="vein" d="M76 80 C86 74, 96 74, 102 78" />
+  <!-- Leaf central vein -->
+  <path class="vein" d="M 248 300 C 284 276 316 276 340 292" />
 </svg>
