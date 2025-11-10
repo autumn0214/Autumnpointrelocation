@@ -1,0 +1,62 @@
+name: Encode hero video
+
+on:
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  encode:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Install ffmpeg
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg
+
+      - name: Prepare output directories
+        run: |
+          mkdir -p assets/videos assets/images
+
+      - name: Two-pass encode - pass 1
+        run: |
+          SRC="eap.mp4"
+          VIDEO_KBIT="3600k"
+          MAX_WIDTH=1280
+          # First pass writes to /dev/null on Linux runner
+          ffmpeg -y -i "$SRC" -vf "scale='min(${MAX_WIDTH},iw)':-2" -c:v libx264 -b:v "$VIDEO_KBIT" -pass 1 -an -f mp4 /dev/null
+
+      - name: Two-pass encode - pass 2
+        run: |
+          SRC="eap.mp4"
+          OUT="assets/videos/eap-hero.mp4"
+          VIDEO_KBIT="3600k"
+          AUDIO_BIT="64k"
+          MAX_WIDTH=1280
+          ffmpeg -i "$SRC" -vf "scale='min(${MAX_WIDTH},iw)':-2" -c:v libx264 -b:v "$VIDEO_KBIT" -pass 2 -c:a aac -b:a "$AUDIO_BIT" -movflags +faststart "$OUT"
+          # Remove ffmpeg two-pass log artifacts
+          rm -f ffmpeg2pass-0.log* || true
+
+      - name: Extract poster (thumbnail)
+        run: ffmpeg -y -i eap.mp4 -ss 00:00:01.000 -vframes 1 assets/images/hero-poster.jpg
+
+      - name: Show result file sizes
+        run: ls -lh assets/videos/eap-hero.mp4 assets/images/hero-poster.jpg || true
+
+      - name: Commit and push compressed files
+        env:
+          GIT_AUTHOR_NAME: "github-actions[bot]"
+          GIT_AUTHOR_EMAIL: "41898282+github-actions[bot]@users.noreply.github.com"
+        run: |
+          git config user.name "${GIT_AUTHOR_NAME}"
+          git config user.email "${GIT_AUTHOR_EMAIL}"
+          git add assets/videos/eap-hero.mp4 assets/images/hero-poster.jpg || true
+          git commit -m "chore: add compressed hero video (eap-hero.mp4) and poster" || echo "No changes to commit"
+          git push || echo "Push failed (maybe branch protection); download artifacts locally instead"
