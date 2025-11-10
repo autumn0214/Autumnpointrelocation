@@ -1,38 +1,41 @@
 <!-- assets/logo-symbol.svg
-     Arrow + leaf symbol (leaf outlined, not filled). Color: primary teal (#0d9488).
-     Replace your existing ./assets/logo-symbol.svg with this file.
+     Exact-extract symbol: arrow outline + leaf filled (leaf outline overlaps into arrow).
+     Color: primary teal (#0d9488). Use this file as the compact header symbol.
 -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="apSymbolTitle">
-  <title id="apSymbolTitle">Autumn Point symbol — arrow and leaf (outline leaf)</title>
+  <title id="apSymbolTitle">Autumn Point symbol — arrow and filled leaf</title>
   <defs>
     <style>
-      .teal-stroke { stroke: #0d9488; stroke-width:18; stroke-linejoin:round; stroke-linecap:round; fill:none; }
-      .leaf-stroke { stroke: #0d9488; stroke-width:12; stroke-linejoin:round; stroke-linecap:round; fill:none; }
-      .vein { stroke:#0d9488; stroke-width:8; stroke-linecap:round; stroke-linejoin:round; fill:none; opacity:0.95; }
+      /* Arrow outline (stroke only) */
+      .arrow-stroke { stroke: #0d9488; stroke-width:18; stroke-linejoin:round; stroke-linecap:round; fill:none; }
+      /* Leaf filled and stroked so its outline visually intersects the arrow stroke */
+      .leaf-fill { fill:#0d9488; stroke:#0d9488; stroke-width:8; stroke-linejoin:round; stroke-linecap:round; }
+      /* Subtle vein detail inside the leaf */
+      .vein { stroke:#ffffff; stroke-width:6; stroke-linecap:round; stroke-linejoin:round; fill:none; opacity:0.9; }
     </style>
   </defs>
 
-  <!-- Arrow outline (stroke only) -->
-  <path class="teal-stroke" d="M 256 40
-       L 96 200
-       L 96 384
-       L 192 384
-       L 192 464
-       L 320 464
-       L 320 384
-       L 416 384
-       L 256 224
+  <!-- Arrow outline (stroke only) — exact/trimmed shape -->
+  <path class="arrow-stroke" d="M256 40
+       L96 200
+       L96 384
+       L192 384
+       L192 464
+       L320 464
+       L320 384
+       L416 384
+       L256 224
        Z" />
 
-  <!-- Leaf outline (unfilled) - exact path from original artwork, now stroke-only -->
-  <path class="leaf-stroke" d="M 188 264
-      C 208 208 272 184 336 200
-      C 356 208 378 226 376 250
-      C 372 286 340 332 300 364
-      C 284 378 260 396 232 402
-      C 220 406 206 396 206 384
-      C 206 372 206 340 188 264 Z" />
+  <!-- Leaf (filled) — exact path extracted from original artwork; fill + stroke so its outline intersects arrow -->
+  <path class="leaf-fill" d="M188 264
+      C208 208 272 184 336 200
+      C356 208 378 226 376 250
+      C372 286 340 332 300 364
+      C284 378 260 396 232 402
+      C220 406 206 396 206 384
+      C206 372 206 340 188 264 Z" />
 
-  <!-- Leaf central vein -->
-  <path class="vein" d="M 248 300 C 284 276 316 276 340 292" />
+  <!-- Leaf central vein (subtle highlight) -->
+  <path class="vein" d="M248 300 C284 276 316 276 340 292" />
 </svg>
