@@ -280,21 +280,23 @@
 
                 <div class="mt-16 space-y-12 lg:space-y-0 lg:grid lg:grid-cols-3 lg:gap-8">
   <!-- Costa Rica card -->
-  <div class="rounded-xl shadow-2xl overflow-hidden group transition duration-300 hover:scale-[1.02] relative">
-    <img
-      src="costarica.jpg"
-      alt="Lush green landscape of Costa Rica"
-      class="absolute inset-0 w-full h-full object-cover"
-      onerror="this.onerror=null; this.src='https://placehold.co/600x400/0d9488/ffffff?text=Costa+Rica+Pura+Vida'">
-    <div class="absolute inset-0 bg-black/25 pointer-events-none"></div>
+  <div class="rounded-xl shadow-2xl overflow-hidden group transition duration-300 hover:scale-[1.02]">
+    <!-- top half: image (keeps original h-48 size) -->
+    <div class="w-full h-48 overflow-hidden">
+      <img class="w-full h-full object-cover transition duration-500 group-hover:opacity-80"
+           src="assets/images/costa-pura-vida.jpg"
+           alt="Lush green landscape of Costa Rica"
+           onerror="this.onerror=null; this.src='https://placehold.co/600x400/0d9488/ffffff?text=Costa+Rica+Pura+Vida'">
+    </div>
 
-    <div class="p-6 relative z-10 h-48 flex flex-col justify-between">
+    <!-- content (unchanged layout/colors) -->
+    <div class="p-6">
       <h3 class="text-2xl font-bold text-primary-teal">Costa Rica</h3>
-      <p class="mt-3 text-gray-100">
+      <p class="mt-3 text-gray-600">
         Known for its political stability, robust ecological tourism, and high quality of life. Ideal for nature lovers and families seeking "Pura Vida."
       </p>
       <a href="costarica.html"
-         class="mt-4 text-white font-semibold inline-flex items-center hover:underline focus:outline-none">
+         class="mt-4 text-secondary-orange font-semibold inline-flex items-center hover:underline focus:outline-none">
         View Destination Guide &rarr;
       </a>
     </div>
