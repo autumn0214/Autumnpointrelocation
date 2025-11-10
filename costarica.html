@@ -3,31 +3,32 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Costa Rica — Destination Guide | Autumn Point</title>
+  <title>Costa Rica Guide — Autumn Point Relocation</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     :root{
-      --primary-teal: #0d9488;
-      --secondary-orange: #ea580c;
-      --danger-red: #be123c;
-      --dark-text: #1f2937;
-      --muted: #6b7280;
+      --primary-teal:#0d9488;
+      --secondary-orange:#ea580c;
+      --danger-red:#be123c;
+      --dark-text:#1f2937;
+      --muted:#6b7280;
     }
-    /* helper for tint backgrounds using the palette (approx 8% opacity) */
-    .tint-primary { background: rgba(13,148,136,0.08); }
-    .tint-secondary { background: rgba(234,88,12,0.08); }
-    .tint-danger { background: rgba(190,18,60,0.08); }
-
-    /* keep the content layout spacing consistent */
-    .card-border-top-primary{ border-top: 4px solid var(--primary-teal); }
-    .section-border-primary{ border-top: 8px solid var(--primary-teal); }
+    .tint-primary{ background: rgba(13,148,136,0.08); }
+    .section-border-primary{ border-top:8px solid var(--primary-teal); }
+    .card-top-primary{ border-top:4px solid var(--primary-teal); }
+    .site-logo-img { height:52px; width:auto; object-fit:contain; }
+    @media (min-width:1024px){ .site-logo-img{ height:64px; } }
   </style>
 </head>
-<body class="font-sans text-dark-text bg-white">
-  <!-- header: keep same top links as before; replace with your header partial if you have one -->
+<body class="font-sans text-dark-text bg-gray-50">
+  <!-- Header -->
   <header class="sticky top-0 z-40 bg-white border-b">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-      <a href="index.html" class="text-xl font-bold" style="color:var(--primary-teal)">Autumn Point</a>
+      <a href="index.html" class="flex items-center gap-3">
+        <img src="assets/AutumnPointLogo.svg" alt="AutumnPoint" class="site-logo-img" onerror="this.style.display='none'">
+        <span class="text-xl font-bold" style="color:var(--primary-teal)">Autumn Point</span>
+      </a>
+
       <nav>
         <a href="panama.html" class="text-base font-medium text-gray-700 hover:text-secondary-orange mx-2">Panama</a>
         <a href="belize.html" class="text-base font-medium text-gray-700 hover:text-secondary-orange mx-2">Belize</a>
@@ -36,7 +37,6 @@
   </header>
 
   <main>
-    <!-- Main section with thick colored top border (exact like your snippet) -->
     <section id="page-costarica" class="py-16 sm:py-24 bg-white section-border-primary" style="border-top-color:var(--primary-teal);">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center">
@@ -49,37 +49,79 @@
         <div class="mt-12 grid grid-cols-1 lg:grid-cols-3 gap-10">
           <div class="lg:col-span-2 space-y-8">
             <h3 class="text-2xl font-bold text-dark-text border-b pb-2">Residency & Visa Pathways</h3>
-            <p class="text-lg text-gray-700">Costa Rica is highly stable and welcoming to expats. The two most popular visa pathways are:</p>
+            <p class="text-lg text-gray-700">Costa Rica offers several temporary and permanent residency categories. Below are the commonly used programs and typical documentary requirements — always verify the current rules on the official Dirección General de Migración y Extranjería (DGME) website.</p>
+
             <ul class="list-disc ml-6 space-y-3 text-gray-700">
-              <li><strong>Pensionado Visa (Retiree):</strong> Requires a lifetime, fixed income of at least <strong>$1,000 USD</strong> per month. You cannot be employed as a worker, but you can own a business.</li>
-              <li><strong>Rentista Visa (Passive Income):</strong> Requires a commitment to deposit <strong>$60,000 USD</strong> into a Costa Rican bank (or show $2,500 USD monthly income for two years). This is ideal for those not yet retired.</li>
-              <li>Both paths lead to permanent residency after three years.</li>
+              <li>
+                <strong>Pensionado (Retiree) Visa</strong> — Typical official requirement: proof of a lifetime pension or retirement income of at least <strong>$1,000 USD/month</strong>. Applicants submit pension documentation, ID, police record, and other standard documents. See DGME for forms and latest steps: <a href="https://migracion.go.cr/SitePages/Inicio.aspx" class="text-primary-teal underline">migracion.go.cr</a>.
+              </li>
+
+              <li>
+                <strong>Rentista (Fixed/Passive Income) Visa</strong> — Commonly used pathway: proof of guaranteed foreign income (commonly cited: <strong>$2,500 USD/month</strong> for two years) or an approved bank deposit option (examples cited historically: ~<strong>$60,000 USD</strong> deposit for a program). Documentary proof, apostilles and local procedures required — confirm exact documentary list with DGME.
+              </li>
+
+              <li>
+                <strong>Inversionista (Investor) Visa</strong> — Residency by qualifying investment (examples include business or real estate investments). Minimums and qualifying categories depend on current DGME guidance and complementary economic regulations; supply investment contracts, proof of funds, and corporate documentation as required.
+              </li>
+
+              <li>
+                <strong>Work Permit / Employment Residency</strong> — Employer-sponsored work permits and residence for specialized personnel; employers typically file petitions with migration authorities and register employees with CCSS (social security). Required documents include employment contract, company registration and justifications for hiring foreign staff.
+              </li>
+
+              <li>
+                <strong>Student Visa</strong> — For foreign students enrolled in recognized Costa Rican educational institutions; typically requires enrollment confirmation, proof of funds and supporting ID documents.
+              </li>
+
+              <li>
+                <strong>Family / Marriage</strong> — Residency routes for spouses, children or immediate family of Costa Rican citizens/residents; submit civil certificates, apostilles and identity documentation; family ties often lead to facilitated permanent residency.
+              </li>
+
+              <li>
+                <strong>Refugee / Asylum</strong> — Humanitarian protection channels exist under Costa Rican and international procedures for those meeting criteria; consult official refugee services and DGME.
+              </li>
+
+              <li>
+                <strong>Permanent Residency</strong> — May be granted after meeting multi-year temporary residency requirements (commonly around 3 years on qualifying temporary residence) or via family ties; full rules and timelines are set by DGME.
+              </li>
             </ul>
 
             <h3 class="text-2xl font-bold text-dark-text border-b pb-2 pt-6">Popular Expat Cities & Regions</h3>
             <div class="space-y-4">
-              <p><strong>San José / Central Valley:</strong> The urban hub, offering the best healthcare, international schools, modern amenities, and cooler climates.</p>
-              <p><strong>Tamarindo / Guanacaste (Pacific):</strong> Famous for its stunning beaches, surf culture, and a huge, active North American expat community. Hot and dry climate.</p>
-              <p><strong>Dominical / Southern Pacific:</strong> Known for its lush rainforests, intense biodiversity, and a laid-back, eco-conscious lifestyle. Higher rainfall and more remote.</p>
+              <p><strong>San José / Central Valley:</strong> The urban and administrative hub, with best access to hospitals, international schools and services.</p>
+              <p><strong>Guanacaste / Tamarindo:</strong> Pacific coast beaches, surf culture, large North American expat communities and dryer climate.</p>
+              <p><strong>Southern Pacific (Dominical, Osa):</strong> Rainforest regions, eco-living, high biodiversity and a more remote lifestyle in parts.</p>
             </div>
+
+            <h3 class="text-2xl font-bold text-dark-text border-b pb-2 pt-6">Healthcare, Education & Practical Notes</h3>
+            <ul class="list-disc ml-6 space-y-2 text-gray-700">
+              <li><strong>Public healthcare (CCSS):</strong> Residents may enroll in Caja Costarricense de Seguro Social (CCSS) for primary care and some specialist services — see <a href="https://www.ccss.sa.cr/" class="text-primary-teal underline">CCSS</a>.</li>
+              <li><strong>Private healthcare:</strong> Strong private hospitals and clinics in San José and larger cities; many expats use private insurance for broader coverage.</li>
+              <li><strong>Education:</strong> International schools (IB, American/British curricula) are available in the Central Valley and other major expat hubs.</li>
+              <li><strong>Documentation:</strong> Apostilles, certified translations, police records and proof of income/funds are commonly required for residency applications; DGME lists specific documentary requirements for each category.</li>
+            </ul>
+
+            <h3 class="text-2xl font-bold text-dark-text border-b pb-2 pt-6">Official sources</h3>
+            <ul class="list-disc ml-6 mt-3 text-gray-700">
+              <li><a href="https://migracion.go.cr/SitePages/Inicio.aspx" class="text-primary-teal underline">Dirección General de Migración y Extranjería (DGME)</a> — official residency categories, forms and procedures.</li>
+              <li><a href="https://www.ccss.sa.cr/" class="text-primary-teal underline">Caja Costarricense de Seguro Social (CCSS)</a> — public healthcare enrollment and programs.</li>
+            </ul>
           </div>
 
-          <!-- Cost card with the teal tint matching your snippet -->
-          <div class="p-6 rounded-xl shadow-lg card-border-top-primary tint-primary" style="border-top-color:var(--primary-teal);">
+          <aside class="p-6 rounded-xl shadow-lg card-top-primary tint-primary" style="border-top-color:var(--primary-teal);">
             <h3 class="text-xl font-bold" style="color:var(--primary-teal)">Cost of Living Estimate (Couple)</h3>
             <p class="text-4xl font-extrabold text-dark-text mt-4">$2,500 - $4,500 USD / month</p>
             <ul class="mt-4 space-y-2 text-sm text-gray-700">
-              <li><strong>High End:</strong> Living in a modern condo in Escazú or beachfront on the Gold Coast.</li>
-              <li><strong>Low End:</strong> Renting a local-style home (Tico-house) outside the major expat centers.</li>
-              <li><strong>Note:</strong> Prices for imported goods and gasoline can be high. Local produce and services are affordable.</li>
+              <li><strong>High End:</strong> Modern condo in Escazú, private schooling & frequent dining out.</li>
+              <li><strong>Low End:</strong> Local-style home outside main expat centers, shopping local markets.</li>
+              <li><strong>Note:</strong> Prices for imported goods and gasoline can be high; local produce and services are comparatively affordable.</li>
             </ul>
-            <a href="#page-contact" class="mt-6 inline-block text-secondary-orange font-semibold hover:underline">Start your Costa Rica Move &rarr;</a>
-          </div>
+            <a href="get-started.html" class="mt-6 inline-block text-secondary-orange font-semibold hover:underline">Get started — Book consultation &rarr;</a>
+          </aside>
         </div>
       </div>
     </section>
 
-    <!-- Bottom nav / Back to home -->
+    <!-- Bottom: Back to Home (left) + quick country links (right) -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 flex items-center justify-between">
       <a href="index.html" class="text-sm text-gray-700 underline">&larr; Back to Home</a>
       <div class="space-x-4">
