@@ -251,6 +251,18 @@
   <div id="hero-fallback" class="hero-video hidden bg-cover bg-center"
        style="background-image: url('assets/images/hero-poster.jpg');"></div>
 </div>
+            
+<script>
+  // debug helpers - shows errors in console and tries to play
+  (function(){
+    const v = document.getElementById('hero-video-bg');
+    if (!v) return;
+    v.addEventListener('error', () => console.error('Video element error code:', v.error && v.error.code, v.error));
+    v.addEventListener('stalled', () => console.warn('video stalled'));
+    v.addEventListener('suspend', () => console.warn('video suspend'));
+    v.play().then(() => console.log('video play started')).catch(e => console.warn('autoplay prevented or play failed:', e));
+  })();
+</script>
 
             <div class="absolute inset-0 z-10 bg-black opacity-60"></div>
 
