@@ -128,28 +128,31 @@
     </div>
 
 
-<header class="sticky top-0 z-50 bg-white border-b">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <!-- reduced vertical padding to make header smaller -->
-    <div class="flex items-center justify-between py-2">
-      <!-- Logo: compact symbol + wordmark (symbol is small) -->
-      <a href="index.html" class="flex items-center gap-3" aria-label="Autumn Point — Home">
-        <img src="assets/logo-symbol.svg" alt="Autumn Point symbol" class="h-6 w-auto" onerror="this.style.display='none'">
-        <div class="hidden sm:flex flex-col leading-tight">
-          <span class="text-base font-extrabold" style="color:#0d9488; line-height:1">AutumnPoint</span>
-          <span class="text-xs font-semibold" style="color:#6b7280; letter-spacing:0.06em">Relocation Solutions</span>
-        </div>
-      </a>
+</head>
+<body class="font-sans bg-gray-50 text-dark-text">
+  <!-- header: paste this in place of your existing header block -->
+  <header class="sticky top-0 z-50 bg-white border-b-2 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between py-6 lg:py-8">
+        <!-- Logo left: show symbol + wordmark side-by-side -->
+        <a href="index.html" class="flex items-center gap-4 group" aria-label="Autumn Point Relocation — Home">
+          <!-- Use the uploaded full SVG (symbol + wordmark) for fidelity -->
+          <img src="asset/AutumnPointLogo.svg" alt="AutumnPoint logo" class="site-logo-img" />
+          <!-- Optional HTML wordmark (keeps text selectable & accessible) shown on sm+ — remove if the SVG already includes the full wordmark and you prefer not to duplicate -->
+          <div class="hidden sm:flex flex-col leading-tight">
+            <span class="text-2xl font-extrabold" style="color:var(--primary-teal);line-height:1">AutumnPoint</span>
+            <span class="text-xs font-semibold" style="color:var(--muted);letter-spacing:0.08em">Relocation Solutions</span>
+          </div>
+        </a>
  
   <!-- Right-side controls: desktop hamburger and mobile button -->
   <div class="flex items-center">
         <button id="siteMenuButton" aria-controls="siteMenu" aria-expanded="false"
                 class="p-2 rounded-md text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#0d9488]">
           <span class="sr-only">Open main menu</span>
-
-          <!-- three-line hamburger -->
+          <!-- hamburger icon (shown when closed) -->
           <svg id="menuOpenIcon" class="block w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#374151" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16"/>
           </svg>
           <!-- close icon (shown when open) -->
           <svg id="menuCloseIcon" class="hidden w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#374151" aria-hidden="true">
@@ -159,23 +162,16 @@
       </div>
     </div>
   </div>  
-   <div id="siteMenu" class="fixed inset-y-0 right-0 w-full max-w-sm md:max-w-md transform translate-x-full transition-transform duration-300 bg-white shadow-2xl z-50" aria-hidden="true" style="will-change:transform;">
+    <div id="siteMenu" class="fixed inset-y-0 right-0 w-full max-w-sm md:max-w-md transform translate-x-full transition-transform duration-300 ease-in-out bg-white shadow-2xl z-50" aria-hidden="true" style="will-change:transform;">
     <div class="h-full flex flex-col">
-      <div class="px-6 py-4 border-b flex items-center justify-between">
-        <div class="flex items-center gap-3">
-          <!-- same symbol used in header (matches exactly) -->
-          <img src="assets/AutumnPointLogo.svg" alt="Autumn Point" class="h-6 w-auto" onerror="this.style.display='none'">
-          <div>
-            <div class="font-bold text-base" style="color:#0d9488">AutumnPoint</div>
-            <div class="text-xs text-gray-600">Relocation Solutions</div>
-          </div>
-        </div>
-        <button id="panelCloseBtn" class="p-2 rounded-md text-gray-600 hover:bg-gray-100 focus:outline-none" aria-label="Close menu">
-          <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#374151" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+      <div class="px-6 py-5 border-b flex items-center justify-between">
+        <div class="flex items-center gap-4">
+          <!-- small logo in panel -->
+          <svg width="36" height="36" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+            <path d="M32 8L10 30v18a4 4 0 0 0 4 4h36a4 4 0 0 0 4-4V30L32 8z" stroke="#0d9488" stroke-width="3" stroke-linejoin="round" fill="none"/>
+            <path d="M26 36c3-6 9-10 15-11" stroke="#0d9488" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <path d="M30 44c4-6 10-9 14-11 0 0-1 8-9 14-8 6-12 2-12 2z" fill="#0d9488" opacity="0.95"/>
           </svg>
-        </button>
-      </div>
           <div>
             <div class="font-bold text-lg" style="color:#0d9488">AutumnPoint</div>
             <div class="text-xs text-gray-600">Relocation Solutions</div>
@@ -211,6 +207,7 @@
     </div>
   </div>
 
+      
 
     <!-- Mobile menu button (visible on small screens) -->
     <div class="-mr-2 -my-2 md:hidden">
@@ -234,6 +231,7 @@
       const panelClose = document.getElementById('panelCloseBtn');
       const yearEl = document.getElementById('year');
 
+      // set year
       if (yearEl) yearEl.textContent = new Date().getFullYear();
 
       function openPanel() {
@@ -259,16 +257,14 @@
         closeIcon.classList.add('hidden');
       }
 
-      openBtn.addEventListener('click', function () {
+      openBtn.addEventListener('click', function (e) {
         const expanded = openBtn.getAttribute('aria-expanded') === 'true';
-        if (expanded) closePanel();
-        else openPanel();
+        if (expanded) {
+          closePanel();
+        } else {
+          openPanel();
+        }
       });
-
-      panelClose.addEventListener('click', closePanel);
-      overlay.addEventListener('click', closePanel);
-      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closePanel(); });
-    }
 
       // close controls
       panelClose.addEventListener('click', closePanel);
@@ -282,6 +278,7 @@
     })();
   </script>
 </header>
+
 
     
 </script>
