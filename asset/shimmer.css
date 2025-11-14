@@ -1,0 +1,40 @@
+/* Shimmer text effect (works with -webkit-background-clip for Safari/Chrome) */
+.shimmer {
+  /* base color produced by gradient — adjust the colors to match your design */
+  background: linear-gradient(
+    90deg,
+    rgba(13,148,136,0.95) 0%,
+    rgba(255,255,255,0.92) 45%,
+    rgba(13,148,136,0.95) 100%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent; /* Safari/Chrome */
+  color: transparent;                    /* browsers that support background-clip:text */
+  animation: shimmer-slide 2s linear infinite;
+  /* make sure text remains selectable / readable by screen readers */
+  text-decoration: none;
+}
+
+/* pause shimmer on hover/focus to improve readability */
+.shimmer:hover,
+.shimmer:focus {
+  animation-play-state: paused;
+}
+
+/* keyframes that move the gradient across the text */
+@keyframes shimmer-slide {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .shimmer {
+    animation: none;
+    -webkit-text-fill-color: currentColor;
+    color: inherit;
+    background: none;
+  }
+}
