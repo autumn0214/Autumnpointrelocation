@@ -11,6 +11,7 @@
       --primary-teal:#0d9488;
       --dark-text:#1f2937;
       --muted:#6b7280;
+      --secondary-orange: var(--accent); /* ensure shimmer gradient has an orange stop */
     }
     .tint-primary { background: rgba(13,148,136,0.05); }
     .tint-secondary { background: rgba(234,88,12,0.08); }
@@ -20,33 +21,34 @@
     @media (min-width:1024px){ .site-logo-img{ height:64px; } }
 
     /* Shimmer styles (add into your existing <style> block or to /asset/shimmer.css) */
-.shimmer-wrap{ display:flex; align-items:center; gap:12px; margin-bottom:8px; }
-.shimmer {
-  font-size:1.6rem;
-  font-weight:800;
-  background: linear-gradient(90deg,var(--primary-teal),#00b7a1,var(--secondary-orange));
-  -webkit-background-clip:text;
-  color:transparent;
-  position:relative;
-  overflow:hidden;
-  display:inline-block;
-  line-height:1;
-}
-.shimmer::after{
-  content:'';
-  position:absolute;
-  left:-40%;
-  top:0;
-  width:60%;
-  height:100%;
-  background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.35), rgba(255,255,255,0));
-  transform:skewX(-20deg);
-  animation: glide 3s linear infinite;
-}
-@keyframes glide { 0%{ left:-60%; } 100%{ left:120%; } }
-    
-/* small modifier so the shimmer effect can be used on nav links without disrupting layout */
-.shimmer.small { font-size:0.95rem; font-weight:700; }  
+    .shimmer-wrap{ display:flex; align-items:center; gap:12px; margin-bottom:8px; }
+    .shimmer {
+      font-size:1.6rem;
+      font-weight:800;
+      background: linear-gradient(90deg,var(--primary-teal),#00b7a1,var(--secondary-orange));
+      -webkit-background-clip:text;
+      -webkit-text-fill-color: transparent;
+      color:transparent;
+      position:relative;
+      overflow:hidden;
+      display:inline-block;
+      line-height:1;
+    }
+    .shimmer::after{
+      content:'';
+      position:absolute;
+      left:-40%;
+      top:0;
+      width:60%;
+      height:100%;
+      background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.35), rgba(255,255,255,0));
+      transform:skewX(-20deg);
+      animation: glide 3s linear infinite;
+    }
+    @keyframes glide { 0%{ left:-60%; } 100%{ left:120%; } }
+        
+    /* small modifier so the shimmer effect can be used on nav links without disrupting layout */
+    .shimmer.small { font-size:0.95rem; font-weight:700; }  
   </style>
   
 </head>
