@@ -98,18 +98,101 @@
             to { transform: rotate(360deg); }
         }
 
-</style>
+        /* === Header enlargement and logo/nav scaling ===
+           These rules increase the header height, enlarge the logo/video,
+           scale the wordmark, and make nav controls easier to tap.
+        */
+        header.sticky {
+          /* overall header visual height */
+          min-height: 132px;
+        }
+
+        /* Target inner flex row that already uses Tailwind classes */
+        header.sticky .header-row {
+          padding-top: 22px;   /* increases vertical breathing */
+          padding-bottom: 22px;
+        }
+
+        /* Logo/video: make larger but responsive */
+        .site-logo-img {
+          height: 92px !important;
+          width: auto !important;
+          max-height: 140px;
+          display: block;
+        }
+
+        /* Wordmark to the right of the mark */
+        .header-wordmark .brand-name {
+          color: var(--primary-teal);
+          font-weight: 800;
+          font-size: 34px;
+          line-height: 1;
+          display: block;
+        }
+        .header-wordmark .brand-sub {
+          color: #6B6B6B;
+          font-weight: 600;
+          font-size: 13px;
+          margin-top: 4px;
+          letter-spacing: 0.06em;
+        }
+
+        /* Make the menu button easier to tap and slightly larger */
+        #siteMenuButton {
+          padding: 10px;
+          border-radius: 8px;
+        }
+        #siteMenuButton svg { width: 26px; height: 26px; }
+
+        /* Slide-over panel small logo slightly increased */
+        #siteMenu img.site-logo-img {
+          height: 56px;
+        }
+
+        /* Responsive reductions for small screens */
+        @media (max-width: 900px) {
+          header.sticky .header-row {
+            padding-top: 16px;
+            padding-bottom: 16px;
+          }
+          .site-logo-img { height: 72px !important; }
+          .header-wordmark .brand-name { font-size: 28px; }
+          .header-wordmark .brand-sub { font-size: 12px; }
+        }
+        @media (max-width: 480px) {
+          header.sticky {
+            min-height: auto;
+          }
+          header.sticky .header-row {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            flex-direction: column;
+            gap: 8px;
+            align-items: center;
+          }
+          .header-wordmark { align-items: center; text-align: center; }
+          .site-logo-img { height: 56px !important; }
+        }
+
+    </style>
+</head>
+<body>
 <header class="sticky top-0 z-50 bg-white border-b-2 shadow-sm">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <!-- Restored thicker vertical padding: py-6 on small, py-8 on large -->
-    <div class="flex items-center justify-between py-6 lg:py-8">
+    <!-- Added a helper class "header-row" so our CSS can target the row reliably -->
+    <div class="flex items-center justify-between py-6 lg:py-8 header-row">
       <!-- Logo left: show symbol + wordmark side-by-side (larger) -->
       <a href="index.html" class="flex items-center gap-4 group" aria-label="Autumn Point Relocation — Home">
         <!-- Use the uploaded full SVG (symbol + wordmark); ensure the file exists at assets/AutumnPointLogo.svg -->
-<video src="asset/Autumn Point.mp4" autoplay loop muted playsinline class="site-logo-img h-10 w-auto" style="height: 40px; width: auto;"></video>        <!-- Optional HTML wordmark (keeps text selectable & accessible) shown on sm+ -->
-        <div class="hidden sm:flex flex-col leading-tight">
-          <span class="text-2xl font-extrabold" style="color:var(--primary-teal);line-height:1">AutumnPoint</span>
-          <span class="text-xs font-semibold" style="color:var(--muted);letter-spacing:0.08em">Relocation Solutions</span>
+        <!-- Logo is a video on your site — removed inline small height and rely on CSS .site-logo-img -->
+        <video src="asset/Autumn Point.mp4" autoplay loop muted playsinline class="site-logo-img" aria-hidden="true"></video>
+
+        <!-- Optional HTML wordmark (keeps text selectable & accessible) shown on sm+ -->
+        <!-- Added header-wordmark and explicit brand classes so CSS can scale them -->
+        <div class="hidden sm:flex flex-col leading-tight header-wordmark">
+          <span class="brand-name">AutumnPoint</span>
+          <span class="brand-sub">Relocation Solutions</span>
         </div>
       </a>
 
@@ -143,7 +226,7 @@
       <div class="px-6 py-5 border-b flex items-center justify-between">
         <div class="flex items-center gap-4">
           <!-- small logo in panel -->
-                  <img src="asset/AutumnPointLogo.svg" alt="AutumnPoint logo" class="site-logo-img h-10 w-auto" />
+          <img src="asset/AutumnPointLogo.svg" alt="AutumnPoint logo" class="site-logo-img h-10 w-auto" />
 
           </svg>
           <div>
@@ -239,7 +322,6 @@
 </header>
 
     
-</script>
     <main id="main-content">
 <section id="page-home" class="relative overflow-hidden pt-16 pb-16 sm:pt-20 sm:pb-24 lg:pt-24 lg:pb-28 flex items-center h-[60vh] md:h-[55vh] lg:h-[50vh] min-h-[360px]">          <div class="hero-video-container">
   <video id="hero-video-bg"
