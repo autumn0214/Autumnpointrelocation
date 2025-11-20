@@ -71,7 +71,7 @@
            - header contents are positioned above the hero (higher z-index)
            - header-left aligns the header content farther toward the left edge
         */
-        header.sticky {
+        header[role="banner"] {
           min-height: 280px;
           background: transparent !important;
           border-bottom: none !important;
@@ -165,21 +165,21 @@
         }
 
         @media (max-width: 1400px) {
-          header.sticky { min-height: 240px; }
+          header[role="banner"] { min-height: 240px; }
           .header-row { padding-top: 30px; padding-bottom: 30px; }
           .site-logo-img { height: 200px !important; max-height: 300px; }
           .header-left, .hero-inner { margin-left: 2rem; }
         }
 
         @media (max-width: 1000px) {
-          header.sticky { min-height: 200px; }
+          header[role="banner"] { min-height: 200px; }
           .header-row { padding-top: 24px; padding-bottom: 24px; }
           .site-logo-img { height: 160px !important; max-height: 240px; }
           .header-left, .hero-inner { margin-left: 1.25rem; }
         }
 
         @media (max-width: 700px) {
-          header.sticky { min-height: 160px; }
+          header[role="banner"] { min-height: 160px; }
           .header-row { padding-top: 16px; padding-bottom: 16px; }
           .site-logo-img { height: 120px !important; max-height: 180px; }
           .header-left, .hero-inner { margin-left: 0.75rem; }
@@ -187,7 +187,7 @@
         }
 
         @media (max-width: 480px) {
-          header.sticky { min-height: auto; }
+          header[role="banner"] { min-height: auto; }
           .header-row {
             padding-top: 12px;
             padding-bottom: 12px;
@@ -204,7 +204,7 @@
 </head>
 
 <body>
-<header class="sticky top-0 z-50" role="banner">
+<header class="fixed top-0 z-50" role="banner">
   <div class="max-w-7xl ml-0 mr-auto px-4 sm:px-6 lg:px-8 header-left">
     <div class="flex items-center justify-start header-row">
       <!-- Left: enlarged animated/video mark only (wordmark removed) -->
