@@ -67,15 +67,22 @@
 
         /* ========== HEADER: transparent over hero video ==========
            header is transparent so logo + menu sit on top of the hero video
-           - header kept tall per your earlier request
+           - header is fixed so it doesn't scroll with the page
            - header contents are positioned above the hero (higher z-index)
            - header-left aligns the header content farther toward the left edge
         */
-        header.sticky {
-          min-height: 420px;
+        header[role="banner"] {
+          min-height: 280px;
           background: transparent !important;
           border-bottom: none !important;
           box-shadow: none !important;
+          position: fixed !important;
+          width: 100%;
+        }
+
+        /* Ensure main content flows under fixed header */
+        main#main-content {
+          position: relative;
         }
 
         /* helper to move header inner column left on wide screens */
@@ -89,13 +96,14 @@
           align-items: center;
           position: relative;
           z-index: 60; /* ensures header contents sit above hero video */
+          gap: 40px; /* add gap between logo and menu button */
         }
 
         /* Make the header logo/video large (keeps your earlier large values) */
         .site-logo-img {
-          height: 360px !important;     /* large logo/video height on desktop */
+          height: 240px !important;     /* logo/video height on desktop */
           width: auto !important;
-          max-height: 520px;
+          max-height: 360px;
           display: block;
           z-index: 65;
         }
@@ -157,35 +165,35 @@
         }
 
         @media (max-width: 1400px) {
-          header.sticky { min-height: 360px; }
-          .header-row { padding-top: 34px; padding-bottom: 34px; }
-          .site-logo-img { height: 300px !important; max-height: 420px; }
+          header[role="banner"] { min-height: 240px; }
+          .header-row { padding-top: 30px; padding-bottom: 30px; }
+          .site-logo-img { height: 200px !important; max-height: 300px; }
           .header-left, .hero-inner { margin-left: 2rem; }
         }
 
         @media (max-width: 1000px) {
-          header.sticky { min-height: 300px; }
-          .header-row { padding-top: 28px; padding-bottom: 28px; }
-          .site-logo-img { height: 220px !important; max-height: 320px; }
+          header[role="banner"] { min-height: 200px; }
+          .header-row { padding-top: 24px; padding-bottom: 24px; }
+          .site-logo-img { height: 160px !important; max-height: 240px; }
           .header-left, .hero-inner { margin-left: 1.25rem; }
         }
 
         @media (max-width: 700px) {
-          header.sticky { min-height: 220px; }
-          .header-row { padding-top: 18px; padding-bottom: 18px; }
-          .site-logo-img { height: 160px !important; max-height: 220px; }
+          header[role="banner"] { min-height: 160px; }
+          .header-row { padding-top: 16px; padding-bottom: 16px; }
+          .site-logo-img { height: 120px !important; max-height: 180px; }
           .header-left, .hero-inner { margin-left: 0.75rem; }
           #siteMenuButton { background: rgba(255,255,255,0.6); }
         }
 
         @media (max-width: 480px) {
-          header.sticky { min-height: auto; }
+          header[role="banner"] { min-height: auto; }
           .header-row {
             padding-top: 12px;
             padding-bottom: 12px;
-            flex-direction: column;
-            gap: 8px;
-            align-items: flex-start;
+            flex-direction: row;
+            gap: 12px;
+            align-items: center;
           }
           .site-logo-img { height: 96px !important; max-height: 140px; }
           .header-left, .hero-inner { margin-left: 0.75rem; margin-right: 0.75rem; }
@@ -196,9 +204,9 @@
 </head>
 
 <body>
-<header class="sticky top-0 z-50" role="banner">
+<header class="fixed top-0 z-50" role="banner">
   <div class="max-w-7xl ml-0 mr-auto px-4 sm:px-6 lg:px-8 header-left">
-    <div class="flex items-center justify-between header-row">
+    <div class="flex items-center justify-start header-row">
       <!-- Left: enlarged animated/video mark only (wordmark removed) -->
       <a href="index.html" class="flex items-center gap-4 group" aria-label="Autumn Point Relocation — Home">
         <!-- Update the src path if your file lives under assets/... -->
