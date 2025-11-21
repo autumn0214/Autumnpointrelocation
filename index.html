@@ -24,220 +24,243 @@
             }
         }
     </script>
+<!-- Replace the existing <style> and header block in your file with the snippet below -->
+<head>
+  ...
+  <style>
+    /* Smooth scrolling */
+    html { scroll-behavior: smooth; }
 
-    <style>
-        /* Smooth scrolling */
-        html { scroll-behavior: smooth; }
+    /* Hero Video Container Styling */
+    .hero-video-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 0; /* Below content layer */
+    }
+    .hero-video {
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      object-fit: cover;
+    }
 
-        /* Hero Video Container Styling */
-        .hero-video-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: 0; /* Below content layer */
-        }
-        .hero-video {
-            min-width: 100%;
-            min-height: 100%;
-            width: auto;
-            height: auto;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            object-fit: cover;
-        }
+    /* Feature list, modal, spinner (kept as-is) */
+    .feature-list li {
+      position: relative;
+      padding-left: 1.5rem;
+      margin-bottom: 0.5rem;
+      line-height: 1.4;
+    }
+    .feature-list li::before { content: '✓'; position: absolute; left: 0; color: #0d9488; font-weight: bold; }
+    .modal { background-color: rgba(0, 0, 0, 0.6); }
+    .modal-content { animation: slide-down 0.3s ease-out; }
+    @keyframes slide-down { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+    .spinner { border: 4px solid rgba(255,255,255,0.3); border-top-color: #fff; border-radius: 50%; width: 1.5rem; height: 1.5rem; animation: spin 1s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
 
-        /* Feature list, modal, spinner (kept as-is) */
-        .feature-list li {
-            position: relative;
-            padding-left: 1.5rem;
-            margin-bottom: 0.5rem;
-            line-height: 1.4;
-        }
-        .feature-list li::before { content: '✓'; position: absolute; left: 0; color: #0d9488; font-weight: bold; }
-        .modal { background-color: rgba(0, 0, 0, 0.6); }
-        .modal-content { animation: slide-down 0.3s ease-out; }
-        @keyframes slide-down { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
-        .spinner { border: 4px solid rgba(255,255,255,0.3); border-top-color: #fff; border-radius: 50%; width: 1.5rem; height: 1.5rem; animation: spin 1s linear infinite; }
-        @keyframes spin { to { transform: rotate(360deg); } }
+    /* ========== HEADER: fixed, compact, hamburger aligned inside header container on the right ==========
+       - header is fixed so it does not jump while scrolling
+       - header height reduced
+       - menu button sits on the right side of the header bar (inside the max-width container)
+    */
+    header.sticky {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      min-height: 72px;               /* compact height */
+      background: rgba(255,255,255,0.02) !important;
+      border-bottom: none !important;
+      box-shadow: 0 1px 0 rgba(0,0,0,0.06);
+      z-index: 70;
+    }
 
-        /* ========== HEADER: fixed, smaller, and hamburger moved left ==========
-           - header is fixed so it does not jump or change while scrolling
-           - header height reduced (default ~72px)
-           - menu button positioned farther left (absolute within the header row)
-        */
-        header.sticky {
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100%;
-          min-height: 72px;               /* much smaller than before */
-          background: rgba(255,255,255,0.02) !important; /* keep translucent */
-          border-bottom: none !important;
-          box-shadow: 0 1px 0 rgba(0,0,0,0.06);
-        }
+    /* container padding / visual offset */
+    .header-left {
+      margin-left: 1rem;
+    }
 
-        /* helper to move header inner column left on wide screens */
-        .header-left {
-          margin-left: 1rem; /* reduced left shift so header is compact */
-        }
+    .header-row {
+      padding-top: 8px;
+      padding-bottom: 8px;
+      align-items: center;
+      position: relative;
+      z-index: 80; /* above hero video */
+      display: flex;
+      width: 100%;
+      gap: 16px;
+      align-items: center;
+    }
 
-        .header-row {
-          padding-top: 8px;
-          padding-bottom: 8px;
-          align-items: center;
-          position: relative;
-          z-index: 60; /* ensures header contents sit above hero video */
-        }
+    /* Reduce logo/video height for a smaller header */
+    .site-logo-img {
+      height: 56px !important;     /* compact logo/video height */
+      width: auto !important;
+      max-height: 72px;
+      display: block;
+      z-index: 85;
+    }
 
-        /* Reduce logo/video height for a smaller header */
-        .site-logo-img {
-          height: 56px !important;     /* compact logo/video height */
-          width: auto !important;
-          max-height: 72px;
-          display: block;
-          z-index: 65;
-        }
+    /*
+      IMPORTANT: make the menu button part of the header flow (not absolutely positioned).
+      Using margin-left:auto keeps it on the right side of the header container while
+      staying visible and accessible above the hero video.
+    */
+    #siteMenuButton {
+      position: relative;     /* keep it in the normal flow */
+      margin-left: auto;      /* push it to the right inside the header container */
+      padding: 8px 10px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.88); /* increase contrast so it's clearly visible */
+      color: #111827;
+      border: 1px solid rgba(0,0,0,0.06);
+      box-shadow: 0 6px 18px rgba(2,6,23,0.06);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 90;            /* above the hero */
+    }
 
-#siteMenuButton {
-  position: absolute;
-  /* place flush at the viewport edge while respecting device safe-area */
-  right: env(safe-area-inset-right, 0);
-  left: auto;
-  top: 50%;
-  transform: translateY(-50%);
-  padding: 10px 12px;
-  /* visually flush: square on the right edge, rounded on the left */
-  border-radius: 8px 0 0 8px;
-  background: rgba(255,255,255,0.38);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  border: 1px solid rgba(255,255,255,0.12);
-  /* remove heavy shadow so the button reads as part of the viewport edge */
-  box-shadow: none;
-}
+    /* Icon sizing */
+    #siteMenuButton svg { width: 26px; height: 26px; display: block; }
 
-/* Keep the icon compact for the small header */
-#siteMenuButton svg { width: 28px; height: 28px; }
+    #siteMenuButton:hover, #siteMenuButton:focus {
+      background: rgba(255,255,255,1);
+      outline: none;
+      box-shadow: 0 8px 22px rgba(2,6,23,0.09);
+    }
 
-/* Responsive overrides (replace any previous #siteMenuButton tweaks in media queries) */
-@media (min-width: 1600px) {
-  #siteMenuButton { right: calc(env(safe-area-inset-right, 0)); }
-}
-@media (max-width: 1400px) {
-  #siteMenuButton { right: calc(env(safe-area-inset-right, 0)); }
-}
-@media (max-width: 1000px) {
-  #siteMenuButton { right: calc(env(safe-area-inset-right, 0)); }
-}
-@media (max-width: 700px) {
-  #siteMenuButton {
-    right: calc(env(safe-area-inset-right, 0));
-    background: rgba(255,255,255,0.6);
-    /* slightly smaller icon on small screens */
-  }
-  #siteMenuButton svg { width: 24px; height: 24px; }
-}
-@media (max-width: 480px) {
-  #siteMenuButton { right: calc(env(safe-area-inset-right, 0)); }
-  #siteMenuButton svg { width: 22px; height: 22px; }
-}
-        }
+    /* ===== HERO: move hero content left and make text more readable =====
+       push main content down so the fixed header doesn't overlap it
+    */
+    .hero-inner {
+      margin-left: 2.5rem;
+      margin-right: auto;
+      max-width: 980px;
+    }
 
-        /* ===== HERO: move hero content left and make text more readable =====
-           hero-inner kept but main content is pushed down to avoid being hidden under fixed header
-        */
-        .hero-inner {
-          margin-left: 2.5rem;  /* moves the hero content left from centered */
-          margin-right: auto;
-          max-width: 980px;     /* keep text line length readable */
-        }
+    .hero-text-panel {
+      display: inline-block;
+      background: linear-gradient(180deg, rgba(0,0,0,0.64), rgba(0,0,0,0.28));
+      padding: 1.25rem 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 20px 40px rgba(2,6,23,0.48);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+    }
 
-        .hero-text-panel {
-          display: inline-block;
-          background: linear-gradient(180deg, rgba(0,0,0,0.64), rgba(0,0,0,0.28));
-          padding: 1.25rem 1.5rem;
-          border-radius: 12px;
-          box-shadow: 0 20px 40px rgba(2,6,23,0.48);
-          backdrop-filter: blur(4px);
-          -webkit-backdrop-filter: blur(4px);
-        }
+    .hero-text-panel h1, .hero-text-panel p {
+      text-shadow: 0 6px 20px rgba(0,0,0,0.6);
+    }
 
-        .hero-text-panel h1, .hero-text-panel p {
-          text-shadow: 0 6px 20px rgba(0,0,0,0.6);
-        }
+    .hero-text-panel h1 { color: #ffffff; }
+    .hero-text-panel p { color: #f3f4f6; }
 
-        .hero-text-panel h1 { color: #ffffff; }
-        .hero-text-panel p { color: #f3f4f6; }
+    .hero-text-panel .cta {
+      margin-top: 1.25rem;
+      display: inline-flex;
+    }
 
-        .hero-text-panel .cta {
-          margin-top: 1.25rem;
-          display: inline-flex;
-        }
+    /* push main content down so the fixed header doesn't overlap it */
+    #main-content { padding-top: 88px; }
 
-        /* push main content down so the fixed header doesn't overlap it */
-        #main-content { padding-top: 88px; }
+    /* Responsive tweaks */
+    @media (min-width:1600px) {
+      .header-left, .hero-inner { margin-left: 3rem; }
+      .site-logo-img { height: 64px !important; }
+      #siteMenuButton svg { width: 28px; height: 28px; }
+    }
 
-        /* Responsive rules: reduce left offset on smaller screens so content doesn't go under the browser UI */
-        @media (min-width: 1600px) {
-          .header-left, .hero-inner { margin-left: 3rem; }
-          .hero-inner { max-width: 1100px; }
-          #siteMenuButton { left: 1.5rem; }
-        }
+    @media (max-width:1400px) {
+      header.sticky { min-height: 64px; }
+      .header-row { padding-top: 6px; padding-bottom: 6px; }
+      .site-logo-img { height: 52px !important; max-height: 64px; }
+      #main-content { padding-top: 76px; }
+      #siteMenuButton svg { width: 26px; height: 26px; }
+    }
 
-        @media (max-width: 1400px) {
-          header.sticky { min-height: 64px; }
-          .header-row { padding-top: 6px; padding-bottom: 6px; }
-          .site-logo-img { height: 52px !important; max-height: 64px; }
-          .header-left, .hero-inner { margin-left: 1rem; }
-          #siteMenuButton { left: 1rem; }
-          #main-content { padding-top: 76px; }
-        }
+    @media (max-width:1000px) {
+      header.sticky { min-height: 56px; }
+      .site-logo-img { height: 44px !important; max-height: 56px; }
+      #main-content { padding-top: 72px; }
+      #siteMenuButton { padding: 6px 8px; }
+      #siteMenuButton svg { width: 22px; height: 22px; }
+    }
 
-        @media (max-width: 1000px) {
-          header.sticky { min-height: 56px; }
-          .header-row { padding-top: 6px; padding-bottom: 6px; }
-          .site-logo-img { height: 44px !important; max-height: 56px; }
-          .header-left, .hero-inner { margin-left: 0.75rem; }
-          #siteMenuButton { left: .75rem; }
-          #main-content { padding-top: 72px; }
-        }
+    @media (max-width:700px) {
+      header.sticky { min-height: 56px; }
+      .header-row { padding-top: 8px; padding-bottom: 8px; }
+      .site-logo-img { height: 40px !important; max-height: 48px; }
+      #siteMenuButton { background: rgba(255,255,255,0.95); }
+      #siteMenuButton svg { width: 20px; height: 20px; }
+      #main-content { padding-top: 72px; }
+    }
 
-        @media (max-width: 700px) {
-          header.sticky { min-height: 56px; }
-          .header-row { padding-top: 8px; padding-bottom: 8px; }
-          .site-logo-img { height: 40px !important; max-height: 48px; }
-          .header-left, .hero-inner { margin-left: 0.75rem; }
-          #siteMenuButton { left: .75rem; background: rgba(255,255,255,0.6); }
-          #siteMenuButton svg { width: 24px; height: 24px; }
-          #main-content { padding-top: 72px; }
-        }
+    @media (max-width:480px) {
+      header.sticky { min-height: 52px; }
+      .header-row {
+        padding-top: 6px;
+        padding-bottom: 6px;
+        flex-direction: row;
+        gap: 8px;
+        align-items: center;
+      }
+      .site-logo-img { height: 36px !important; max-height: 44px; }
+      #siteMenuButton svg { width: 18px; height: 18px; }
+      #main-content { padding-top: 68px; }
+    }
 
-        @media (max-width: 480px) {
-          header.sticky { min-height: 52px; }
-          .header-row {
-            padding-top: 6px;
-            padding-bottom: 6px;
-            flex-direction: row;
-            gap: 8px;
-            align-items: center;
-          }
-          .site-logo-img { height: 36px !important; max-height: 44px; }
-          .header-left, .hero-inner { margin-left: 0.5rem; margin-right: 0.5rem; }
-          #siteMenuButton svg { width: 22px; height: 22px; }
-          .hero-text-panel { padding: .9rem 1rem; }
-          #main-content { padding-top: 68px; }
-        }
-
-        /* Ensure slide-over panel stacks above fixed header */
-        #siteMenu { z-index: 120; }
-        #siteOverlay { z-index: 110; }
-    </style>
+    /* Ensure slide-over panel stacks above fixed header */
+    #siteMenu { z-index: 200; }
+    #siteOverlay { z-index: 150; }
+  </style>
 </head>
+
+<body>
+  <header class="sticky top-0 z-50" role="banner">
+    <div class="max-w-7xl ml-0 mr-auto px-4 sm:px-6 lg:px-8 header-left">
+      <!-- Use flex container and let the button sit at the far right using margin-left:auto -->
+      <div class="header-row">
+        <!-- Left: logo/video -->
+        <a href="index.html" class="flex items-center gap-4 group" aria-label="Autumn Point Relocation — Home">
+          <video src="asset/Autumn Point.mp4" autoplay loop muted playsinline class="site-logo-img" aria-hidden="true"></video>
+        </a>
+
+        <!-- Right: menu button (now part of the header flow and visible) -->
+        <button id="siteMenuButton" aria-controls="siteMenu" aria-expanded="false"
+                class="rounded-md text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#0d9488]" title="Open main menu">
+          <span class="sr-only">Open main menu</span>
+
+          <svg id="menuOpenIcon" class="block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#111827" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+
+          <svg id="menuCloseIcon" class="hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="#111827" fill="none" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- overlay and slide-over retain existing structure -->
+    <div id="siteOverlay" class="fixed inset-0 bg-black bg-opacity-30 opacity-0 pointer-events-none transition-opacity duration-200 z-40"></div>
+
+    <div id="siteMenu" class="fixed inset-y-0 right-0 w-full max-w-sm md:max-w-md transform translate-x-full transition-transform duration-300 ease-in-out bg-white shadow-2xl z-50" aria-hidden="true" style="will-change:transform;">
+      <!-- panel content unchanged -->
+    </div>
+  </header>
+
+  <!-- main content follows... -->
+</body>
 
 <body>
 <header class="sticky top-0 z-50" role="banner">
