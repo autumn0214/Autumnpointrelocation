@@ -25,8 +25,6 @@
         }
     </script>
 <!-- Replace the existing <style> and header block in your file with the snippet below -->
-<head>
-  ...
   <style>
     /* Smooth scrolling */
     html { scroll-behavior: smooth; }
@@ -77,7 +75,7 @@
       top: 0;
       left: 0;
       width: 100%;
-      min-height: 72px;               /* compact height */
+      min-height: 96px;               /* increased height for medium logo */
       background: rgba(255,255,255,0.02) !important;
       border-bottom: none !important;
       box-shadow: 0 1px 0 rgba(0,0,0,0.06);
@@ -101,11 +99,11 @@
       align-items: center;
     }
 
-    /* Reduce logo/video height for a smaller header */
+    /* Logo/video sizing - medium size for better visibility */
     .site-logo-img {
-      height: 56px !important;     /* compact logo/video height */
+      height: 80px !important;     /* medium logo/video height */
       width: auto !important;
-      max-height: 72px;
+      max-height: 90px;
       display: block;
       z-index: 85;
     }
@@ -171,42 +169,42 @@
     }
 
     /* push main content down so the fixed header doesn't overlap it */
-    #main-content { padding-top: 88px; }
+    #main-content { padding-top: 112px; }
 
     /* Responsive tweaks */
     @media (min-width:1600px) {
       .header-left, .hero-inner { margin-left: 3rem; }
-      .site-logo-img { height: 64px !important; }
+      .site-logo-img { height: 90px !important; }
       #siteMenuButton svg { width: 28px; height: 28px; }
     }
 
     @media (max-width:1400px) {
-      header.sticky { min-height: 64px; }
+      header.sticky { min-height: 88px; }
       .header-row { padding-top: 6px; padding-bottom: 6px; }
-      .site-logo-img { height: 52px !important; max-height: 64px; }
-      #main-content { padding-top: 76px; }
+      .site-logo-img { height: 72px !important; max-height: 88px; }
+      #main-content { padding-top: 100px; }
       #siteMenuButton svg { width: 26px; height: 26px; }
     }
 
     @media (max-width:1000px) {
-      header.sticky { min-height: 56px; }
-      .site-logo-img { height: 44px !important; max-height: 56px; }
-      #main-content { padding-top: 72px; }
+      header.sticky { min-height: 72px; }
+      .site-logo-img { height: 60px !important; max-height: 72px; }
+      #main-content { padding-top: 88px; }
       #siteMenuButton { padding: 6px 8px; }
       #siteMenuButton svg { width: 22px; height: 22px; }
     }
 
     @media (max-width:700px) {
-      header.sticky { min-height: 56px; }
+      header.sticky { min-height: 64px; }
       .header-row { padding-top: 8px; padding-bottom: 8px; }
-      .site-logo-img { height: 40px !important; max-height: 48px; }
+      .site-logo-img { height: 52px !important; max-height: 64px; }
       #siteMenuButton { background: rgba(255,255,255,0.95); }
       #siteMenuButton svg { width: 20px; height: 20px; }
-      #main-content { padding-top: 72px; }
+      #main-content { padding-top: 80px; }
     }
 
     @media (max-width:480px) {
-      header.sticky { min-height: 52px; }
+      header.sticky { min-height: 56px; }
       .header-row {
         padding-top: 6px;
         padding-bottom: 6px;
@@ -214,9 +212,9 @@
         gap: 8px;
         align-items: center;
       }
-      .site-logo-img { height: 36px !important; max-height: 44px; }
+      .site-logo-img { height: 44px !important; max-height: 56px; }
       #siteMenuButton svg { width: 18px; height: 18px; }
-      #main-content { padding-top: 68px; }
+      #main-content { padding-top: 72px; }
     }
 
     /* Ensure slide-over panel stacks above fixed header */
@@ -226,47 +224,15 @@
 </head>
 
 <body>
-  <header class="sticky top-0 z-50" role="banner">
-    <div class="max-w-7xl ml-0 mr-auto px-4 sm:px-6 lg:px-8 header-left">
-      <!-- Use flex container and let the button sit at the far right using margin-left:auto -->
-      <div class="header-row">
-        <!-- Left: logo/video -->
-        <a href="index.html" class="flex items-center gap-4 group" aria-label="Autumn Point Relocation — Home">
-          <video src="asset/Autumn Point.mp4" autoplay loop muted playsinline class="site-logo-img" aria-hidden="true"></video>
-        </a>
-
-        <!-- Right: menu button (now part of the header flow and visible) -->
-        <button id="siteMenuButton" aria-controls="siteMenu" aria-expanded="false"
-                class="rounded-md text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#0d9488]" title="Open main menu">
-          <span class="sr-only">Open main menu</span>
-
-          <svg id="menuOpenIcon" class="block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#111827" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-          </svg>
-
-          <svg id="menuCloseIcon" class="hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="#111827" fill="none" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-          </svg>
-        </button>
-      </div>
-    </div>
-
-    <!-- overlay and slide-over retain existing structure -->
-    <div id="siteOverlay" class="fixed inset-0 bg-black bg-opacity-30 opacity-0 pointer-events-none transition-opacity duration-200 z-40"></div>
-
-    <div id="siteMenu" class="fixed inset-y-0 right-0 w-full max-w-sm md:max-w-md transform translate-x-full transition-transform duration-300 ease-in-out bg-white shadow-2xl z-50" aria-hidden="true" style="will-change:transform;">
-      <!-- panel content unchanged -->
-    </div>
-  </header>
-
-  <!-- main content follows... -->
-</body>
-
-<body>
-<header class="sticky top-0 z-50" role="banner">
+<header class="sticky" role="banner">
   <div class="max-w-7xl ml-0 mr-auto px-4 sm:px-6 lg:px-8 header-left">
     <div class="flex items-center justify-between header-row">
-      <!-- Left: menu button moved visually toward the left via absolute positioning -->
+      <!-- Left: logo/video -->
+      <a href="index.html" class="flex items-center gap-4 group" aria-label="Autumn Point Relocation — Home">
+        <video src="asset/Autumn Point.mp4" autoplay loop muted playsinline class="site-logo-img" aria-hidden="true"></video>
+      </a>
+
+      <!-- Right: menu button -->
       <button id="siteMenuButton" aria-controls="siteMenu" aria-expanded="false"
               class="p-2 rounded-md text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#0d9488]" title="Open main menu">
         <span class="sr-only">Open main menu</span>
@@ -279,15 +245,6 @@
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
         </svg>
       </button>
-
-      <!-- Center / left: enlarged animated/video mark only (wordmark removed) -->
-      <a href="index.html" class="flex items-center gap-4 group ml-10" aria-label="Autumn Point Relocation — Home">
-        <!-- Update the src path if your file lives under assets/... -->
-        <video src="asset/Autumn Point.mp4" autoplay loop muted playsinline class="site-logo-img" aria-hidden="true"></video>
-      </a>
-
-      <!-- Right: intentionally left empty so header feels compact; menu button moved left -->
-      <div class="flex items-center" aria-hidden="true" style="width:44px;"></div>
     </div>
   </div>
 
