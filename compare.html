@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Compare Countries — Costa Rica, Panama, Belize</title>
+  <title>Compare Countries — Costa Rica, Panama, Belize, Thailand</title>
   <style>
     :root{
       --primary-teal:#0d9488;
@@ -23,12 +23,12 @@
 
     /* Header / intro (kept as you asked) */
     .shimmer-wrap{ display:flex; align-items:center; gap:12px; margin-bottom:8px; }
-    .shimmer { font-size:1.6rem; font-weight:800; background: linear-gradient(90deg,var(--primary-teal),#00b7a1,var(--secondary-orange)); -webkit-background-clip:text; color:transparent; position:relative; overflow:hidden; }
-    .shimmer::after{ content:''; position:absolute; left:-40%; top:0; width:60%; height:100%; background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.35), rgba(255,255,255,0)); transform:skewX(-20deg); animation: glide 3s linear infinite;}
+    .shimmer { font-size:1.6rem; font-weight:800; background: linear-gradient(90deg,var(--primary-teal),#00b7a1,var(--secondary-orange)); -webkit-background-clip:text; color:transparent; position:relative; }
+    .shimmer::after{ content:''; position:absolute; left:-40%; top:0; width:60%; height:100%; background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.35), rgba(255,255,255,0)); transform:skewX(-20deg); animation: glide 3s linear infinite; }
     @keyframes glide { 0%{ left:-60%; } 100%{ left:120%; } }
-    .intro{ color:var(--muted); font-size:1rem; margin-bottom:18px; line-height:1.5; background: linear-gradient(180deg, rgba(13,148,136,0.02), rgba(234,88,12,0.01)); padding:12px; border-radius:10px; box-shadow:var(--soft-shadow); }
+    .intro{ color:var(--muted); font-size:1rem; margin-bottom:18px; line-height:1.5; background: linear-gradient(180deg, rgba(13,148,136,0.02), rgba(234,88,12,0.01)); padding:12px; border-radius:10px; }
 
-    /* Table-like grid: left column = labels, then 3 country columns */
+    /* Table-like grid: left column = labels, then 4 country columns */
     .compare-wrap{
       margin-top:12px;
       padding:18px;
@@ -39,7 +39,7 @@
 
     .table{
       display:grid;
-      grid-template-columns: 300px repeat(3, 1fr);
+      grid-template-columns: 300px repeat(4, 1fr);
       gap:10px;
       align-items:stretch;
       width:100%;
@@ -88,11 +88,13 @@
     .cr-head{ display:flex; gap:10px; align-items:center; justify-content:center; }
     .pa-head{ display:flex; gap:10px; align-items:center; justify-content:center; }
     .bz-head{ display:flex; gap:10px; align-items:center; justify-content:center; }
+    .th-head{ display:flex; gap:10px; align-items:center; justify-content:center; }
 
     .flag-dot{ width:12px;height:12px;border-radius:4px;box-shadow:0 2px 6px rgba(15,23,42,0.06); }
     .cr-dot{ background: linear-gradient(135deg,#0d9488,#0b7f72); }
     .pa-dot{ background: linear-gradient(135deg,#ea580c,#c94c08); }
     .bz-dot{ background: linear-gradient(135deg,#f59e0b,#d97706); }
+    .th-dot{ background: linear-gradient(135deg,#0ea5a4,#06b6d4); }
 
     /* mobile */
     @media (max-width:980px){
@@ -110,58 +112,66 @@
     </div>
 
     <p class="intro">
-      Welcome — this chart is a friendly, fact-based snapshot designed to help you decide which of Costa Rica, Panama, or Belize might suit your next chapter.
+      Welcome — this chart is a friendly, fact-based snapshot designed to help you decide which of Costa Rica, Panama, Belize, or Thailand might suit your next chapter.
       Use it as a starting point: look at cost figures, healthcare access, visa options and other practical checks, then follow up with the
       official government pages for the specifics of tax, residency and health plans.
     </p>
 
     <div class="compare-wrap" role="region" aria-label="Country comparison table">
-      <div class="table" role="table" aria-label="Costa Rica, Panama, Belize comparison">
+      <div class="table" role="table" aria-label="Costa Rica, Panama, Belize, Thailand comparison">
 
         <!-- Header row -->
         <div class="head" role="columnheader">Topic</div>
         <div class="head cr-head" role="columnheader"><span class="flag-dot cr-dot" aria-hidden="true"></span>&nbsp;Costa Rica</div>
         <div class="head pa-head" role="columnheader"><span class="flag-dot pa-dot" aria-hidden="true"></span>&nbsp;Panama</div>
         <div class="head bz-head" role="columnheader"><span class="flag-dot bz-dot" aria-hidden="true"></span>&nbsp;Belize</div>
+        <div class="head th-head" role="columnheader"><span class="flag-dot th-dot" aria-hidden="true"></span>&nbsp;Thailand</div>
 
         <!-- Row: Typical monthly cost (single, excl. rent) -->
         <div class="label" role="rowheader">Typical monthly cost (single, excl. rent, USD)</div>
         <div class="cell" role="cell"><span class="num">$800–$1,200</span></div>
         <div class="cell" role="cell"><span class="num">$750–$1,150</span></div>
         <div class="cell" role="cell"><span class="num">$900–$1,400</span></div>
+        <div class="cell" role="cell"><span class="num">$1,200–$3,500</span></div>
 
         <!-- Row: Monthly food -->
         <div class="label">Monthly food (groceries + basics, USD)</div>
         <div class="cell"><span class="num">$280</span></div>
         <div class="cell"><span class="num">$320</span></div>
         <div class="cell"><span class="num">$350</span></div>
+        <div class="cell"><span class="num">$300</span></div>
 
         <!-- Row: Private health insurance (monthly) -->
         <div class="label">Private health insurance (monthly, USD)</div>
         <div class="cell"><span class="num">$60–$200</span></div>
         <div class="cell"><span class="num">$70–$220</span></div>
         <div class="cell"><span class="num">$80–$250</span></div>
+        <div class="cell"><span class="num">$70–$250</span></div>
 
         <!-- Row: Access to high-quality healthcare -->
         <div class="label">Access to high-quality healthcare</div>
         <div class="cell"><span class="yes">✔︎</span></div>
         <div class="cell"><span class="yes">✔︎</span></div>
         <div class="cell"><span class="no">✖︎</span></div>
+        <div class="cell"><span class="yes">✔︎</span></div>
 
         <!-- Row: Political stability (index 1–10; higher = more stable) -->
         <div class="label">Political stability (index 1–10, higher is more stable)</div>
         <div class="cell"><span class="num">7</span></div>
         <div class="cell"><span class="num">6</span></div>
         <div class="cell"><span class="num">5</span></div>
+        <div class="cell"><span class="num">6</span></div>
 
         <!-- Row: Tax incentives for passive foreign income -->
         <div class="label">Tax incentives for passive foreign income</div>
         <div class="cell"><span class="no">✖︎</span></div>
         <div class="cell"><span class="yes">✔︎</span></div>
         <div class="cell"><span class="yes">✔︎</span></div>
+        <div class="cell"><span class="no">✖︎</span></div>
 
         <!-- Row: Large expat community -->
         <div class="label">Large expat community</div>
+        <div class="cell"><span class="yes">✔︎</span></div>
         <div class="cell"><span class="yes">✔︎</span></div>
         <div class="cell"><span class="yes">✔︎</span></div>
         <div class="cell"><span class="yes">✔︎</span></div>
@@ -172,9 +182,11 @@
         <div class="cell"><span class="yes">✔︎</span></div>
         <div class="cell"><span class="yes">✔︎</span></div>
         <div class="cell"><span class="no">✖︎</span></div>
+        <div class="cell"><span class="yes">✔︎</span></div>
 
         <!-- Row: Vegan / plant-based friendliness -->
         <div class="label">Vegan / plant-based friendliness</div>
+        <div class="cell"><span class="yes">✔︎</span></div>
         <div class="cell"><span class="yes">✔︎</span></div>
         <div class="cell"><span class="yes">✔︎</span></div>
         <div class="cell"><span class="yes">✔︎</span></div>
@@ -184,9 +196,11 @@
         <div class="cell"><span class="yes">✔︎</span></div>
         <div class="cell"><span class="yes">✔︎</span></div>
         <div class="cell"><span class="yes">✔︎</span></div>
+        <div class="cell"><span class="yes">✔︎</span></div>
 
-        <!-- Row: Ease of residency / retiree visa -->
+        <!-- Row: Ease of residency / retiree visa (presence) -->
         <div class="label">Ease of residency / retiree visa (presence)</div>
+        <div class="cell"><span class="yes">✔︎</span></div>
         <div class="cell"><span class="yes">✔︎</span></div>
         <div class="cell"><span class="yes">✔︎</span></div>
         <div class="cell"><span class="yes">✔︎</span></div>
@@ -196,36 +210,41 @@
         <div class="cell"><span class="yes">✔︎</span></div>
         <div class="cell"><span class="yes">✔︎</span></div>
         <div class="cell"><span class="yes">✔︎</span></div>
+        <div class="cell"><span class="yes">✔︎ (condos; limited land ownership)</span></div>
 
         <!-- Row: Internet speed (download Mbps typical) -->
         <div class="label">Average residential internet speed (Mbps)</div>
         <div class="cell"><span class="num">20–60</span></div>
         <div class="cell"><span class="num">40–150</span></div>
         <div class="cell"><span class="num">10–40</span></div>
+        <div class="cell"><span class="num">40–150</span></div>
 
         <!-- Row: International schools (availability) -->
         <div class="label">International schools (availability)</div>
         <div class="cell"><span class="yes">✔︎</span></div>
         <div class="cell"><span class="yes">✔︎</span></div>
         <div class="cell"><span class="no">✖︎</span></div>
+        <div class="cell"><span class="yes">✔︎</span></div>
 
         <!-- Row: Climate risk — hurricane zone (yes = in Atlantic hurricane zone) -->
         <div class="label">Climate risk — hurricane exposure</div>
         <div class="cell"><span class="no">✖︎</span></div>
         <div class="cell"><span class="no">✖︎</span></div>
         <div class="cell"><span class="yes">✔︎</span></div>
+        <div class="cell"><span class="no">✖︎</span></div>
 
         <!-- Row: Safety — violent crime index (1–10, lower = safer) -->
         <div class="label">Safety — violent crime index (1–10, lower better)</div>
         <div class="cell"><span class="num">4</span></div>
         <div class="cell"><span class="num">5</span></div>
         <div class="cell"><span class="num">6</span></div>
+        <div class="cell"><span class="num">5</span></div>
 
       </div> <!-- end .table -->
 
       <div style="margin-top:14px;display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap">
         <div style="color:var(--muted);font-size:0.9rem;max-width:76ch;">
-          Notes: every row is answered with either a numeric estimate (costs, speeds, indices) or a factual check (✔︎ / ✖︎). Numbers are high-level 2024 estimates for typical expat/tourist areas. Checks summarize factual status (laws, programs, infrastructure) derived from official sources (national ministries, World Bank, WHO, national migration pages). For tax/residency specifics or up-to-date legal detail, consult the official government pages for each country.
+          Notes: every row is answered with either a numeric estimate (costs, speeds, indices) or a factual check (✔︎ / ✖︎). Numbers are high-level 2024 estimates for typical expat/tourist areas. For visa details, residency steps and exact tax rules, consult the official government websites or the country-specific guides linked from the home page.
         </div>
         <div style="display:flex;gap:8px;align-items:center">
           <a class="cta" href="index.html">Back home</a>
