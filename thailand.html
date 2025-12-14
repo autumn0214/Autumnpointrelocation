@@ -3,68 +3,198 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Thailand — Autumnpoint Relocation</title>
-  <link rel="stylesheet" href="styles.css" />
+  <title>Thailand — Destination Guide | Autumn Point</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root{
+      --accent:#ea580c;
+      --primary-teal:#0d9488;
+      --dark-text:#1f2937;
+      --muted:#6b7280;
+      --secondary-orange: var(--accent);
+    }
+    .tint-primary { background: rgba(13,148,136,0.05); }
+    .tint-secondary { background: rgba(234,88,12,0.08); }
+    .card-border-secondary{ border-top: 4px solid var(--accent); }
+    .section-border-secondary{ border-top: 8px solid var(--accent); }
+    .site-logo-img { height:52px; width:auto; object-fit:contain; }
+    @media (min-width:1024px){ .site-logo-img{ height:64px; } }
+
+    .shimmer-wrap{ display:flex; align-items:center; gap:12px; margin-bottom:8px; }
+    .shimmer {
+      font-size:1.6rem;
+      font-weight:800;
+      background: linear-gradient(90deg,var(--primary-teal),#00b7a1,var(--secondary-orange));
+      -webkit-background-clip:text;
+      -webkit-text-fill-color: transparent;
+      color:transparent;
+      position:relative;
+      overflow:hidden;
+      display:inline-block;
+      line-height:1;
+    }
+    .shimmer::after{
+      content:'';
+      position:absolute;
+      left:-40%;
+      top:0;
+      width:60%;
+      height:100%;
+      background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.35), rgba(255,255,255,0));
+      transform:skewX(-20deg);
+      animation: glide 3s linear infinite;
+    }
+    @keyframes glide { 0%{ left:-60%; } 100%{ left:120%; } }
+    .shimmer.small { font-size:0.95rem; font-weight:700; }
+
+    /* small utility to keep long lists readable on small screens */
+    .visa-list dd { margin-left: 1rem; margin-bottom: 0.75rem; }
+  </style>
 </head>
-<body>
-  <header>
-    <nav>
-      <a href="index.html">Home</a> |
-      <a href="compare.html">Compare Countries</a> |
-      <a href="packages.html">Packages</a>
-    </nav>
-    <h1>Thailand</h1>
+<body class="font-sans text-dark-text bg-white">
+  <header class="sticky top-0 z-40 bg-white border-b">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+      <a href="index.html" class="flex items-center gap-3">
+        <img src="assets/AutumnPointLogo.svg" alt="AutumnPoint" class="site-logo-img" onerror="this.style.display='none'">
+        <span class="text-xl font-bold" style="color:var(--primary-teal)">Autumn Point Relocation</span>
+      </a>
+
+      <nav class="shimmer-wrap">
+        <a href="costarica.html" class="shimmer small">Costa Rica</a>
+        <a href="belize.html" class="shimmer small">Belize</a>
+      </nav>
+    </div>
   </header>
 
   <main>
-    <section class="hero">
-      <!-- Add an image named thailand.jpg to the repository (root or images/). -->
-      <img src="thailand.jpg" alt="Thailand" style="max-width:100%;height:auto;">
+    <section id="page-thailand" class="py-16 sm:py-24 tint-primary section-border-secondary" style="border-top-color:var(--accent);">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center">
+          <h2 class="text-base text-primary-teal font-semibold tracking-wide uppercase">Destination Guide</h2>
+          <p class="mt-2 text-4xl font-extrabold text-secondary-orange sm:text-5xl" style="color:var(--accent)">
+            Thailand — Land of Smiles
+          </p>
+        </div>
+
+        <div class="mt-12 grid grid-cols-1 lg:grid-cols-3 gap-10">
+          <div class="lg:col-span-2 space-y-8">
+            <h3 class="text-2xl font-bold text-dark-text border-b pb-2">Residency & Visa Pathways</h3>
+            <p class="text-lg text-gray-700">
+              Thailand offers a broad range of entry and long-stay visa categories — from short tourist entries to long-stay retirement, employment and special investor/skill schemes. Use the official immigration and Ministry of Foreign Affairs pages for up-to-date application forms and nationality-specific rules.
+            </p>
+
+            <h3 class="text-2xl font-bold text-dark-text border-b pb-2 pt-6">Quick Visa summary</h3>
+            <ul class="list-disc ml-6 space-y-2 text-gray-700">
+              <li><strong>Visa Exemption / Visa-free entry</strong> — Many nationalities may enter visa-free for short stays (commonly 30 days by air; often 15 days by land). Confirm by passport country.</li>
+              <li><strong>Visa on Arrival (VOA)</strong> — Available to some nationalities for short (commonly 15-day) visits.</li>
+              <li><strong>Tourist visa (TR)</strong> — Embassy-issued tourist visas (single or multiple entry), commonly 60 days single-entry; 30-day extensions are commonly granted by immigration in Thailand.</li>
+              <li><strong>Transit visa</strong> — Short stays for transiting travellers who need a visa to enter Thailand briefly.</li>
+              <li><strong>Non-Immigrant visas</strong> — Purpose-specific long-stay visas such as B (business/work), ED (study), O (family/retirement), O-A / O-X (long-term retirement), and more.</li>
+              <li><strong>SMART Visa</strong> — Special scheme for targeted highly skilled professionals, startups, executives and investors offering long-term residence and relaxed work permit rules for eligible applicants.</li>
+              <li><strong>Thailand Elite</strong> — Long-term residency through a paid membership program (multi-year privileges).</li>
+              <li><strong>Permanent Residency & Citizenship</strong> — Longer processes with quotas and strict eligibility; start with temporary/residence visa routes.</li>
+            </ul>
+
+            <h3 class="text-2xl font-bold text-dark-text border-b pb-2 pt-6">Full visa breakdown</h3>
+
+            <section class="visa-list">
+              <h4 class="text-xl font-semibold mt-4">Visa exemption / Visa-free entry</h4>
+              <p class="text-gray-700">A number of countries enjoy visa-free entry to Thailand for short holidays. Duration depends on point of entry and bilateral agreements (often 30 days if arriving by air; 15 days if arriving by land). Typical requirements: passport valid for required period, onward/return ticket, and occasionally proof of funds.</p>
+
+              <h4 class="text-xl font-semibold mt-4">Visa on Arrival (VOA)</h4>
+              <p class="text-gray-700">Visa on Arrival is offered to certain passport holders and typically allows a short stay (commonly 15 days). Eligibility, fee and arrival points change periodically — check official lists before travel.</p>
+
+              <h4 class="text-xl font-semibold mt-4">Tourist Visa (TR)</h4>
+              <p class="text-gray-700">Issued by Thai embassies/consulates. Commonly single-entry for 60 days or multiple-entry visas (subject to consular rules). Tourist visas can often be extended once in Thailand for an additional 30 days by applying to immigration.</p>
+              <dl>
+                <dt class="font-semibold mt-2">Typical documents</dt>
+                <dd>Passport with required validity, completed form, photos, proof of onward travel, accommodation details, and evidence of sufficient funds.</dd>
+              </dl>
+
+              <h4 class="text-xl font-semibold mt-4">Transit Visa</h4>
+              <p class="text-gray-700">For travellers transiting Thailand when a visa is required for entry into Thailand even for a short period; durations are short and documentation requirements limited.</p>
+
+              <h4 class="text-xl font-semibold mt-4">Non-Immigrant Visa categories</h4>
+              <p class="text-gray-700">Non-Immigrant visas are issued for long-stay purposes and include several subcategories:</p>
+              <dl>
+                <dt class="font-semibold mt-2">Non-Immigrant B (Business / Work)</dt>
+                <dd>Used by persons entering for employment or business. Typically requires employer sponsorship, supporting company documents and is the usual precursor to a work permit application.</dd>
+
+                <dt class="font-semibold mt-2">Non-Immigrant ED (Education)</dt>
+                <dd>For students enrolled in recognized Thai institutions. Requires acceptance/letter from the institution, proof of funds and specific consular documentation.</dd>
+
+                <dt class="font-semibold mt-2">Non-Immigrant O (Other — family, retirement)</dt>
+                <dd>Includes spouse/family-of-thai routes and some retirement paths. Marriage to a Thai national typically requires marriage certificate, financial proof and other supporting documents.</dd>
+
+                <dt class="font-semibold mt-2">Non-Immigrant O-A (Long-stay retirement)</dt>
+                <dd>Long-stay retirement visa for applicants age 50+ (issued from certain embassies/consulates). Commonly requires financial proof such as a minimum bank deposit or monthly income — e.g., applicants often show either a specified amount in a Thai bank or a monthly income / pension. Exact thresholds and verification rules are set by consulates and immigration.</dd>
+
+                <dt class="font-semibold mt-2">Non-Immigrant O-X (Long-stay for eligible nationals)</dt>
+                <dd>O-X is a long-stay visa for certain nationalities and applicants meeting higher financial and age thresholds (typically older applicants). It may grant multiple-year entries (e.g., up to 5 or 10 years depending on the program and nationality). Check eligible countries and up-to-date conditions with Thai missions.</dd>
+              </dl>
+
+              <h4 class="text-xl font-semibold mt-4">SMART Visa</h4>
+              <p class="text-gray-700">SMART Visa is intended to attract highly-skilled talent, investors, executives and startup entrepreneurs in targeted industries. Benefits often include longer validity (up to several years), dependent visas and relaxed work-permit requirements for qualifying applicants. It has specific eligibility criteria and an application route managed through designated SMART Visa channels and approved organizations.</p>
+
+              <h4 class="text-xl font-semibold mt-4">Thailand Elite</h4>
+              <p class="text-gray-700">The Thailand Elite (Privileged Entry Visa / membership) offers multi-year residency via subscription and provides expedited immigration/concierge benefits. It is run as a private membership program — eligibility, costs and durations depend on the membership package selected.</p>
+
+              <h4 class="text-xl font-semibold mt-4">Work Permit (separate from visa)</h4>
+              <p class="text-gray-700">A work permit is mandatory for legal employment in Thailand. The Non-Immigrant B visa is generally required before applying for a work permit. Employers typically handle the work permit application with supporting corporate documentation; quotas and sector rules apply.</p>
+
+              <h4 class="text-xl font-semibold mt-4">Permanent Residence & Citizenship</h4>
+              <p class="text-gray-700">Permanent residence requires a separate application, often after multiple years of temporary/resident status, and is subject to strict quotas and documentation checks. Citizenship has its own long process with residency, language and other criteria.</p>
+
+              <h4 class="text-xl font-semibold mt-4">Visa Extensions & Overstay</h4>
+              <p class="text-gray-700">Many temporary visas can be extended at Thai immigration offices (commonly 30-day extensions for tourists). Overstaying a visa can result in fines, deportation and future entry bans. Always maintain valid immigration/visa status and apply for extensions or change of status before expiry.</p>
+            </section>
+
+            <h3 class="text-2xl font-bold text-dark-text border-b pb-2 pt-6">How to apply & practical tips</h3>
+            <ul class="list-disc ml-6 mt-3 text-gray-700 space-y-2">
+              <li>Check if your nationality is visa-exempt or eligible for VOA before travel.</li>
+              <li>For pre-arranged visas, apply at the Royal Thai Embassy or Consulate in your country or use the official e-Visa portal where available.</li>
+              <li>For work: secure a Non-Immigrant B (if required), then apply for a work permit via your employer. Employer registration with Social Security (if applicable) is commonly required.</li>
+              <li>For retirement: prepare certified/apostilled civil documents, financial proof and medical insurance as requested by the consulate/immigration.</li>
+              <li>For SMART Visa or investor routes: contact the designated issuing authority and use the official SMART Visa process.</li>
+            </ul>
+
+            <h3 class="text-2xl font-bold text-dark-text border-b pb-2 pt-6">Official sources</h3>
+            <ul class="list-disc ml-6 mt-3 text-gray-700">
+              <li><a href="https://www.immigration.go.th/" class="text-primary-teal underline" target="_blank" rel="noopener">Thai Immigration Bureau (immigration.go.th)</a></li>
+              <li><a href="https://www.mfa.go.th/en" class="text-primary-teal underline" target="_blank" rel="noopener">Ministry of Foreign Affairs — Thailand (mfa.go.th)</a></li>
+              <li><a href="https://www.thaievisa.go.th/" class="text-primary-teal underline" target="_blank" rel="noopener">Thai e-Visa portal (thaievisa.go.th)</a></li>
+              <li><a href="https://smartvisa.boi.go.th/" class="text-primary-teal underline" target="_blank" rel="noopener">SMART Visa information (smartvisa.boi.go.th)</a> (program for targeted professionals and investors)</li>
+              <li><a href="https://www.thailandelite.com/" class="text-primary-teal underline" target="_blank" rel="noopener">Thailand Elite (thailandelite.com)</a></li>
+            </ul>
+
+            <p class="text-sm text-gray-600 mt-4">
+              Note: Visa categories, eligible nationalities, fees and documentary requirements change periodically. Always confirm eligibility, exact financial thresholds and form requirements with the official sources above or your nearest Royal Thai Embassy/Consulate before applying.
+            </p>
+
+          </div>
+
+          <aside class="p-6 rounded-xl shadow-lg card-border-secondary tint-secondary" style="border-top-color:var(--accent);">
+            <h3 class="text-xl font-bold" style="color:var(--accent)">Cost of Living Estimate</h3>
+            <p class="text-4xl font-extrabold text-dark-text mt-4">$1,200 - $3,500 USD / month</p>
+            <ul class="mt-4 space-y-2 text-sm text-gray-700">
+              <li><strong>Bangkok (expat standard):</strong> Higher rent & private healthcare costs.</li>
+              <li><strong>Chiang Mai / provincial cities:</strong> Lower costs, popular with digital nomads & retirees.</li>
+              <li><strong>Note:</strong> Health insurance and school costs (if family) can significantly affect budgets.</li>
+            </ul>
+            <a href="thailand-visa.html" class="mt-6 inline-block text-primary-teal font-semibold hover:underline">Full Thailand visa guide &rarr;</a>
+          </aside>
+        </div>
+      </div>
     </section>
 
-    <section class="overview">
-      <h2>Overview</h2>
-      <p>
-        Thailand is a Southeast Asian country known for its tropical beaches,
-        rich cultural heritage, and strong expat communities. Popular relocation
-        destinations include Bangkok, Chiang Mai, Phuket, and Pattaya.
-      </p>
-      <ul class="quick-facts">
-        <li><strong>Capital:</strong> Bangkok</li>
-        <li><strong>Language:</strong> Thai (Thai script)</li>
-        <li><strong>Currency:</strong> Thai Baht (THB)</li>
-        <li><strong>Time zone:</strong> ICT (UTC+7)</li>
-      </ul>
-    </section>
-
-    <section class="relocating">
-      <h2>Relocation Summary</h2>
-      <p>
-        Thailand offers several visa and residency routes suitable for tourists,
-        students, workers, retirees, and investors (including the SMART visa).
-        Healthcare in major cities is modern and affordable. Cost of living varies
-        widely by city and lifestyle.
-      </p>
-      <p>
-        For full visa details and specific requirements see the dedicated visa
-        page: <a href="thailand-visa.html">Thailand — Visa & Entry</a>.
-      </p>
-    </section>
-
-    <section class="resources">
-      <h2>Useful Links</h2>
-      <ul>
-        <li><a href="thailand-visa.html">Thailand visa & immigration (detailed)</a></li>
-        <li><a href="https://www.mfa.go.th/en/page/types-of-visa?menu=5e1ff6d757b01e00965d1682" target="_blank" rel="noopener">Ministry of Foreign Affairs — Types of Visa</a></li>
-        <li><a href="https://www.thaievisa.go.th/" target="_blank" rel="noopener">Thailand e-Visa Portal</a></li>
-        <li><a href="https://www.immigration.go.th/" target="_blank" rel="noopener">Thai Immigration Bureau</a></li>
-        <li><a href="https://smart-visa.boi.go.th/smart-visa-1/" target="_blank" rel="noopener">SMART Visa (BOI)</a></li>
-      </ul>
-    </section>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 flex items-center justify-between">
+      <a href="index.html" class="text-sm text-gray-700 underline">&larr; Back to Home</a>
+      <div class="shimmer-wrap">
+        <a href="costarica.html" class="shimmer small">Costa Rica guide</a>
+        <a href="belize.html" class="shimmer small">Belize guide</a>
+      </div>
+    </div>
   </main>
-
-  <footer>
-    <p>&copy; Autumnpoint Relocation</p>
-  </footer>
+  <script src="/asset/shimmer.js" defer></script>
 </body>
 </html>
